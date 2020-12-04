@@ -8,7 +8,7 @@
 
 namespace Visionizer {
 
-	class HAZEL_API ImGuiLayer : public Layer
+	class VISION_API ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();

@@ -7,7 +7,7 @@
 
 namespace Visionizer {
 
-	class HAZEL_API LayerStack
+	class VISION_API LayerStack
 	{
 	public:
 		LayerStack();

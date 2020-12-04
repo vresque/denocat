@@ -5,7 +5,7 @@
 
 namespace Visionizer {
 
-	class HAZEL_API Layer
+	class VISION_API Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");

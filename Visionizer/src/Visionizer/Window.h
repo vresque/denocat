@@ -22,7 +22,7 @@ namespace Visionizer {
 	};
 
 	// Interface representing a desktop system based Window
-	class HAZEL_API Window
+	class VISION_API Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

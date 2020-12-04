@@ -2,7 +2,11 @@
 
 #include "Visionizer/Window.h"
 
+#include "Visionizer/Renderer/GraphicsContext.h"
+
 #include <GLFW/glfw3.h>
+
+
 
 namespace Visionizer {
 
@@ -26,8 +30,13 @@ namespace Visionizer {
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
+
+
 	private:
 		GLFWwindow* m_Window;
+
+		// Creating the Context
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

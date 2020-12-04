@@ -6,7 +6,7 @@
 
 namespace Visionizer {
 
-	class HAZEL_API Log
+	class VISION_API Log
 	{
 	public:
 		static void Init();

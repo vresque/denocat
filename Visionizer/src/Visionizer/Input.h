@@ -4,7 +4,7 @@
 
 namespace Visionizer {
 
-	class HAZEL_API Input
+	class VISION_API Input
 	{
 	public:
 		inline static bool IsKeyPressed(int keycode) { return s_Instance->IsKeyPressedImpl(keycode); }

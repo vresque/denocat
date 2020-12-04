@@ -11,7 +11,7 @@
 
 namespace Visionizer {
 
-	class HAZEL_API Application
+	class VISION_API Application
 	{
 	public:
 		Application();
