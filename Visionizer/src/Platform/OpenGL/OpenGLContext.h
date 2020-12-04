@@ -3,7 +3,7 @@
 
 #include "Visionizer/Renderer/GraphicsContext.h"
 
-
+struct GLFWwindow;
 
 namespace Visionizer
 {
