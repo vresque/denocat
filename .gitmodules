@@ -1,0 +1,12 @@
+[submodule "Visionizer/vendor/spdlog"]
+	path = Visionizer/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "Visionizer/vendor/GLFW"]
+	path = Visionizer/vendor/GLFW
+	url = https://github.com/TheCherno/glfw
+[submodule "Visionizer/vendor/imgui"]
+	path = Visionizer/vendor/imgui
+	url = https://github.com/TheCherno/imgui
+[submodule "Visionizer/vendor/glm"]
+	path = Visionizer/vendor/glm
+	url = https://github.com/g-truc/glm
