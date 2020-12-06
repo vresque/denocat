@@ -121,12 +121,36 @@ public:
 
 	void OnUpdate() override
 	{
+
+		// TEMPORARY: Dependant on FPS, use Delta Time.
+		// Do Camera Moving
+		if (Visionizer::Input::IsKeyPressed(VKEY_A))
+			m_CameraPosition.x -= m_CameraMoveSpeed;
+
+		else if (Visionizer::Input::IsKeyPressed(VKEY_D))
+			m_CameraPosition.x += m_CameraMoveSpeed;
+
+		if (Visionizer::Input::IsKeyPressed(VKEY_W))
+			m_CameraPosition.y += m_CameraMoveSpeed;
+
+		else if (Visionizer::Input::IsKeyPressed(VKEY_S))
+			m_CameraPosition.y -= m_CameraMoveSpeed;
+
+		// Do Camera Rotating
+		if (Visionizer::Input::IsKeyPressed(VKEY_Q))
+			m_CameraRotation -= m_CameraRotationSpeed;
+
+		else if (Visionizer::Input::IsKeyPressed(VKEY_E))
+			m_CameraRotation += m_CameraRotationSpeed;
+
+
+
 		Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Visionizer::RenderCommand::Clear();
 
 
 		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(0.0f);
+		m_Camera.SetRotation(m_CameraRotation);
 
 		Visionizer::Renderer::BeginScene(m_Camera);
 
@@ -145,29 +169,8 @@ public:
 
 	void OnEvent(Visionizer::Event& event) override
 	{
-		// Make a basic camera controller
-		Visionizer::EventDispatcher dispatcher(event);
-		dispatcher.Dispatch<Visionizer::KeyPressedEvent>(VS_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEventFn));
 	}
 
-	bool OnKeyPressedEventFn(Visionizer::KeyPressedEvent& event)
-	{
-		// TEMPORARY: Dependant on FPS, use Delta Time.
-		// Do Camera Moving
-		if (event.GetKeyCode() == VKEY_A)
-			m_CameraPosition.x -= m_CameraSpeed;
-
-		if (event.GetKeyCode() == VKEY_D)
-			m_CameraPosition.x += m_CameraSpeed;
-
-		if (event.GetKeyCode() == VKEY_S)
-			m_CameraPosition.y -= m_CameraSpeed;
-
-		if (event.GetKeyCode() == VKEY_W)
-			m_CameraPosition.y += m_CameraSpeed;
-
-		return false;
-	}
 
 private:
 	std::shared_ptr<Visionizer::Shader> m_Shader;
@@ -178,7 +181,10 @@ private:
 
 	Visionizer::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 0.1f;
+	float m_CameraRotation = 0;
+
+	float m_CameraMoveSpeed = 0.1f;
+	float m_CameraRotationSpeed = 2.0f;
 };
 
 class Sandbox : public Visionizer::Application
