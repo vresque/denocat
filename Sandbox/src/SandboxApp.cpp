@@ -6,7 +6,7 @@ class ExampleLayer : public Visionizer::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
+		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
 	{
 		m_VertexArray.reset(Visionizer::VertexArray::Create());
 
@@ -125,8 +125,8 @@ public:
 		Visionizer::RenderCommand::Clear();
 
 
-		m_Camera.SetPosition({ 0.5f, 0.5f, 0.0f });
-		m_Camera.SetRotation(45.0f);
+		m_Camera.SetPosition(m_CameraPosition);
+		m_Camera.SetRotation(0.0f);
 
 		Visionizer::Renderer::BeginScene(m_Camera);
 
@@ -146,6 +146,27 @@ public:
 	void OnEvent(Visionizer::Event& event) override
 	{
 		// Make a basic camera controller
+		Visionizer::EventDispatcher dispatcher(event);
+		dispatcher.Dispatch<Visionizer::KeyPressedEvent>(VS_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEventFn));
+	}
+
+	bool OnKeyPressedEventFn(Visionizer::KeyPressedEvent& event)
+	{
+		// TEMPORARY: Dependant on FPS, use Delta Time.
+		// Do Camera Moving
+		if (event.GetKeyCode() == VKEY_A)
+			m_CameraPosition.x -= m_CameraSpeed;
+
+		if (event.GetKeyCode() == VKEY_D)
+			m_CameraPosition.x += m_CameraSpeed;
+
+		if (event.GetKeyCode() == VKEY_S)
+			m_CameraPosition.y -= m_CameraSpeed;
+
+		if (event.GetKeyCode() == VKEY_W)
+			m_CameraPosition.y += m_CameraSpeed;
+
+		return false;
 	}
 
 private:
@@ -156,6 +177,8 @@ private:
 	std::shared_ptr<Visionizer::VertexArray> m_SquareVA;
 
 	Visionizer::OrthographicCamera m_Camera;
+	glm::vec3 m_CameraPosition;
+	float m_CameraSpeed = 0.1f;
 };
 
 class Sandbox : public Visionizer::Application
