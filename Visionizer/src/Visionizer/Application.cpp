@@ -7,6 +7,8 @@
 
 #include "Input.h"
 #include "KeyCodes.h"
+#include "Core/Timestep.h"
+#include "GLFW/glfw3.h"
 
 namespace Visionizer {
 
@@ -54,9 +56,14 @@ namespace Visionizer {
 	{
 		while (m_Running)
 		{
+			// TEMPORARY: Remove glfwGetTime();
+			float time = (float)glfwGetTime();	// [TODO] Do Platform::GetTime();
+			Timestep timestep = time - m_LastFrameTime;  // [TODO] Add Platform::GetDeltaTime();
+			m_LastFrameTime = time;
+
 			// Start of doing layers
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)

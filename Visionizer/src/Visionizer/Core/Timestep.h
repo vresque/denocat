@@ -10,10 +10,12 @@ namespace Visionizer
 		{
 		}
 
+		operator float() const { return m_Time; }
+
 		float GetSeconds() const { return m_Time; }
 		float GetMilliseconds() const { return m_Time * 1000.0f; }
 
-
+		// [TODO] Add more mathematical functions
 	private:
 		float m_Time;
 	};

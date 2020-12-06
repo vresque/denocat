@@ -2,6 +2,7 @@
 
 #include "Visionizer/Core.h"
 #include "Visionizer/Events/Event.h"
+#include "Core/Timestep.h"
 
 namespace Visionizer {
 
@@ -13,7 +14,7 @@ namespace Visionizer {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

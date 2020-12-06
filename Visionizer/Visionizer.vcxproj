@@ -149,6 +149,7 @@
     <ClInclude Include="src\Visionizer.h" />
     <ClInclude Include="src\Visionizer\Application.h" />
     <ClInclude Include="src\Visionizer\Core.h" />
+    <ClInclude Include="src\Visionizer\Core\Timestep.h" />
     <ClInclude Include="src\Visionizer\EntryPoint.h" />
     <ClInclude Include="src\Visionizer\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Visionizer\Events\Event.h" />

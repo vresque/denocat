@@ -119,29 +119,29 @@ public:
 		m_BlueShader.reset(new Visionizer::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Visionizer::Timestep delta) override
 	{
 
 		// TEMPORARY: Dependant on FPS, use Delta Time.
 		// Do Camera Moving
 		if (Visionizer::Input::IsKeyPressed(VKEY_A))
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * delta;
 
 		else if (Visionizer::Input::IsKeyPressed(VKEY_D))
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * delta;
 
 		if (Visionizer::Input::IsKeyPressed(VKEY_W))
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * delta;
 
 		else if (Visionizer::Input::IsKeyPressed(VKEY_S))
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * delta;
 
 		// Do Camera Rotating
 		if (Visionizer::Input::IsKeyPressed(VKEY_Q))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * delta;
 
 		else if (Visionizer::Input::IsKeyPressed(VKEY_E))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * delta;
 
 
 
@@ -183,8 +183,8 @@ private:
 	glm::vec3 m_CameraPosition;
 	float m_CameraRotation = 0;
 
-	float m_CameraMoveSpeed = 0.1f;
-	float m_CameraRotationSpeed = 2.0f;
+	float m_CameraMoveSpeed = 5.0f;
+	float m_CameraRotationSpeed = 120.0f;
 };
 
 class Sandbox : public Visionizer::Application
