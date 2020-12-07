@@ -1,19 +1,20 @@
 #pragma once
 
 #include "RenderCommand.h"
+
 #include "OrthographicCamera.h"
 #include "Shader.h"
 
-namespace Visionizer {
+namespace Visionizer
+{
 
 	class Renderer
 	{
 	public:
-		// [TODO] Softcode
 		static void BeginScene(OrthographicCamera& camera);
 		static void EndScene();
 
-		static void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray);
+		static void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const glm::mat4& transform = glm::mat4(1.0f));
 
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	private:
@@ -21,8 +22,8 @@ namespace Visionizer {
 		{
 			glm::mat4 ViewProjectionMatrix;
 		};
-		
-		static SceneData* m_SceneData;
+
+		static SceneData* s_SceneData;
 	};
 
 
