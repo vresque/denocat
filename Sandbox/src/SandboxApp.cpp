@@ -7,6 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+
 class ExampleLayer : public Visionizer::Layer
 {
 public:
@@ -59,15 +60,16 @@ public:
 
 
 		// Setting up the shaders
-		m_Shader.reset(Visionizer::Shader::Create("assets/shaders/TriangleShader.glsl"));
-		m_FlatColorShader.reset(Visionizer::Shader::Create("assets/shaders/FlatColorShader.glsl"));
-		m_TextureShader.reset(Visionizer::Shader::Create("assets/shaders/Texture.glsl"));
+		// [TODO] Make better
+		m_Shader = Visionizer::Shader::Create("assets/shaders/TriangleShader.glsl");
+		m_FlatColorShader = Visionizer::Shader::Create("assets/shaders/FlatColorShader.glsl");
+		auto TextureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Visionizer::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = Visionizer::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(TextureShader)->Bind();
+		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Visionizer::Timestep ts) override
@@ -86,6 +88,7 @@ public:
 			m_CameraRotation += m_CameraRotationSpeed * ts;
 		if (Visionizer::Input::IsKeyPressed(VKEY_Q))
 			m_CameraRotation -= m_CameraRotationSpeed * ts;
+
 
 		Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Visionizer::RenderCommand::Clear();
@@ -110,11 +113,12 @@ public:
 			}
 		}
 
-		m_Texture->Bind();
-		Visionizer::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-		m_ChernoLogoTexture->Bind();
-		Visionizer::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		auto textureShader = m_ShaderLibrary.Get("Texture");
 
+		m_Texture->Bind();
+		Visionizer::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		m_ChernoLogoTexture->Bind();
+		Visionizer::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
 		// Visionizer::Renderer::Submit(m_Shader, m_VertexArray);
@@ -133,10 +137,11 @@ public:
 	{
 	}
 private:
+	Visionizer::ShaderLibrary m_ShaderLibrary;
 	Visionizer::Ref<Visionizer::Shader> m_Shader;
 	Visionizer::Ref<Visionizer::VertexArray> m_VertexArray;
 
-	Visionizer::Ref<Visionizer::Shader> m_FlatColorShader, m_TextureShader;
+	Visionizer::Ref<Visionizer::Shader> m_FlatColorShader;
 	Visionizer::Ref<Visionizer::VertexArray> m_SquareVA;
 
 	Visionizer::Ref<Visionizer::Texture2D> m_Texture, m_ChernoLogoTexture;

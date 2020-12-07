@@ -5,6 +5,7 @@
 #include <glad/glad.h>
 
 #include <glm/gtc/type_ptr.hpp>
+#include <filesystem>
 
 namespace Visionizer
 {
@@ -25,9 +26,14 @@ namespace Visionizer
 		std::string source = ReadFile(filepath);
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
+
+		// Extract name from filepath
+		std::filesystem::path path = filepath;
+		m_Name = path.stem().string(); // Returns the files stripped name
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc)
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
+		: m_Name(name)
 	{
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSrc;
@@ -43,7 +49,7 @@ namespace Visionizer
 	std::string OpenGLShader::ReadFile(const std::string& filepath)
 	{
 		std::string result;
-		std::ifstream in(filepath, std::ios::in, std::ios::binary);
+		std::ifstream in(filepath, std::ios::in | std::ios::binary);
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
@@ -87,7 +93,11 @@ namespace Visionizer
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
 		GLuint program = glCreateProgram();
-		std::vector<GLenum> glShaderIDs(shaderSources.size());
+		// [TODO] Enable having a higher shader size than 2
+		VS_CORE_ASSERT(shaderSources.size() <= 2, "Visionizer only supports 2 shaders at the moment");
+		std::array<GLenum, 2> glShaderIDs;
+		int glShaderIDIndex = 0;
+
 		for (auto& kv : shaderSources)
 		{
 			GLenum type = kv.first;
@@ -118,7 +128,7 @@ namespace Visionizer
 			}
 
 			glAttachShader(program, shader);
-			glShaderIDs.push_back(shader);
+			glShaderIDs[glShaderIDIndex++] = shader;
 		}
 
 		m_RendererID = program;

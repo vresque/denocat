@@ -23,6 +23,8 @@
 #ifdef VS_ENABLE_ASSERTS
 	#define VS_ASSERT(x, ...) { if(!(x)) { VS_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define VS_CORE_ASSERT(x, ...) { if(!(x)) { VS_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#elif defined VS_RELEASE || VS_DIST
+
 #else
 	#define VS_ASSERT(x, ...)
 	#define VS_CORE_ASSERT(x, ...)
