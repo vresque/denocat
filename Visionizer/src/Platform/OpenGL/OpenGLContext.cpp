@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #include <GL/GL.h>
+#include "Visionizer/Renderer/Renderer.h"
 
 namespace Visionizer {
 
