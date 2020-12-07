@@ -44,6 +44,7 @@ namespace Visionizer
 		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
 
 		stbi_image_free(data);
+		VS_INFO("Successfully loaded image from '{0}'", path);
 		
 	}
 

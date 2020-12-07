@@ -48,7 +48,7 @@ public:
 		squareVB.reset(Visionizer::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
 			{ Visionizer::ShaderDataType::Float3, "a_Position" },
-			{ Visionizer::ShaderDataType::Float2, "a_TextCoord" }
+			{ Visionizer::ShaderDataType::Float2, "a_TexCoord" }
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
@@ -57,109 +57,17 @@ public:
 		squareIB.reset(Visionizer::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
-		std::string vertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-			out vec3 v_Position;
-			out vec4 v_Color;
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
-			}
-		)";
 
-		std::string fragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-			in vec3 v_Position;
-			in vec4 v_Color;
-			void main()
-			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-				color = v_Color;
-			}
-		)";
+		// Setting up the shaders
+		m_Shader.reset(Visionizer::Shader::Create("assets/shaders/TriangleShader.glsl"));
+		m_FlatColorShader.reset(Visionizer::Shader::Create("assets/shaders/FlatColorShader.glsl"));
+		m_TextureShader.reset(Visionizer::Shader::Create("assets/shaders/Texture.glsl"));
 
-		m_Shader.reset(Visionizer::Shader::Create(vertexSrc, fragmentSrc));
-
-		std::string flatColorShaderVertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-			out vec3 v_Position;
-			void main()
-			{
-				v_Position = a_Position;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
-			}
-		)";
-
-		std::string flatColorShaderFragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-			in vec3 v_Position;
-			
-			uniform vec3 u_Color;
-			void main()
-			{
-				color = vec4(u_Color, 1.0);
-			}
-		)";
-
-		m_FlatColorShader.reset(Visionizer::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
-	
-		std::string textureShaderVertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TextureCoord;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec2 v_TexCoord;
-
-
-			void main()
-			{
-				v_TexCoord = a_TextureCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
-			}
-		)";
-
-		std::string textureShaderFragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-
-			in vec2 v_TexCoord;
-
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-		m_TextureShader.reset(Visionizer::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
-		
-		m_Texture = Visionizer::Texture2D::Create("assets/textures/checkerboard.png");
+		m_Texture = Visionizer::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = Visionizer::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
-
 	}
 
 	void OnUpdate(Visionizer::Timestep ts) override
@@ -174,10 +82,10 @@ public:
 		else if (Visionizer::Input::IsKeyPressed(VKEY_S))
 			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 
-//		if (Visionizer::Input::IsKeyPressed(VKEY_Q))
-//			m_CameraRotation += m_CameraRotationSpeed * ts;
-//		if (Visionizer::Input::IsKeyPressed(VKEY_E))
-//			m_CameraRotation -= m_CameraRotationSpeed * ts;
+		if (Visionizer::Input::IsKeyPressed(VKEY_E))
+			m_CameraRotation += m_CameraRotationSpeed * ts;
+		if (Visionizer::Input::IsKeyPressed(VKEY_Q))
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 
 		Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Visionizer::RenderCommand::Clear();
@@ -192,7 +100,6 @@ public:
 		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_FlatColorShader)->Bind();
 		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
-		// Grid
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++)
@@ -205,11 +112,12 @@ public:
 
 		m_Texture->Bind();
 		Visionizer::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
 		m_ChernoLogoTexture->Bind();
 		Visionizer::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-	//  Triangle
-	//	Visionizer::Renderer::Submit(m_Shader, m_VertexArray);
+
+
+		// Triangle
+		// Visionizer::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Visionizer::Renderer::EndScene();
 	}

@@ -7,13 +7,11 @@ extern Visionizer::Application* Visionizer::CreateApplication();
 int main(int argc, char** argv)
 {
 	Visionizer::Log::Init();
-	VS_CORE_TRACE("Initializing the Core...");
-	VS_CORE_INFO("Initialized Log!");
+	VS_CORE_WARN("Initialized Log!");
+	int a = 5;
+	VS_INFO("Hello! Var={0}", a);
 
 	auto app = Visionizer::CreateApplication();
-	VS_CORE_TRACE("Core initialized");
-	VS_CORE_ASSERT(app, "App not found");
-	VS_INFO("Welcome to Visionizer!");
 	app->Run();
 	delete app;
 }
