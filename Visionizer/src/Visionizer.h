@@ -22,6 +22,7 @@
 
 #include "Visionizer/Renderer/Buffer.h"
 #include "Visionizer/Renderer/Shader.h"
+#include "Visionizer/Renderer/Texture.h"
 #include "Visionizer/Renderer/VertexArray.h"
 
 #include "Visionizer/Renderer/OrthographicCamera.h"

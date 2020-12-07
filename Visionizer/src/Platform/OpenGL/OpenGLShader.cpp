@@ -131,7 +131,7 @@ namespace Visionizer
 // [TODO] Refine code to have one UploadUniform(const UniformTypes& type
 // [TODO] Follow this tutorial: https://www.youtube.com/watch?v=nBB0LGSIm5Q
 
-	void OpenGLShader::UploadUniformInt(const std::string& name, int& value)
+	void OpenGLShader::UploadUniformInt(const std::string& name, int value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform1i(location, value);
@@ -139,7 +139,7 @@ namespace Visionizer
 
 									/// Floats ///					
 
-	void OpenGLShader::UploadUniformFloat(const std::string& name, float& value)
+	void OpenGLShader::UploadUniformFloat(const std::string& name, float value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform1f(location, value);

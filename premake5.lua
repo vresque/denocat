@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Visionizer/vendor/GLFW/include"
 IncludeDir["Glad"] = "Visionizer/vendor/Glad/include"
 IncludeDir["ImGui"] = "Visionizer/vendor/imgui"
 IncludeDir["glm"] = "Visionizer/vendor/glm"
+IncludeDir["stb_image"] = "Visionizer/vendor/stb_image"
 
 group "Dependencies"
 	include "Visionizer/vendor/GLFW"
@@ -42,6 +43,8 @@ project "Visionizer"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
@@ -58,7 +61,8 @@ project "Visionizer"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links 

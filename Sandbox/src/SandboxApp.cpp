@@ -37,17 +37,18 @@ public:
 
 		m_SquareVA.reset(Visionizer::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
 		Visionizer::Ref<Visionizer::VertexBuffer> squareVB;
 		squareVB.reset(Visionizer::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{ Visionizer::ShaderDataType::Float3, "a_Position" }
+			{ Visionizer::ShaderDataType::Float3, "a_Position" },
+			{ Visionizer::ShaderDataType::Float2, "a_TextCoord" }
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
@@ -116,6 +117,47 @@ public:
 		)";
 
 		m_FlatColorShader.reset(Visionizer::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+	
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TextureCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+
+			void main()
+			{
+				v_TexCoord = a_TextureCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(Visionizer::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+		
+		m_Texture = Visionizer::Texture2D::Create("assets/textures/ChernoLogo.png");
+		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+
 	}
 
 	void OnUpdate(Visionizer::Timestep ts) override
@@ -148,6 +190,7 @@ public:
 		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_FlatColorShader)->Bind();
 		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
+		// Grid
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++)
@@ -158,7 +201,10 @@ public:
 			}
 		}
 
-		Visionizer::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind();
+		Visionizer::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+	//  Triangle
+	//	Visionizer::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Visionizer::Renderer::EndScene();
 	}
@@ -177,8 +223,10 @@ private:
 	Visionizer::Ref<Visionizer::Shader> m_Shader;
 	Visionizer::Ref<Visionizer::VertexArray> m_VertexArray;
 
-	Visionizer::Ref<Visionizer::Shader> m_FlatColorShader;
+	Visionizer::Ref<Visionizer::Shader> m_FlatColorShader, m_TextureShader;
 	Visionizer::Ref<Visionizer::VertexArray> m_SquareVA;
+
+	Visionizer::Ref<Visionizer::Texture2D> m_Texture;
 
 	Visionizer::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
