@@ -174,11 +174,11 @@ public:
 	{
 	}
 private:
-	std::shared_ptr<Visionizer::Shader> m_Shader;
-	std::shared_ptr<Visionizer::VertexArray> m_VertexArray;
+	Visionizer::Ref<Visionizer::Shader> m_Shader;
+	Visionizer::Ref<Visionizer::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Visionizer::Shader> m_FlatColorShader;
-	std::shared_ptr<Visionizer::VertexArray> m_SquareVA;
+	Visionizer::Ref<Visionizer::Shader> m_FlatColorShader;
+	Visionizer::Ref<Visionizer::VertexArray> m_SquareVA;
 
 	Visionizer::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

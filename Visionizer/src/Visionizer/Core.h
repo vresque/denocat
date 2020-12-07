@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>;
+
 #ifdef VS_PLATFORM_WINDOWS
 #if VS_DYNAMIC_LINK
 	#ifdef VS_BUILD_DLL
@@ -29,3 +31,15 @@
 #define BIT(x) (1 << x)
 
 #define VS_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+
+namespace Visionizer
+{
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+}
