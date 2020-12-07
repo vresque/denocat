@@ -21,7 +21,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<Visionizer::VertexBuffer> vertexBuffer;
+		Visionizer::Ref<Visionizer::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Visionizer::VertexBuffer::Create(vertices, sizeof(vertices)));
 		Visionizer::BufferLayout layout = {
 			{ Visionizer::ShaderDataType::Float3, "a_Position" },
@@ -31,7 +31,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Visionizer::IndexBuffer> indexBuffer;
+		Visionizer::Ref<Visionizer::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Visionizer::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -44,7 +44,7 @@ public:
 			-0.5f,  0.5f, 0.0f
 		};
 
-		std::shared_ptr<Visionizer::VertexBuffer> squareVB;
+		Visionizer::Ref<Visionizer::VertexBuffer> squareVB;
 		squareVB.reset(Visionizer::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
 			{ Visionizer::ShaderDataType::Float3, "a_Position" }
@@ -52,7 +52,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Visionizer::IndexBuffer> squareIB;
+		Visionizer::Ref<Visionizer::IndexBuffer> squareIB;
 		squareIB.reset(Visionizer::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
