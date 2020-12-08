@@ -1,7 +1,7 @@
 
 # CONTRIBUTORS DOCUMENTATION
 
-#### Lastly updated: 12/8/20
+###### Lastly updated: 12/8/20
 
 ## NOTES
 
