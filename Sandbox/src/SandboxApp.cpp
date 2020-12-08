@@ -12,7 +12,7 @@ class ExampleLayer : public Visionizer::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		: Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
 		m_VertexArray.reset(Visionizer::VertexArray::Create());
 
@@ -74,29 +74,15 @@ public:
 
 	void OnUpdate(Visionizer::Timestep ts) override
 	{
-		if (Visionizer::Input::IsKeyPressed(VKEY_A))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		else if (Visionizer::Input::IsKeyPressed(VKEY_D))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
-
-		if (Visionizer::Input::IsKeyPressed(VKEY_W))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		else if (Visionizer::Input::IsKeyPressed(VKEY_S))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-		if (Visionizer::Input::IsKeyPressed(VKEY_E))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-		if (Visionizer::Input::IsKeyPressed(VKEY_Q))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
+		// Update
+		m_CameraController.OnUpdate(ts);
 
 
+		// Render
 		Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Visionizer::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Visionizer::Renderer::BeginScene(m_Camera);
+		Visionizer::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -133,8 +119,9 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Visionizer::Event& event) override
+	void OnEvent(Visionizer::Event& e) override
 	{
+		m_CameraController.OnEvent(e);
 	}
 private:
 	Visionizer::ShaderLibrary m_ShaderLibrary;
@@ -146,12 +133,7 @@ private:
 
 	Visionizer::Ref<Visionizer::Texture2D> m_Texture, m_ChernoLogoTexture;
 
-	Visionizer::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 5.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	Visionizer::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };

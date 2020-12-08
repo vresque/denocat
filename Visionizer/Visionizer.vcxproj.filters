@@ -126,6 +126,9 @@
     <ClInclude Include="src\Visionizer\MouseButtonCodes.h">
       <Filter>src\Visionizer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Visionizer\OrthographicCameraController.h">
+      <Filter>src\Visionizer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Visionizer\Renderer\Buffer.h">
       <Filter>src\Visionizer\Renderer</Filter>
     </ClInclude>
@@ -1290,6 +1293,9 @@
       <Filter>src\Visionizer</Filter>
     </ClCompile>
     <ClCompile Include="src\Visionizer\Log.cpp">
+      <Filter>src\Visionizer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Visionizer\OrthographicCameraController.cpp">
       <Filter>src\Visionizer</Filter>
     </ClCompile>
     <ClCompile Include="src\Visionizer\Renderer\Buffer.cpp">

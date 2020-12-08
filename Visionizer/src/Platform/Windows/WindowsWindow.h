@@ -5,7 +5,8 @@
 
 #include <GLFW/glfw3.h>
 
-namespace Visionizer {
+namespace Visionizer
+{
 
 	class WindowsWindow : public Window
 	{

@@ -13,6 +13,8 @@
 #include "Visionizer/KeyCodes.h"
 #include "Visionizer/MouseButtonCodes.h"
 
+#include "Visionizer/OrthographicCameraController.h"
+
 #include "Visionizer/ImGui/ImGuiLayer.h"
 
 
