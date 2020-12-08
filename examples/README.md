@@ -1,6 +1,6 @@
 
 # EXAMPLES / DEVELOPERS DOCUMENTATION
 
-## Welcome to the official Contributor's documentation!
+## Welcome to the official Contributor's documentation
 
-### Please note, this is not a documentation for how to use Visionizer, this is a documentation for how to help develop Visionizer
+#### Please note, this is not a documentation on how to use Visionizer, this is a documentation for how to help develop Visionizer
