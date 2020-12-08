@@ -1,6 +1,8 @@
 
-# EXAMPLES / DEVELOPERS DOCUMENTATION
+# CONTRIBUTORS DOCUMENTATION
 
-## Welcome to the official Contributor's documentation
+## By Panem
+
+### NOTES
 
 #### Please note, this is not a documentation on how to use Visionizer, this is a documentation for how to help develop Visionizer
