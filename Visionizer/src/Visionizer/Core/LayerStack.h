@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Visionizer/Core.h"
+#include "Visionizer/Core/Core.h"
 #include "Layer.h"
 
 #include <vector>
 
 namespace Visionizer {
 
-	class HAZEL_API LayerStack
+	class VAPI LayerStack
 	{
 	public:
 		LayerStack();

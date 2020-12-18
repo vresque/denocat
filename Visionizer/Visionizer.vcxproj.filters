@@ -81,17 +81,38 @@
     <ClInclude Include="src\Visionizer.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Visionizer\Application.h">
-      <Filter>src\Visionizer</Filter>
+    <ClInclude Include="src\Visionizer\Core\Application.h">
+      <Filter>src\Visionizer\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Visionizer\Core.h">
-      <Filter>src\Visionizer</Filter>
+    <ClInclude Include="src\Visionizer\Core\Core.h">
+      <Filter>src\Visionizer\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Visionizer\Core\EntryPoint.h">
+      <Filter>src\Visionizer\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Visionizer\Core\Input.h">
+      <Filter>src\Visionizer\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Visionizer\Core\KeyCodes.h">
+      <Filter>src\Visionizer\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Visionizer\Core\Layer.h">
+      <Filter>src\Visionizer\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Visionizer\Core\LayerStack.h">
+      <Filter>src\Visionizer\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Visionizer\Core\Log.h">
+      <Filter>src\Visionizer\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Visionizer\Core\MouseButtonCodes.h">
+      <Filter>src\Visionizer\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Visionizer\Core\Timestep.h">
       <Filter>src\Visionizer\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Visionizer\EntryPoint.h">
-      <Filter>src\Visionizer</Filter>
+    <ClInclude Include="src\Visionizer\Core\Window.h">
+      <Filter>src\Visionizer\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Visionizer\Events\ApplicationEvent.h">
       <Filter>src\Visionizer\Events</Filter>
@@ -108,27 +129,6 @@
     <ClInclude Include="src\Visionizer\ImGui\ImGuiLayer.h">
       <Filter>src\Visionizer\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Visionizer\Input.h">
-      <Filter>src\Visionizer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Visionizer\KeyCodes.h">
-      <Filter>src\Visionizer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Visionizer\Layer.h">
-      <Filter>src\Visionizer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Visionizer\LayerStack.h">
-      <Filter>src\Visionizer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Visionizer\Log.h">
-      <Filter>src\Visionizer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Visionizer\MouseButtonCodes.h">
-      <Filter>src\Visionizer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Visionizer\OrthographicCameraController.h">
-      <Filter>src\Visionizer</Filter>
-    </ClInclude>
     <ClInclude Include="src\Visionizer\Renderer\Buffer.h">
       <Filter>src\Visionizer\Renderer</Filter>
     </ClInclude>
@@ -136,6 +136,9 @@
       <Filter>src\Visionizer\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Visionizer\Renderer\OrthographicCamera.h">
+      <Filter>src\Visionizer\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Visionizer\Renderer\OrthographicCameraController.h">
       <Filter>src\Visionizer\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Visionizer\Renderer\RenderCommand.h">
@@ -155,9 +158,6 @@
     </ClInclude>
     <ClInclude Include="src\Visionizer\Renderer\VertexArray.h">
       <Filter>src\Visionizer\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Visionizer\Window.h">
-      <Filter>src\Visionizer</Filter>
     </ClInclude>
     <ClInclude Include="src\vspch.h">
       <Filter>src</Filter>
@@ -1277,8 +1277,17 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Visionizer\Application.cpp">
-      <Filter>src\Visionizer</Filter>
+    <ClCompile Include="src\Visionizer\Core\Application.cpp">
+      <Filter>src\Visionizer\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Visionizer\Core\Layer.cpp">
+      <Filter>src\Visionizer\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Visionizer\Core\LayerStack.cpp">
+      <Filter>src\Visionizer\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Visionizer\Core\Log.cpp">
+      <Filter>src\Visionizer\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Visionizer\ImGui\ImGuiBuild.cpp">
       <Filter>src\Visionizer\ImGui</Filter>
@@ -1286,22 +1295,13 @@
     <ClCompile Include="src\Visionizer\ImGui\ImGuiLayer.cpp">
       <Filter>src\Visionizer\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Visionizer\Layer.cpp">
-      <Filter>src\Visionizer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Visionizer\LayerStack.cpp">
-      <Filter>src\Visionizer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Visionizer\Log.cpp">
-      <Filter>src\Visionizer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Visionizer\OrthographicCameraController.cpp">
-      <Filter>src\Visionizer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Visionizer\Renderer\Buffer.cpp">
       <Filter>src\Visionizer\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Visionizer\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Visionizer\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Visionizer\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Visionizer\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Visionizer\Renderer\RenderCommand.cpp">

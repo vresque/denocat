@@ -2,16 +2,16 @@
 
 // For use by Visionizer applications
 
-#include "Visionizer/Application.h"
-#include "Visionizer/Layer.h"
-#include "Visionizer/Log.h"
+#include "Visionizer/Core/Application.h"
+#include "Visionizer/Core/Layer.h"
+#include "Visionizer/Core/Log.h"
 
 #include "Visionizer/Core/Timestep.h"
 
-#include "Visionizer/Input.h"
-#include "Visionizer/KeyCodes.h"
-#include "Visionizer/MouseButtonCodes.h"
-#include "Visionizer/OrthographicCameraController.h"
+#include "Visionizer/Core/Input.h"
+#include "Visionizer/Core/KeyCodes.h"
+#include "Visionizer/Core/MouseButtonCodes.h"
+#include "Visionizer/Renderer/OrthographicCameraController.h"
 
 #include "Visionizer/ImGui/ImGuiLayer.h"
 
@@ -28,5 +28,5 @@
 // -----------------------------------
 
 // ---Entry Point---------------------
-#include "Visionizer/EntryPoint.h"
+#include "Visionizer/Core/EntryPoint.h"
 // -----------------------------------

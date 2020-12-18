@@ -1,7 +1,7 @@
 #include "vspch.h"
 #include "WindowsInput.h"
 
-#include "Visionizer/Application.h"
+#include "Visionizer/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Visionizer {

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Visionizer/Core.h"
+#include "Visionizer/Core/Core.h"
 
 namespace Visionizer {
 
-	class HAZEL_API Input
+	class VAPI Input
 	{
 	protected:
 		Input() = default;

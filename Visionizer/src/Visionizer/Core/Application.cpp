@@ -1,7 +1,7 @@
 #include "vspch.h"
 #include "Application.h"
 
-#include "Visionizer/Log.h"
+#include "Visionizer/Core/Log.h"
 
 #include "Visionizer/Renderer/Renderer.h"
 

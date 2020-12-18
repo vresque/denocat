@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Visionizer/Log.h"
+#include "Visionizer/Core/Log.h"
 
 #ifdef VS_PLATFORM_WINDOWS
 	#include <Windows.h>

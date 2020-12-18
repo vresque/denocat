@@ -1,7 +1,7 @@
 #pragma once
 
 #include "vspch.h"
-#include "Visionizer/Core.h"
+#include "Visionizer/Core/Core.h"
 
 namespace Visionizer {
 
@@ -35,7 +35,7 @@ namespace Visionizer {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class HAZEL_API Event
+	class VAPI Event
 	{
 	public:
 		bool Handled = false;

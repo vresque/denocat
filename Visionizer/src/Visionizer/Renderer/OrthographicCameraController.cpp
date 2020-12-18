@@ -1,8 +1,8 @@
 #include "vspch.h"
 #include "OrthographicCameraController.h"
 
-#include "Visionizer/Input.h"
-#include "Visionizer/KeyCodes.h"
+#include "Visionizer/Core/Input.h"
+#include "Visionizer/Core/KeyCodes.h"
 
 namespace Visionizer {
 

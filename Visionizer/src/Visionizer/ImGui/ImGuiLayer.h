@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Visionizer/Layer.h"
+#include "Visionizer/Core/Layer.h"
 
 #include "Visionizer/Events/ApplicationEvent.h"
 #include "Visionizer/Events/KeyEvent.h"
@@ -8,7 +8,7 @@
 
 namespace Visionizer {
 
-	class HAZEL_API ImGuiLayer : public Layer
+	class VAPI ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();

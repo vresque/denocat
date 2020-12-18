@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Visionizer/Window.h"
+#include "Visionizer/Core/Window.h"
 #include "Visionizer/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

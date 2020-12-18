@@ -2,7 +2,7 @@
 
 #include "vspch.h"
 
-#include "Visionizer/Core.h"
+#include "Visionizer/Core/Core.h"
 #include "Visionizer/Events/Event.h"
 
 namespace Visionizer {
@@ -22,7 +22,7 @@ namespace Visionizer {
 	};
 
 	// Interface representing a desktop system based Window
-	class HAZEL_API Window
+	class VAPI Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

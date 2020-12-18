@@ -3,7 +3,7 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Visionizer/LayerStack.h"
+#include "Visionizer/Core/LayerStack.h"
 #include "Visionizer/Events/Event.h"
 #include "Visionizer/Events/ApplicationEvent.h"
 

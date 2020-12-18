@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Visionizer/Core.h"
+#include "Visionizer/Core/Core.h"
 
 namespace Visionizer {
 

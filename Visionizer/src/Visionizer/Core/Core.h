@@ -5,12 +5,12 @@
 #ifdef VS_PLATFORM_WINDOWS
 #if VS_DYNAMIC_LINK
 	#ifdef VS_BUILD_DLL
-		#define HAZEL_API __declspec(dllexport)
+		#define VAPI __declspec(dllexport)
 	#else
-		#define HAZEL_API __declspec(dllimport)
+		#define VAPI __declspec(dllimport)
 	#endif
 #else
-    #define HAZEL_API
+    #define VAPI
 #endif
 #else
 	#error Visionizer only supports Windows!

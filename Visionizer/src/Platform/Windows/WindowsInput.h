@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Visionizer/Input.h"
+#include "Visionizer/Core/Input.h"
 
 namespace Visionizer {
 
