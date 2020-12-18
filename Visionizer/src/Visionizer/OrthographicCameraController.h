@@ -6,8 +6,7 @@
 #include "Visionizer/Events/ApplicationEvent.h"
 #include "Visionizer/Events/MouseEvent.h"
 
-namespace Visionizer
-{
+namespace Visionizer {
 
 	class OrthographicCameraController
 	{
@@ -19,6 +18,9 @@ namespace Visionizer
 
 		OrthographicCamera& GetCamera() { return m_Camera; }
 		const OrthographicCamera& GetCamera() const { return m_Camera; }
+
+		float GetZoomLevel() const { return m_ZoomLevel; }
+		void SetZoomLevel(float level) { m_ZoomLevel = level; }
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);
@@ -31,7 +33,7 @@ namespace Visionizer
 
 		glm::vec3 m_CameraPosition = { 0.0f, 0.0f, 0.0f };
 		float m_CameraRotation = 0.0f;
-		float m_CameraTranslationSpeed = 5.0f, m_CameraRotationSpeed = 180.0f;
+		float m_CameraTranslationSpeed = 10.0f, m_CameraRotationSpeed = 180.0f;
 	};
 
 }

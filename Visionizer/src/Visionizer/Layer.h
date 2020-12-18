@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Visionizer/Core.h"
+#include "Visionizer/Core/Timestep.h"
 #include "Visionizer/Events/Event.h"
-#include "Core/Timestep.h"
 
 namespace Visionizer {
 
-	class VISION_API Layer
+	class HAZEL_API Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");

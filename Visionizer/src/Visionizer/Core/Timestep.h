@@ -1,11 +1,11 @@
 #pragma once
 
-namespace Visionizer
-{
+namespace Visionizer {
+
 	class Timestep
 	{
 	public:
-		Timestep(float time = 0.0)
+		Timestep(float time = 0.0f)
 			: m_Time(time)
 		{
 		}
@@ -14,9 +14,8 @@ namespace Visionizer
 
 		float GetSeconds() const { return m_Time; }
 		float GetMilliseconds() const { return m_Time * 1000.0f; }
-
-		// [TODO] Add more mathematical functions
 	private:
 		float m_Time;
 	};
+
 }

@@ -3,8 +3,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace Visionizer
-{
+namespace Visionizer {
 
 	class Shader
 	{
@@ -18,18 +17,15 @@ namespace Visionizer
 
 		static Ref<Shader> Create(const std::string& filepath);
 		static Ref<Shader> Create(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
-
 	};
 
 	class ShaderLibrary
 	{
 	public:
-
 		void Add(const std::string& name, const Ref<Shader>& shader);
 		void Add(const Ref<Shader>& shader);
-
-		Ref<Shader> Load(const std::string& name, const std::string& filepath); // If name = Hi,  assets/shaders/Texture.vishader => "Hi"
-		Ref<Shader> Load(const std::string& filepath); // assets/shaders/Texture.vishader => "Texture"
+		Ref<Shader> Load(const std::string& filepath);
+		Ref<Shader> Load(const std::string& name, const std::string& filepath);
 
 		Ref<Shader> Get(const std::string& name);
 

@@ -1,16 +1,16 @@
 #pragma once
 
-#include <memory>;
+#include <memory>
 
 #ifdef VS_PLATFORM_WINDOWS
 #if VS_DYNAMIC_LINK
 	#ifdef VS_BUILD_DLL
-		#define VISION_API __declspec(dllexport)
+		#define HAZEL_API __declspec(dllexport)
 	#else
-		#define VISION_API __declspec(dllimport)
+		#define HAZEL_API __declspec(dllimport)
 	#endif
 #else
-    #define VISION_API
+    #define HAZEL_API
 #endif
 #else
 	#error Visionizer only supports Windows!
@@ -23,8 +23,6 @@
 #ifdef VS_ENABLE_ASSERTS
 	#define VS_ASSERT(x, ...) { if(!(x)) { VS_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define VS_CORE_ASSERT(x, ...) { if(!(x)) { VS_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-#elif defined VS_RELEASE || VS_DIST
-
 #else
 	#define VS_ASSERT(x, ...)
 	#define VS_CORE_ASSERT(x, ...)
@@ -34,12 +32,10 @@
 
 #define VS_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
 
+namespace Visionizer {
 
-namespace Visionizer
-{
 	template<typename T>
 	using Scope = std::unique_ptr<T>;
-
 
 	template<typename T>
 	using Ref = std::shared_ptr<T>;

@@ -7,7 +7,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-
 class ExampleLayer : public Visionizer::Layer
 {
 public:
@@ -50,7 +49,7 @@ public:
 		squareVB->SetLayout({
 			{ Visionizer::ShaderDataType::Float3, "a_Position" },
 			{ Visionizer::ShaderDataType::Float2, "a_TexCoord" }
-			});
+		});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -58,25 +57,93 @@ public:
 		squareIB.reset(Visionizer::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
+		std::string vertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec4 a_Color;
 
-		// Setting up the shaders
-		// [TODO] Make better
-		m_Shader = Visionizer::Shader::Create("assets/shaders/TriangleShader.glsl");
-		m_FlatColorShader = Visionizer::Shader::Create("assets/shaders/FlatColorShader.glsl");
-		auto TextureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec3 v_Position;
+			out vec4 v_Color;
+
+			void main()
+			{
+				v_Position = a_Position;
+				v_Color = a_Color;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string fragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec3 v_Position;
+			in vec4 v_Color;
+
+			void main()
+			{
+				color = vec4(v_Position * 0.5 + 0.5, 1.0);
+				color = v_Color;
+			}
+		)";
+
+		m_Shader = Visionizer::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
+
+		std::string flatColorShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec3 v_Position;
+
+			void main()
+			{
+				v_Position = a_Position;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string flatColorShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec3 v_Position;
+			
+			uniform vec3 u_Color;
+
+			void main()
+			{
+				color = vec4(u_Color, 1.0);
+			}
+		)";
+
+		m_FlatColorShader = Visionizer::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
+
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Visionizer::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = Visionizer::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(TextureShader)->Bind();
-		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Visionizer::Timestep ts) override
 	{
+		float FPS = 1.0f / ts;
+		VS_TRACE("FPS: {0}", FPS);
+
 		// Update
 		m_CameraController.OnUpdate(ts);
-
 
 		// Render
 		Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
@@ -134,7 +201,6 @@ private:
 	Visionizer::Ref<Visionizer::Texture2D> m_Texture, m_ChernoLogoTexture;
 
 	Visionizer::OrthographicCameraController m_CameraController;
-
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 

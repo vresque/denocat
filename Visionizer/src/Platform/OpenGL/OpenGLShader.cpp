@@ -5,10 +5,8 @@
 #include <glad/glad.h>
 
 #include <glm/gtc/type_ptr.hpp>
-#include <filesystem>
 
-namespace Visionizer
-{
+namespace Visionizer {
 
 	static GLenum ShaderTypeFromString(const std::string& type)
 	{
@@ -28,8 +26,11 @@ namespace Visionizer
 		Compile(shaderSources);
 
 		// Extract name from filepath
-		std::filesystem::path path = filepath;
-		m_Name = path.stem().string(); // Returns the files stripped name
+		auto lastSlash = filepath.find_last_of("/\\");
+		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+		auto lastDot = filepath.rfind('.');
+		auto count = lastDot == std::string::npos ? filepath.size() - lastSlash : lastDot - lastSlash;
+		m_Name = filepath.substr(lastSlash, count);
 	}
 
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
@@ -57,8 +58,7 @@ namespace Visionizer
 			in.seekg(0, std::ios::beg);
 			in.read(&result[0], result.size());
 			in.close();
-			;
-		}
+;		}
 		else
 		{
 			VS_CORE_ERROR("Could not open file '{0}'", filepath);
@@ -93,11 +93,9 @@ namespace Visionizer
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
 		GLuint program = glCreateProgram();
-		// [TODO] Enable having a higher shader size than 2
-		VS_CORE_ASSERT(shaderSources.size() <= 2, "Visionizer only supports 2 shaders at the moment");
+		VS_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
 		std::array<GLenum, 2> glShaderIDs;
 		int glShaderIDIndex = 0;
-
 		for (auto& kv : shaderSources)
 		{
 			GLenum type = kv.first;
@@ -130,7 +128,7 @@ namespace Visionizer
 			glAttachShader(program, shader);
 			glShaderIDs[glShaderIDIndex++] = shader;
 		}
-
+		
 		m_RendererID = program;
 
 		// Link our program
@@ -150,7 +148,7 @@ namespace Visionizer
 
 			// We don't need the program anymore.
 			glDeleteProgram(program);
-
+			
 			for (auto id : glShaderIDs)
 				glDeleteShader(id);
 

@@ -2,8 +2,7 @@
 
 #include <glm/glm.hpp>
 
-namespace Visionizer
-{
+namespace Visionizer {
 
 	class OrthographicCamera
 	{
