@@ -6,6 +6,9 @@
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
+// TEMPORARY #ToFix REMOVE 
+#include <gl/GL.h>;
+
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f)
 {
@@ -66,6 +69,10 @@ void Sandbox2D::OnImGuiRender()
 {
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+	ImGui::End();
+
+	ImGui::Begin("File settings");
+	ImGui::Text("Hi");
 	ImGui::End();
 }
 
