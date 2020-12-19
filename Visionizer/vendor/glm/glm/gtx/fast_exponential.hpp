@@ -28,7 +28,6 @@ namespace glm
 {
 	/// @addtogroup gtx_fast_exponential
 	/// @{
-
 	/// Faster than the common pow function but less accurate.
 	/// @see gtx_fast_exponential
 	template<typename genType>

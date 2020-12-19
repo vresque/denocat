@@ -2,8 +2,8 @@
 
 #include "Visionizer/Renderer/Buffer.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class OpenGLVertexBuffer : public VertexBuffer
 	{
 	public:
@@ -34,5 +34,4 @@ namespace Visionizer {
 		uint32_t m_RendererID;
 		uint32_t m_Count;
 	};
-
 }

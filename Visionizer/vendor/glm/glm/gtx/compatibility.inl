@@ -8,16 +8,16 @@ namespace glm
 		genType const& x)
 	{
 #		if GLM_HAS_CXX11_STL
-			return std::isfinite(x) != 0;
+		return std::isfinite(x) != 0;
 #		elif GLM_COMPILER & GLM_COMPILER_VC
-			return _finite(x) != 0;
+		return _finite(x) != 0;
 #		elif GLM_COMPILER & GLM_COMPILER_GCC && GLM_PLATFORM & GLM_PLATFORM_ANDROID
-			return _isfinite(x) != 0;
+		return _isfinite(x) != 0;
 #		else
-			if (std::numeric_limits<genType>::is_integer || std::denorm_absent == std::numeric_limits<genType>::has_denorm)
-				return std::numeric_limits<genType>::min() <= x && std::numeric_limits<genType>::max() >= x;
-			else
-				return -std::numeric_limits<genType>::max() <= x && std::numeric_limits<genType>::max() >= x;
+		if (std::numeric_limits<genType>::is_integer || std::denorm_absent == std::numeric_limits<genType>::has_denorm)
+			return std::numeric_limits<genType>::min() <= x && std::numeric_limits<genType>::max() >= x;
+		else
+			return -std::numeric_limits<genType>::max() <= x && std::numeric_limits<genType>::max() >= x;
 #		endif
 	}
 
@@ -58,5 +58,4 @@ namespace glm
 			isfinite(x.z),
 			isfinite(x.w));
 	}
-
 }//namespace glm

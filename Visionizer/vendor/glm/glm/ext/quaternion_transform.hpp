@@ -30,7 +30,6 @@ namespace glm
 {
 	/// @addtogroup ext_quaternion_transform
 	/// @{
-
 	/// Rotates a quaternion from a vector of 3 components axis and an angle.
 	///
 	/// @param q Source orientation

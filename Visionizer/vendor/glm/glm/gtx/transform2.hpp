@@ -29,7 +29,6 @@ namespace glm
 {
 	/// @addtogroup gtx_transform2
 	/// @{
-
 	//! Transforms a matrix with a shearing on X axis.
 	//! From GLM_GTX_transform2 extension.
 	template<typename T, qualifier Q>
@@ -71,7 +70,7 @@ namespace glm
 	//! Build planar projection matrix along normal axis.
 	//! From GLM_GTX_transform2 extension.
 	template<typename T, qualifier Q>
-	GLM_FUNC_DECL mat<4, 4, T, Q> proj3D(mat<4, 4, T, Q> const & m, vec<3, T, Q> const& normal);
+	GLM_FUNC_DECL mat<4, 4, T, Q> proj3D(mat<4, 4, T, Q> const& m, vec<3, T, Q> const& normal);
 
 	//! Build a scale bias matrix.
 	//! From GLM_GTX_transform2 extension.

@@ -9,5 +9,4 @@ namespace glm
 	{
 		return vec<L, float, Q>(v) / static_cast<float>(std::numeric_limits<T>::max());
 	}
-
 }//namespace glm

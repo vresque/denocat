@@ -21,7 +21,6 @@ namespace glm
 		typename genType::value_type f4 = s3 - s2;
 
 		return (f1 * v1 + f2 * v2 + f3 * v3 + f4 * v4) / typename genType::value_type(2);
-
 	}
 
 	template<typename genType>

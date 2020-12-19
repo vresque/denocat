@@ -1,52 +1,53 @@
 /// @ref gtc_color_space
 
-namespace glm{
-namespace detail
+namespace glm
 {
-	template<length_t L, typename T, qualifier Q>
-	struct compute_rgbToSrgb
+	namespace detail
 	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& ColorRGB, T GammaCorrection)
+		template<length_t L, typename T, qualifier Q>
+		struct compute_rgbToSrgb
 		{
-			vec<L, T, Q> const ClampedColor(clamp(ColorRGB, static_cast<T>(0), static_cast<T>(1)));
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& ColorRGB, T GammaCorrection)
+			{
+				vec<L, T, Q> const ClampedColor(clamp(ColorRGB, static_cast<T>(0), static_cast<T>(1)));
 
-			return mix(
-				pow(ClampedColor, vec<L, T, Q>(GammaCorrection)) * static_cast<T>(1.055) - static_cast<T>(0.055),
-				ClampedColor * static_cast<T>(12.92),
-				lessThan(ClampedColor, vec<L, T, Q>(static_cast<T>(0.0031308))));
-		}
-	};
+				return mix(
+					pow(ClampedColor, vec<L, T, Q>(GammaCorrection)) * static_cast<T>(1.055) - static_cast<T>(0.055),
+					ClampedColor * static_cast<T>(12.92),
+					lessThan(ClampedColor, vec<L, T, Q>(static_cast<T>(0.0031308))));
+			}
+		};
 
-	template<typename T, qualifier Q>
-	struct compute_rgbToSrgb<4, T, Q>
-	{
-		GLM_FUNC_QUALIFIER static vec<4, T, Q> call(vec<4, T, Q> const& ColorRGB, T GammaCorrection)
+		template<typename T, qualifier Q>
+		struct compute_rgbToSrgb<4, T, Q>
 		{
-			return vec<4, T, Q>(compute_rgbToSrgb<3, T, Q>::call(vec<3, T, Q>(ColorRGB), GammaCorrection), ColorRGB.w);
-		}
-	};
+			GLM_FUNC_QUALIFIER static vec<4, T, Q> call(vec<4, T, Q> const& ColorRGB, T GammaCorrection)
+			{
+				return vec<4, T, Q>(compute_rgbToSrgb<3, T, Q>::call(vec<3, T, Q>(ColorRGB), GammaCorrection), ColorRGB.w);
+			}
+		};
 
-	template<length_t L, typename T, qualifier Q>
-	struct compute_srgbToRgb
-	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& ColorSRGB, T Gamma)
+		template<length_t L, typename T, qualifier Q>
+		struct compute_srgbToRgb
 		{
-			return mix(
-				pow((ColorSRGB + static_cast<T>(0.055)) * static_cast<T>(0.94786729857819905213270142180095), vec<L, T, Q>(Gamma)),
-				ColorSRGB * static_cast<T>(0.07739938080495356037151702786378),
-				lessThanEqual(ColorSRGB, vec<L, T, Q>(static_cast<T>(0.04045))));
-		}
-	};
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& ColorSRGB, T Gamma)
+			{
+				return mix(
+					pow((ColorSRGB + static_cast<T>(0.055)) * static_cast<T>(0.94786729857819905213270142180095), vec<L, T, Q>(Gamma)),
+					ColorSRGB * static_cast<T>(0.07739938080495356037151702786378),
+					lessThanEqual(ColorSRGB, vec<L, T, Q>(static_cast<T>(0.04045))));
+			}
+		};
 
-	template<typename T, qualifier Q>
-	struct compute_srgbToRgb<4, T, Q>
-	{
-		GLM_FUNC_QUALIFIER static vec<4, T, Q> call(vec<4, T, Q> const& ColorSRGB, T Gamma)
+		template<typename T, qualifier Q>
+		struct compute_srgbToRgb<4, T, Q>
 		{
-			return vec<4, T, Q>(compute_srgbToRgb<3, T, Q>::call(vec<3, T, Q>(ColorSRGB), Gamma), ColorSRGB.w);
-		}
-	};
-}//namespace detail
+			GLM_FUNC_QUALIFIER static vec<4, T, Q> call(vec<4, T, Q> const& ColorSRGB, T Gamma)
+			{
+				return vec<4, T, Q>(compute_srgbToRgb<3, T, Q>::call(vec<3, T, Q>(ColorSRGB), Gamma), ColorSRGB.w);
+			}
+		};
+	}//namespace detail
 
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<L, T, Q> convertLinearToSRGB(vec<L, T, Q> const& ColorLinear)

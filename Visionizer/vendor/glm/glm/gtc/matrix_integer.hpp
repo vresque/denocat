@@ -31,7 +31,6 @@ namespace glm
 {
 	/// @addtogroup gtc_matrix_integer
 	/// @{
-
 	/// High-qualifier signed integer 2x2 matrix.
 	/// @see gtc_matrix_integer
 	typedef mat<2, 2, int, highp>				highp_imat2;
@@ -80,7 +79,6 @@ namespace glm
 	/// @see gtc_matrix_integer
 	typedef mat<4, 4, int, highp>				highp_imat4x4;
 
-
 	/// Medium-qualifier signed integer 2x2 matrix.
 	/// @see gtc_matrix_integer
 	typedef mat<2, 2, int, mediump>			mediump_imat2;
@@ -92,7 +90,6 @@ namespace glm
 	/// Medium-qualifier signed integer 4x4 matrix.
 	/// @see gtc_matrix_integer
 	typedef mat<4, 4, int, mediump>			mediump_imat4;
-
 
 	/// Medium-qualifier signed integer 2x2 matrix.
 	/// @see gtc_matrix_integer
@@ -130,7 +127,6 @@ namespace glm
 	/// @see gtc_matrix_integer
 	typedef mat<4, 4, int, mediump>			mediump_imat4x4;
 
-
 	/// Low-qualifier signed integer 2x2 matrix.
 	/// @see gtc_matrix_integer
 	typedef mat<2, 2, int, lowp>				lowp_imat2;
@@ -142,7 +138,6 @@ namespace glm
 	/// Low-qualifier signed integer 4x4 matrix.
 	/// @see gtc_matrix_integer
 	typedef mat<4, 4, int, lowp>				lowp_imat4;
-
 
 	/// Low-qualifier signed integer 2x2 matrix.
 	/// @see gtc_matrix_integer
@@ -179,7 +174,6 @@ namespace glm
 	/// Low-qualifier signed integer 4x4 matrix.
 	/// @see gtc_matrix_integer
 	typedef mat<4, 4, int, lowp>				lowp_imat4x4;
-
 
 	/// High-qualifier unsigned integer 2x2 matrix.
 	/// @see gtc_matrix_integer
@@ -229,7 +223,6 @@ namespace glm
 	/// @see gtc_matrix_integer
 	typedef mat<4, 4, uint, highp>				highp_umat4x4;
 
-
 	/// Medium-qualifier unsigned integer 2x2 matrix.
 	/// @see gtc_matrix_integer
 	typedef mat<2, 2, uint, mediump>			mediump_umat2;
@@ -241,7 +234,6 @@ namespace glm
 	/// Medium-qualifier unsigned integer 4x4 matrix.
 	/// @see gtc_matrix_integer
 	typedef mat<4, 4, uint, mediump>			mediump_umat4;
-
 
 	/// Medium-qualifier unsigned integer 2x2 matrix.
 	/// @see gtc_matrix_integer
@@ -279,7 +271,6 @@ namespace glm
 	/// @see gtc_matrix_integer
 	typedef mat<4, 4, uint, mediump>			mediump_umat4x4;
 
-
 	/// Low-qualifier unsigned integer 2x2 matrix.
 	/// @see gtc_matrix_integer
 	typedef mat<2, 2, uint, lowp>				lowp_umat2;
@@ -291,7 +282,6 @@ namespace glm
 	/// Low-qualifier unsigned integer 4x4 matrix.
 	/// @see gtc_matrix_integer
 	typedef mat<4, 4, uint, lowp>				lowp_umat4;
-
 
 	/// Low-qualifier unsigned integer 2x2 matrix.
 	/// @see gtc_matrix_integer

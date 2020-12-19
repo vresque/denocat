@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_matrix_operation
 	/// @{
-
 	//! Build a diagonal matrix.
 	//! From GLM_GTX_matrix_operation extension.
 	template<typename T, qualifier Q>

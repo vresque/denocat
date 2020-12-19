@@ -28,7 +28,6 @@ namespace glm
 {
 	/// @addtogroup ext_quaternion_transform
 	/// @{
-
 	/// Returns a exponential of a quaternion.
 	///
 	/// @tparam T A floating-point scalar type

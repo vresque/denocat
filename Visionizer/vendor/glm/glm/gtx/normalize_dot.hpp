@@ -28,7 +28,6 @@ namespace glm
 {
 	/// @addtogroup gtx_normalize_dot
 	/// @{
-
 	/// Normalize parameters and returns the dot product of x and y.
 	/// It's faster that dot(normalize(x), normalize(y)).
 	///

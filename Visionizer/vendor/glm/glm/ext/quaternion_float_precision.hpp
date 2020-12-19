@@ -21,7 +21,6 @@ namespace glm
 {
 	/// @addtogroup ext_quaternion_float_precision
 	/// @{
-
 	/// Quaternion of single-precision floating-point numbers using high precision arithmetic in term of ULPs.
 	typedef qua<float, lowp>		lowp_quat;
 
@@ -33,4 +32,3 @@ namespace glm
 
 	/// @}
 } //namespace glm
-

@@ -21,7 +21,6 @@ namespace glm
 {
 	/// @addtogroup core_func_common
 	/// @{
-
 	/// Returns x if x >= 0; otherwise, it returns -x.
 	///
 	/// @tparam genType floating-point or signed integer; scalar or vector types.
@@ -530,4 +529,3 @@ namespace glm
 }//namespace glm
 
 #include "detail/func_common.inl"
-

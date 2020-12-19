@@ -25,7 +25,6 @@ namespace glm
 {
 	/// @addtogroup ext_matrix_relational
 	/// @{
-
 	/// Perform a component-wise equal-to comparison of two matrices.
 	/// Return a boolean vector which components value is True if this expression is satisfied per column of the matrices.
 	///

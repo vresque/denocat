@@ -2,8 +2,8 @@
 
 #include "Visionizer/Renderer/VertexArray.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class OpenGLVertexArray : public VertexArray
 	{
 	public:
@@ -24,5 +24,4 @@ namespace Visionizer {
 		std::vector<std::shared_ptr<VertexBuffer>> m_VertexBuffers;
 		std::shared_ptr<IndexBuffer> m_IndexBuffer;
 	};
-
 }

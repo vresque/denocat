@@ -18,9 +18,10 @@
 #	pragma message("GLM: GLM_EXT_scalar_uint_sized extension included")
 #endif
 
-namespace glm{
-namespace detail
+namespace glm
 {
+	namespace detail
+	{
 #	if GLM_HAS_EXTENDED_INTEGER_TYPE
 		typedef std::uint8_t		uint8;
 		typedef std::uint16_t		uint16;
@@ -31,30 +32,28 @@ namespace detail
 		typedef unsigned int		uint32;
 #endif
 
-	template<>
-	struct is_int<uint8>
-	{
-		enum test {value = ~0};
-	};
+		template<>
+		struct is_int<uint8>
+		{
+			enum test { value = ~0 };
+		};
 
-	template<>
-	struct is_int<uint16>
-	{
-		enum test {value = ~0};
-	};
+		template<>
+		struct is_int<uint16>
+		{
+			enum test { value = ~0 };
+		};
 
-	template<>
-	struct is_int<uint64>
-	{
-		enum test {value = ~0};
-	};
-}//namespace detail
+		template<>
+		struct is_int<uint64>
+		{
+			enum test { value = ~0 };
+		};
+	}//namespace detail
 
-
-	/// @addtogroup ext_scalar_uint_sized
-	/// @{
-
-	/// 8 bit unsigned integer type.
+		/// @addtogroup ext_scalar_uint_sized
+		/// @{
+		/// 8 bit unsigned integer type.
 	typedef detail::uint8		uint8;
 
 	/// 16 bit unsigned integer type.

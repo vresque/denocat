@@ -32,7 +32,6 @@ namespace glm
 {
 	/// @addtogroup gtx_vector_angle
 	/// @{
-
 	//! Returns the absolute angle between two vectors.
 	//! Parameters need to be normalized.
 	/// @see gtx_vector_angle extension.

@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_color_encoding
 	/// @{
-
 	/// Convert a linear sRGB color to D65 YUV.
 	template<typename T, qualifier Q>
 	GLM_FUNC_DECL vec<3, T, Q> convertLinearSRGBToD65XYZ(vec<3, T, Q> const& ColorLinearSRGB);

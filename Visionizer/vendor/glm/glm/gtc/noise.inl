@@ -5,21 +5,22 @@
 // Following Stefan Gustavson's paper "Simplex noise demystified":
 // http://www.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf
 
-namespace glm{
-namespace gtc
+namespace glm
 {
-	template<typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER vec<4, T, Q> grad4(T const& j, vec<4, T, Q> const& ip)
+	namespace gtc
 	{
-		vec<3, T, Q> pXYZ = floor(fract(vec<3, T, Q>(j) * vec<3, T, Q>(ip)) * T(7)) * ip[2] - T(1);
-		T pW = static_cast<T>(1.5) - dot(abs(pXYZ), vec<3, T, Q>(1));
-		vec<4, T, Q> s = vec<4, T, Q>(lessThan(vec<4, T, Q>(pXYZ, pW), vec<4, T, Q>(0.0)));
-		pXYZ = pXYZ + (vec<3, T, Q>(s) * T(2) - T(1)) * s.w;
-		return vec<4, T, Q>(pXYZ, pW);
-	}
-}//namespace gtc
+		template<typename T, qualifier Q>
+		GLM_FUNC_QUALIFIER vec<4, T, Q> grad4(T const& j, vec<4, T, Q> const& ip)
+		{
+			vec<3, T, Q> pXYZ = floor(fract(vec<3, T, Q>(j) * vec<3, T, Q>(ip)) * T(7)) * ip[2] - T(1);
+			T pW = static_cast<T>(1.5) - dot(abs(pXYZ), vec<3, T, Q>(1));
+			vec<4, T, Q> s = vec<4, T, Q>(lessThan(vec<4, T, Q>(pXYZ, pW), vec<4, T, Q>(0.0)));
+			pXYZ = pXYZ + (vec<3, T, Q>(s) * T(2) - T(1)) * s.w;
+			return vec<4, T, Q>(pXYZ, pW);
+		}
+	}//namespace gtc
 
-	// Classic Perlin noise
+		// Classic Perlin noise
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER T perlin(vec<2, T, Q> const& Position)
 	{
@@ -591,14 +592,14 @@ namespace gtc
 	GLM_FUNC_QUALIFIER T simplex(glm::vec<2, T, Q> const& v)
 	{
 		vec<4, T, Q> const C = vec<4, T, Q>(
-			T( 0.211324865405187),  // (3.0 -  sqrt(3.0)) / 6.0
-			T( 0.366025403784439),  //  0.5 * (sqrt(3.0)  - 1.0)
+			T(0.211324865405187),  // (3.0 -  sqrt(3.0)) / 6.0
+			T(0.366025403784439),  //  0.5 * (sqrt(3.0)  - 1.0)
 			T(-0.577350269189626),	// -1.0 + 2.0 * C.x
-			T( 0.024390243902439)); //  1.0 / 41.0
+			T(0.024390243902439)); //  1.0 / 41.0
 
 		// First corner
-		vec<2, T, Q> i  = floor(v + dot(v, vec<2, T, Q>(C[1])));
-		vec<2, T, Q> x0 = v -   i + dot(i, vec<2, T, Q>(C[0]));
+		vec<2, T, Q> i = floor(v + dot(v, vec<2, T, Q>(C[1])));
+		vec<2, T, Q> x0 = v - i + dot(i, vec<2, T, Q>(C[0]));
 
 		// Other corners
 		//i1.x = step( x0.y, x0.x ); // x0.x > x0.y ? 1.0 : 0.0
@@ -620,8 +621,8 @@ namespace gtc
 			dot(x0, x0),
 			dot(vec<2, T, Q>(x12.x, x12.y), vec<2, T, Q>(x12.x, x12.y)),
 			dot(vec<2, T, Q>(x12.z, x12.w), vec<2, T, Q>(x12.z, x12.w))), vec<3, T, Q>(0));
-		m = m * m ;
-		m = m * m ;
+		m = m * m;
+		m = m * m;
 
 		// Gradients: 41 points uniformly over a line, mapped onto a diamond.
 		// The ring size 17*17 = 289 is close to a multiple of 41 (41*7 = 287)
@@ -637,7 +638,7 @@ namespace gtc
 
 		// Compute final noise value at P
 		vec<3, T, Q> g;
-		g.x  = a0.x  * x0.x  + h.x  * x0.y;
+		g.x = a0.x * x0.x + h.x * x0.y;
 		//g.yz = a0.yz * x12.xz + h.yz * x12.yw;
 		g.y = a0.y * x12.x + h.y * x12.y;
 		g.z = a0.z * x12.z + h.z * x12.w;
@@ -732,8 +733,8 @@ namespace gtc
 		T const F4 = static_cast<T>(0.309016994374947451);
 
 		// First corner
-		vec<4, T, Q> i  = floor(v + dot(v, vec<4, T, Q>(F4)));
-		vec<4, T, Q> x0 = v -   i + dot(i, vec<4, T, Q>(C.x));
+		vec<4, T, Q> i = floor(v + dot(v, vec<4, T, Q>(F4)));
+		vec<4, T, Q> x0 = v - i + dot(i, vec<4, T, Q>(C.x));
 
 		// Other corners
 
@@ -781,7 +782,7 @@ namespace gtc
 		// 7*7*6 = 294, which is close to the ring size 17*17 = 289.
 		vec<4, T, Q> ip = vec<4, T, Q>(T(1) / T(294), T(1) / T(49), T(1) / T(7), T(0));
 
-		vec<4, T, Q> p0 = gtc::grad4(j0,   ip);
+		vec<4, T, Q> p0 = gtc::grad4(j0, ip);
 		vec<4, T, Q> p1 = gtc::grad4(j1.x, ip);
 		vec<4, T, Q> p2 = gtc::grad4(j1.y, ip);
 		vec<4, T, Q> p3 = gtc::grad4(j1.z, ip);
@@ -797,11 +798,11 @@ namespace gtc
 
 		// Mix contributions from the five corners
 		vec<3, T, Q> m0 = max(T(0.6) - vec<3, T, Q>(dot(x0, x0), dot(x1, x1), dot(x2, x2)), vec<3, T, Q>(0));
-		vec<2, T, Q> m1 = max(T(0.6) - vec<2, T, Q>(dot(x3, x3), dot(x4, x4)             ), vec<2, T, Q>(0));
+		vec<2, T, Q> m1 = max(T(0.6) - vec<2, T, Q>(dot(x3, x3), dot(x4, x4)), vec<2, T, Q>(0));
 		m0 = m0 * m0;
 		m1 = m1 * m1;
 		return T(49) *
 			(dot(m0 * m0, vec<3, T, Q>(dot(p0, x0), dot(p1, x1), dot(p2, x2))) +
-			dot(m1 * m1, vec<2, T, Q>(dot(p3, x3), dot(p4, x4))));
+				dot(m1 * m1, vec<2, T, Q>(dot(p3, x3), dot(p4, x4))));
 	}
 }//namespace glm

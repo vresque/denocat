@@ -19,5 +19,4 @@ namespace glm
 	{
 		return scale(mat<4, 4, T, Q>(static_cast<T>(1)), v);
 	}
-
 }//namespace glm

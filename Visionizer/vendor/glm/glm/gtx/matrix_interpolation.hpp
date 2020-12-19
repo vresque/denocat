@@ -28,12 +28,11 @@ namespace glm
 {
 	/// @addtogroup gtx_matrix_interpolation
 	/// @{
-
 	/// Get the axis and angle of the rotation from a matrix.
 	/// From GLM_GTX_matrix_interpolation extension.
 	template<typename T, qualifier Q>
 	GLM_FUNC_DECL void axisAngle(
-		mat<4, 4, T, Q> const& Mat, vec<3, T, Q> & Axis, T & Angle);
+		mat<4, 4, T, Q> const& Mat, vec<3, T, Q>& Axis, T& Angle);
 
 	/// Build a matrix from axis and angle.
 	/// From GLM_GTX_matrix_interpolation extension.

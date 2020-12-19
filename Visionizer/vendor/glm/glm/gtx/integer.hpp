@@ -28,7 +28,6 @@ namespace glm
 {
 	/// @addtogroup gtx_integer
 	/// @{
-
 	//! Returns x raised to the y power.
 	//! From GLM_GTX_integer extension.
 	GLM_FUNC_DECL int pow(int x, uint y);

@@ -9,9 +9,9 @@ namespace glm
 	)
 	{
 		vec<3, T, Q> result;
-		result.x/*Y */ =   rgbColor.r / T(4) + rgbColor.g / T(2) + rgbColor.b / T(4);
-		result.y/*Co*/ =   rgbColor.r / T(2) + rgbColor.g * T(0) - rgbColor.b / T(2);
-		result.z/*Cg*/ = - rgbColor.r / T(4) + rgbColor.g / T(2) - rgbColor.b / T(4);
+		result.x/*Y */ = rgbColor.r / T(4) + rgbColor.g / T(2) + rgbColor.b / T(4);
+		result.y/*Co*/ = rgbColor.r / T(2) + rgbColor.g * T(0) - rgbColor.b / T(2);
+		result.z/*Cg*/ = -rgbColor.r / T(4) + rgbColor.g / T(2) - rgbColor.b / T(4);
 		return result;
 	}
 
@@ -23,13 +23,14 @@ namespace glm
 	{
 		vec<3, T, Q> result;
 		result.r = YCoCgColor.x + YCoCgColor.y - YCoCgColor.z;
-		result.g = YCoCgColor.x				   + YCoCgColor.z;
+		result.g = YCoCgColor.x + YCoCgColor.z;
 		result.b = YCoCgColor.x - YCoCgColor.y - YCoCgColor.z;
 		return result;
 	}
 
 	template<typename T, qualifier Q, bool isInteger>
-	class compute_YCoCgR {
+	class compute_YCoCgR
+	{
 	public:
 		static GLM_FUNC_QUALIFIER vec<3, T, Q> rgb2YCoCgR
 		(
@@ -58,7 +59,8 @@ namespace glm
 	};
 
 	template<typename T, qualifier Q>
-	class compute_YCoCgR<T, Q, true> {
+	class compute_YCoCgR<T, Q, true>
+	{
 	public:
 		static GLM_FUNC_QUALIFIER vec<3, T, Q> rgb2YCoCgR
 		(

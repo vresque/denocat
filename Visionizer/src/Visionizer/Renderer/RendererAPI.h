@@ -4,8 +4,8 @@
 
 #include "VertexArray.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class RendererAPI
 	{
 	public:
@@ -25,5 +25,4 @@ namespace Visionizer {
 	private:
 		static API s_API;
 	};
-
 }

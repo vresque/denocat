@@ -6,8 +6,8 @@
 // TODO: REMOVE!
 typedef unsigned int GLenum;
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class OpenGLShader : public Shader
 	{
 	public:
@@ -37,5 +37,4 @@ namespace Visionizer {
 		uint32_t m_RendererID;
 		std::string m_Name;
 	};
-
 }

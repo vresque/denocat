@@ -17,8 +17,8 @@ namespace glm
 		// Project Vector to LineDirection to get the distance of point from a
 		T Distance = dot(Vector, LineDirection);
 
-		if(Distance <= T(0)) return a;
-		if(Distance >= LineLength) return b;
+		if (Distance <= T(0)) return a;
+		if (Distance >= LineLength) return b;
 		return a + LineDirection * Distance;
 	}
 
@@ -37,9 +37,8 @@ namespace glm
 		// Project Vector to LineDirection to get the distance of point from a
 		T Distance = dot(Vector, LineDirection);
 
-		if(Distance <= T(0)) return a;
-		if(Distance >= LineLength) return b;
+		if (Distance <= T(0)) return a;
+		if (Distance >= LineLength) return b;
 		return a + LineDirection * Distance;
 	}
-
 }//namespace glm

@@ -138,20 +138,20 @@ namespace glm
 
 	// fmin
 #	if GLM_HAS_CXX11_STL
-		using std::fmin;
+	using std::fmin;
 #	else
-		template<typename genType>
-		GLM_FUNC_QUALIFIER genType fmin(genType x, genType y)
-		{
-			GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'fmin' only accept floating-point input");
+	template<typename genType>
+	GLM_FUNC_QUALIFIER genType fmin(genType x, genType y)
+	{
+		GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'fmin' only accept floating-point input");
 
-			if (isnan(x))
-				return y;
-			if (isnan(y))
-				return x;
+		if (isnan(x))
+			return y;
+		if (isnan(y))
+			return x;
 
-			return min(x, y);
-		}
+		return min(x, y);
+	}
 #	endif
 
 	template<length_t L, typename T, qualifier Q>
@@ -168,20 +168,20 @@ namespace glm
 
 	// fmax
 #	if GLM_HAS_CXX11_STL
-		using std::fmax;
+	using std::fmax;
 #	else
-		template<typename genType>
-		GLM_FUNC_QUALIFIER genType fmax(genType x, genType y)
-		{
-			GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'fmax' only accept floating-point input");
+	template<typename genType>
+	GLM_FUNC_QUALIFIER genType fmax(genType x, genType y)
+	{
+		GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'fmax' only accept floating-point input");
 
-			if (isnan(x))
-				return y;
-			if (isnan(y))
-				return x;
+		if (isnan(x))
+			return y;
+		if (isnan(y))
+			return x;
 
-			return max(x, y);
-		}
+		return max(x, y);
+	}
 #	endif
 
 	template<length_t L, typename T, qualifier Q>

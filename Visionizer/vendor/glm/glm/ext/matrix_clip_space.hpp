@@ -32,7 +32,6 @@ namespace glm
 {
 	/// @addtogroup ext_matrix_clip_space
 	/// @{
-
 	/// Creates a matrix for projecting two-dimensional coordinates onto the screen.
 	///
 	/// @tparam T A floating-point scalar type
@@ -210,7 +209,6 @@ namespace glm
 	template<typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> frustum(
 		T left, T right, T bottom, T top, T near, T far);
-
 
 	/// Creates a matrix for a right handed, symetric perspective-view frustum.
 	/// The near and far clip planes correspond to z normalized device coordinates of 0 and +1 respectively. (Direct3D clip volume definition)

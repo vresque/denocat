@@ -5,8 +5,8 @@
 
 #include <vector>
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class VAPI LayerStack
 	{
 	public:
@@ -24,5 +24,4 @@ namespace Visionizer {
 		std::vector<Layer*> m_Layers;
 		unsigned int m_LayerInsertIndex = 0;
 	};
-
 }

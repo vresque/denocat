@@ -29,7 +29,6 @@ namespace glm
 {
 	/// @addtogroup gtc_round
 	/// @{
-
 	/// Return true if the value is a power of two number.
 	///
 	/// @see gtc_round

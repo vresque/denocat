@@ -31,7 +31,6 @@ namespace glm
 {
 	/// @addtogroup gtx_fast_square_root
 	/// @{
-
 	/// Faster than the common sqrt function but less accurate.
 	///
 	/// @see gtx_fast_square_root extension.

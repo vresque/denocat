@@ -38,7 +38,6 @@ namespace glm
 {
 	/// @addtogroup gtc_type_aligned
 	/// @{
-
 	// -- *vec1 --
 
 	/// 1 component vector aligned in memory of single-precision floating-point numbers using high precision arithmetic in term of ULPs.

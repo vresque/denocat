@@ -131,15 +131,15 @@ namespace glm
 
 	// asinh
 #	if GLM_HAS_CXX11_STL
-		using std::asinh;
+	using std::asinh;
 #	else
-		template<typename genType>
-		GLM_FUNC_QUALIFIER genType asinh(genType x)
-		{
-			GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'asinh' only accept floating-point input");
+	template<typename genType>
+	GLM_FUNC_QUALIFIER genType asinh(genType x)
+	{
+		GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'asinh' only accept floating-point input");
 
-			return (x < static_cast<genType>(0) ? static_cast<genType>(-1) : (x > static_cast<genType>(0) ? static_cast<genType>(1) : static_cast<genType>(0))) * log(std::abs(x) + sqrt(static_cast<genType>(1) + x * x));
-		}
+		return (x < static_cast<genType>(0) ? static_cast<genType>(-1) : (x > static_cast<genType>(0) ? static_cast<genType>(1) : static_cast<genType>(0))) * log(std::abs(x) + sqrt(static_cast<genType>(1) + x * x));
+	}
 #	endif
 
 	template<length_t L, typename T, qualifier Q>
@@ -150,17 +150,17 @@ namespace glm
 
 	// acosh
 #	if GLM_HAS_CXX11_STL
-		using std::acosh;
+	using std::acosh;
 #	else
-		template<typename genType>
-		GLM_FUNC_QUALIFIER genType acosh(genType x)
-		{
-			GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'acosh' only accept floating-point input");
+	template<typename genType>
+	GLM_FUNC_QUALIFIER genType acosh(genType x)
+	{
+		GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'acosh' only accept floating-point input");
 
-			if(x < static_cast<genType>(1))
-				return static_cast<genType>(0);
-			return log(x + sqrt(x * x - static_cast<genType>(1)));
-		}
+		if (x < static_cast<genType>(1))
+			return static_cast<genType>(0);
+		return log(x + sqrt(x * x - static_cast<genType>(1)));
+	}
 #	endif
 
 	template<length_t L, typename T, qualifier Q>
@@ -171,17 +171,17 @@ namespace glm
 
 	// atanh
 #	if GLM_HAS_CXX11_STL
-		using std::atanh;
+	using std::atanh;
 #	else
-		template<typename genType>
-		GLM_FUNC_QUALIFIER genType atanh(genType x)
-		{
-			GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'atanh' only accept floating-point input");
+	template<typename genType>
+	GLM_FUNC_QUALIFIER genType atanh(genType x)
+	{
+		GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'atanh' only accept floating-point input");
 
-			if(std::abs(x) >= static_cast<genType>(1))
-				return 0;
-			return static_cast<genType>(0.5) * log((static_cast<genType>(1) + x) / (static_cast<genType>(1) - x));
-		}
+		if (std::abs(x) >= static_cast<genType>(1))
+			return 0;
+		return static_cast<genType>(0.5) * log((static_cast<genType>(1) + x) / (static_cast<genType>(1) - x));
+	}
 #	endif
 
 	template<length_t L, typename T, qualifier Q>
@@ -194,4 +194,3 @@ namespace glm
 #if GLM_CONFIG_SIMD == GLM_ENABLE
 #	include "func_trigonometric_simd.inl"
 #endif
-

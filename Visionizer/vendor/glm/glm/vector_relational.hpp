@@ -26,7 +26,6 @@ namespace glm
 {
 	/// @addtogroup core_func_vector_relational
 	/// @{
-
 	/// Returns the component-wise comparison result of x < y.
 	///
 	/// @tparam L An integer between 1 and 4 included that qualify the dimension of the vector.

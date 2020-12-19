@@ -19,7 +19,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER T fastPow(T x, int y)
 	{
 		T f = static_cast<T>(1);
-		for(int i = 0; i < y; ++i)
+		for (int i = 0; i < y; ++i)
 			f *= x;
 		return f;
 	}
@@ -28,7 +28,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER vec<L, T, Q> fastPow(vec<L, T, Q> const& x, vec<L, int, Q> const& y)
 	{
 		vec<L, T, Q> Result;
-		for(length_t i = 0, n = x.length(); i < n; ++i)
+		for (length_t i = 0, n = x.length(); i < n; ++i)
 			Result[i] = fastPow(x[i], y[i]);
 		return Result;
 	}
