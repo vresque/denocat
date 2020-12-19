@@ -100,7 +100,7 @@ namespace glm
 		T const Cos(cos(angle));
 		T const Sin(sin(angle));
 
-		Result.x =  v.x * Cos + v.z * Sin;
+		Result.x = v.x * Cos + v.z * Sin;
 		Result.z = -v.x * Sin + v.z * Cos;
 		return Result;
 	}
@@ -148,7 +148,7 @@ namespace glm
 		T const Cos(cos(angle));
 		T const Sin(sin(angle));
 
-		Result.x =  v.x * Cos + v.z * Sin;
+		Result.x = v.x * Cos + v.z * Sin;
 		Result.z = -v.x * Sin + v.z * Cos;
 		return Result;
 	}
@@ -176,7 +176,7 @@ namespace glm
 		vec<3, T, Q> const& Up
 	)
 	{
-		if(all(equal(Normal, Up, epsilon<T>())))
+		if (all(equal(Normal, Up, epsilon<T>())))
 			return mat<4, 4, T, Q>(static_cast<T>(1));
 
 		vec<3, T, Q> RotationAxis = cross(Up, Normal);

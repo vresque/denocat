@@ -33,7 +33,6 @@ namespace glm
 {
 	/// @addtogroup gtx_matrix_factorisation
 	/// @{
-
 	/// Flips the matrix rows up and down.
 	///
 	/// From GLM_GTX_matrix_factorisation extension.

@@ -18,7 +18,6 @@ namespace glm
 {
 	/// @addtogroup core_func_geometric
 	/// @{
-
 	/// Returns the length of x, i.e., sqrt(x * x).
 	///
 	/// @tparam L An integer between 1 and 4 included that qualify the dimension of the vector.

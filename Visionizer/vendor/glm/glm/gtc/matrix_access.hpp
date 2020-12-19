@@ -23,7 +23,6 @@ namespace glm
 {
 	/// @addtogroup gtc_matrix_access
 	/// @{
-
 	/// Get a specific row of a matrix.
 	/// @see gtc_matrix_access
 	template<typename genType>

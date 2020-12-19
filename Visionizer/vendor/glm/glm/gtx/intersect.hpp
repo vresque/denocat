@@ -33,7 +33,6 @@ namespace glm
 {
 	/// @addtogroup gtx_intersect
 	/// @{
-
 	//! Compute the intersection of a ray and a plane.
 	//! Ray direction and plane normal must be unit length.
 	//! From GLM_GTX_intersect extension.
@@ -41,7 +40,7 @@ namespace glm
 	GLM_FUNC_DECL bool intersectRayPlane(
 		genType const& orig, genType const& dir,
 		genType const& planeOrig, genType const& planeNormal,
-		typename genType::value_type & intersectionDistance);
+		typename genType::value_type& intersectionDistance);
 
 	//! Compute the intersection of a ray and a triangle.
 	/// Based om Tomas Möller implementation http://fileadmin.cs.lth.se/cs/Personal/Tomas_Akenine-Moller/raytri/
@@ -58,7 +57,7 @@ namespace glm
 	GLM_FUNC_DECL bool intersectLineTriangle(
 		genType const& orig, genType const& dir,
 		genType const& vert0, genType const& vert1, genType const& vert2,
-		genType & position);
+		genType& position);
 
 	//! Compute the intersection distance of a ray and a sphere.
 	//! The ray direction vector is unit length.
@@ -67,7 +66,7 @@ namespace glm
 	GLM_FUNC_DECL bool intersectRaySphere(
 		genType const& rayStarting, genType const& rayNormalizedDirection,
 		genType const& sphereCenter, typename genType::value_type const sphereRadiusSquered,
-		typename genType::value_type & intersectionDistance);
+		typename genType::value_type& intersectionDistance);
 
 	//! Compute the intersection of a ray and a sphere.
 	//! From GLM_GTX_intersect extension.
@@ -75,7 +74,7 @@ namespace glm
 	GLM_FUNC_DECL bool intersectRaySphere(
 		genType const& rayStarting, genType const& rayNormalizedDirection,
 		genType const& sphereCenter, const typename genType::value_type sphereRadius,
-		genType & intersectionPosition, genType & intersectionNormal);
+		genType& intersectionPosition, genType& intersectionNormal);
 
 	//! Compute the intersection of a line and a sphere.
 	//! From GLM_GTX_intersect extension
@@ -83,8 +82,8 @@ namespace glm
 	GLM_FUNC_DECL bool intersectLineSphere(
 		genType const& point0, genType const& point1,
 		genType const& sphereCenter, typename genType::value_type sphereRadius,
-		genType & intersectionPosition1, genType & intersectionNormal1,
-		genType & intersectionPosition2 = genType(), genType & intersectionNormal2 = genType());
+		genType& intersectionPosition1, genType& intersectionNormal1,
+		genType& intersectionPosition2 = genType(), genType& intersectionNormal2 = genType());
 
 	/// @}
 }//namespace glm

@@ -28,80 +28,80 @@
 #include "mat4x3.hpp"
 #include "mat4x4.hpp"
 
-namespace glm {
-namespace detail
+namespace glm
 {
-	template<length_t C, length_t R, typename T, qualifier Q>
-	struct outerProduct_trait{};
-
-	template<typename T, qualifier Q>
-	struct outerProduct_trait<2, 2, T, Q>
+	namespace detail
 	{
-		typedef mat<2, 2, T, Q> type;
-	};
+		template<length_t C, length_t R, typename T, qualifier Q>
+		struct outerProduct_trait {};
 
-	template<typename T, qualifier Q>
-	struct outerProduct_trait<2, 3, T, Q>
-	{
-		typedef mat<3, 2, T, Q> type;
-	};
+		template<typename T, qualifier Q>
+		struct outerProduct_trait<2, 2, T, Q>
+		{
+			typedef mat<2, 2, T, Q> type;
+		};
 
-	template<typename T, qualifier Q>
-	struct outerProduct_trait<2, 4, T, Q>
-	{
-		typedef mat<4, 2, T, Q> type;
-	};
+		template<typename T, qualifier Q>
+		struct outerProduct_trait<2, 3, T, Q>
+		{
+			typedef mat<3, 2, T, Q> type;
+		};
 
-	template<typename T, qualifier Q>
-	struct outerProduct_trait<3, 2, T, Q>
-	{
-		typedef mat<2, 3, T, Q> type;
-	};
+		template<typename T, qualifier Q>
+		struct outerProduct_trait<2, 4, T, Q>
+		{
+			typedef mat<4, 2, T, Q> type;
+		};
 
-	template<typename T, qualifier Q>
-	struct outerProduct_trait<3, 3, T, Q>
-	{
-		typedef mat<3, 3, T, Q> type;
-	};
+		template<typename T, qualifier Q>
+		struct outerProduct_trait<3, 2, T, Q>
+		{
+			typedef mat<2, 3, T, Q> type;
+		};
 
-	template<typename T, qualifier Q>
-	struct outerProduct_trait<3, 4, T, Q>
-	{
-		typedef mat<4, 3, T, Q> type;
-	};
+		template<typename T, qualifier Q>
+		struct outerProduct_trait<3, 3, T, Q>
+		{
+			typedef mat<3, 3, T, Q> type;
+		};
 
-	template<typename T, qualifier Q>
-	struct outerProduct_trait<4, 2, T, Q>
-	{
-		typedef mat<2, 4, T, Q> type;
-	};
+		template<typename T, qualifier Q>
+		struct outerProduct_trait<3, 4, T, Q>
+		{
+			typedef mat<4, 3, T, Q> type;
+		};
 
-	template<typename T, qualifier Q>
-	struct outerProduct_trait<4, 3, T, Q>
-	{
-		typedef mat<3, 4, T, Q> type;
-	};
+		template<typename T, qualifier Q>
+		struct outerProduct_trait<4, 2, T, Q>
+		{
+			typedef mat<2, 4, T, Q> type;
+		};
 
-	template<typename T, qualifier Q>
-	struct outerProduct_trait<4, 4, T, Q>
-	{
-		typedef mat<4, 4, T, Q> type;
-	};
-}//namespace detail
+		template<typename T, qualifier Q>
+		struct outerProduct_trait<4, 3, T, Q>
+		{
+			typedef mat<3, 4, T, Q> type;
+		};
 
-	 /// @addtogroup core_func_matrix
-	 /// @{
+		template<typename T, qualifier Q>
+		struct outerProduct_trait<4, 4, T, Q>
+		{
+			typedef mat<4, 4, T, Q> type;
+		};
+	}//namespace detail
 
-	 /// Multiply matrix x by matrix y component-wise, i.e.,
-	 /// result[i][j] is the scalar product of x[i][j] and y[i][j].
-	 ///
-	 /// @tparam C Integer between 1 and 4 included that qualify the number a column
-	 /// @tparam R Integer between 1 and 4 included that qualify the number a row
-	 /// @tparam T Floating-point or signed integer scalar types
-	 /// @tparam Q Value from qualifier enum
-	 ///
-	 /// @see <a href="http://www.opengl.org/sdk/docs/manglsl/xhtml/matrixCompMult.xml">GLSL matrixCompMult man page</a>
-	 /// @see <a href="http://www.opengl.org/registry/doc/GLSLangSpec.4.20.8.pdf">GLSL 4.20.8 specification, section 8.6 Matrix Functions</a>
+		 /// @addtogroup core_func_matrix
+		 /// @{
+		 /// Multiply matrix x by matrix y component-wise, i.e.,
+		 /// result[i][j] is the scalar product of x[i][j] and y[i][j].
+		 ///
+		 /// @tparam C Integer between 1 and 4 included that qualify the number a column
+		 /// @tparam R Integer between 1 and 4 included that qualify the number a row
+		 /// @tparam T Floating-point or signed integer scalar types
+		 /// @tparam Q Value from qualifier enum
+		 ///
+		 /// @see <a href="http://www.opengl.org/sdk/docs/manglsl/xhtml/matrixCompMult.xml">GLSL matrixCompMult man page</a>
+		 /// @see <a href="http://www.opengl.org/registry/doc/GLSLangSpec.4.20.8.pdf">GLSL 4.20.8 specification, section 8.6 Matrix Functions</a>
 	template<length_t C, length_t R, typename T, qualifier Q>
 	GLM_FUNC_DECL mat<C, R, T, Q> matrixCompMult(mat<C, R, T, Q> const& x, mat<C, R, T, Q> const& y);
 

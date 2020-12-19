@@ -25,7 +25,6 @@ namespace glm
 {
 	/// @addtogroup gtc_epsilon
 	/// @{
-
 	/// Returns the component-wise comparison of |x - y| < epsilon.
 	/// True if this expression is satisfied.
 	///

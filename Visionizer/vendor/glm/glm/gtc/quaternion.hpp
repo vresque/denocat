@@ -39,7 +39,6 @@ namespace glm
 {
 	/// @addtogroup gtc_quaternion
 	/// @{
-
 	/// Returns euler angles, pitch as x, yaw as y, roll as z.
 	/// The result is expressed in radians.
 	///

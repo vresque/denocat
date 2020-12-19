@@ -30,7 +30,6 @@ namespace glm
 {
 	/// @addtogroup gtx_component_wise
 	/// @{
-
 	/// Convert an integer vector to a normalized float vector.
 	/// If the parameter value type is already a floating qualifier type, the value is passed through.
 	/// @see gtx_component_wise

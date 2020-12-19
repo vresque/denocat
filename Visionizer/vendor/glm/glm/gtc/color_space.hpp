@@ -29,7 +29,6 @@ namespace glm
 {
 	/// @addtogroup gtc_color_space
 	/// @{
-
 	/// Convert a linear color to sRGB color using a standard gamma correction.
 	/// IEC 61966-2-1:1999 / Rec. 709 specification https://www.w3.org/Graphics/Color/srgb
 	template<length_t L, typename T, qualifier Q>

@@ -2,214 +2,215 @@
 
 #include "../integer.hpp"
 
-namespace glm{
-namespace detail
+namespace glm
 {
-	template<length_t L, typename T, qualifier Q, bool compute = false>
-	struct compute_ceilShift
+	namespace detail
 	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& v, T)
+		template<length_t L, typename T, qualifier Q, bool compute = false>
+		struct compute_ceilShift
 		{
-			return v;
-		}
-	};
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& v, T)
+			{
+				return v;
+			}
+		};
 
-	template<length_t L, typename T, qualifier Q>
-	struct compute_ceilShift<L, T, Q, true>
-	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& v, T Shift)
+		template<length_t L, typename T, qualifier Q>
+		struct compute_ceilShift<L, T, Q, true>
 		{
-			return v | (v >> Shift);
-		}
-	};
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& v, T Shift)
+			{
+				return v | (v >> Shift);
+			}
+		};
 
-	template<length_t L, typename T, qualifier Q, bool isSigned = true>
-	struct compute_ceilPowerOfTwo
-	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& x)
+		template<length_t L, typename T, qualifier Q, bool isSigned = true>
+		struct compute_ceilPowerOfTwo
 		{
-			GLM_STATIC_ASSERT(!std::numeric_limits<T>::is_iec559, "'ceilPowerOfTwo' only accept integer scalar or vector inputs");
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& x)
+			{
+				GLM_STATIC_ASSERT(!std::numeric_limits<T>::is_iec559, "'ceilPowerOfTwo' only accept integer scalar or vector inputs");
 
-			vec<L, T, Q> const Sign(sign(x));
+				vec<L, T, Q> const Sign(sign(x));
 
-			vec<L, T, Q> v(abs(x));
+				vec<L, T, Q> v(abs(x));
 
-			v = v - static_cast<T>(1);
-			v = v | (v >> static_cast<T>(1));
-			v = v | (v >> static_cast<T>(2));
-			v = v | (v >> static_cast<T>(4));
-			v = compute_ceilShift<L, T, Q, sizeof(T) >= 2>::call(v, 8);
-			v = compute_ceilShift<L, T, Q, sizeof(T) >= 4>::call(v, 16);
-			v = compute_ceilShift<L, T, Q, sizeof(T) >= 8>::call(v, 32);
-			return (v + static_cast<T>(1)) * Sign;
-		}
-	};
+				v = v - static_cast<T>(1);
+				v = v | (v >> static_cast<T>(1));
+				v = v | (v >> static_cast<T>(2));
+				v = v | (v >> static_cast<T>(4));
+				v = compute_ceilShift<L, T, Q, sizeof(T) >= 2>::call(v, 8);
+				v = compute_ceilShift<L, T, Q, sizeof(T) >= 4>::call(v, 16);
+				v = compute_ceilShift<L, T, Q, sizeof(T) >= 8>::call(v, 32);
+				return (v + static_cast<T>(1)) * Sign;
+			}
+		};
 
-	template<length_t L, typename T, qualifier Q>
-	struct compute_ceilPowerOfTwo<L, T, Q, false>
-	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& x)
+		template<length_t L, typename T, qualifier Q>
+		struct compute_ceilPowerOfTwo<L, T, Q, false>
 		{
-			GLM_STATIC_ASSERT(!std::numeric_limits<T>::is_iec559, "'ceilPowerOfTwo' only accept integer scalar or vector inputs");
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& x)
+			{
+				GLM_STATIC_ASSERT(!std::numeric_limits<T>::is_iec559, "'ceilPowerOfTwo' only accept integer scalar or vector inputs");
 
-			vec<L, T, Q> v(x);
+				vec<L, T, Q> v(x);
 
-			v = v - static_cast<T>(1);
-			v = v | (v >> static_cast<T>(1));
-			v = v | (v >> static_cast<T>(2));
-			v = v | (v >> static_cast<T>(4));
-			v = compute_ceilShift<L, T, Q, sizeof(T) >= 2>::call(v, 8);
-			v = compute_ceilShift<L, T, Q, sizeof(T) >= 4>::call(v, 16);
-			v = compute_ceilShift<L, T, Q, sizeof(T) >= 8>::call(v, 32);
-			return v + static_cast<T>(1);
-		}
-	};
+				v = v - static_cast<T>(1);
+				v = v | (v >> static_cast<T>(1));
+				v = v | (v >> static_cast<T>(2));
+				v = v | (v >> static_cast<T>(4));
+				v = compute_ceilShift<L, T, Q, sizeof(T) >= 2>::call(v, 8);
+				v = compute_ceilShift<L, T, Q, sizeof(T) >= 4>::call(v, 16);
+				v = compute_ceilShift<L, T, Q, sizeof(T) >= 8>::call(v, 32);
+				return v + static_cast<T>(1);
+			}
+		};
 
-	template<bool is_float, bool is_signed>
-	struct compute_ceilMultiple{};
+		template<bool is_float, bool is_signed>
+		struct compute_ceilMultiple {};
 
-	template<>
-	struct compute_ceilMultiple<true, true>
-	{
-		template<typename genType>
-		GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
+		template<>
+		struct compute_ceilMultiple<true, true>
 		{
-			if(Source > genType(0))
-				return Source + (Multiple - std::fmod(Source, Multiple));
-			else
-				return Source + std::fmod(-Source, Multiple);
-		}
-	};
+			template<typename genType>
+			GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
+			{
+				if (Source > genType(0))
+					return Source + (Multiple - std::fmod(Source, Multiple));
+				else
+					return Source + std::fmod(-Source, Multiple);
+			}
+		};
 
-	template<>
-	struct compute_ceilMultiple<false, false>
-	{
-		template<typename genType>
-		GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
+		template<>
+		struct compute_ceilMultiple<false, false>
 		{
-			genType Tmp = Source - genType(1);
-			return Tmp + (Multiple - (Tmp % Multiple));
-		}
-	};
-
-	template<>
-	struct compute_ceilMultiple<false, true>
-	{
-		template<typename genType>
-		GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
-		{
-			if(Source > genType(0))
+			template<typename genType>
+			GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
 			{
 				genType Tmp = Source - genType(1);
 				return Tmp + (Multiple - (Tmp % Multiple));
 			}
-			else
-				return Source + (-Source % Multiple);
-		}
-	};
+		};
 
-	template<bool is_float, bool is_signed>
-	struct compute_floorMultiple{};
-
-	template<>
-	struct compute_floorMultiple<true, true>
-	{
-		template<typename genType>
-		GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
+		template<>
+		struct compute_ceilMultiple<false, true>
 		{
-			if(Source >= genType(0))
-				return Source - std::fmod(Source, Multiple);
-			else
-				return Source - std::fmod(Source, Multiple) - Multiple;
-		}
-	};
-
-	template<>
-	struct compute_floorMultiple<false, false>
-	{
-		template<typename genType>
-		GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
-		{
-			if(Source >= genType(0))
-				return Source - Source % Multiple;
-			else
+			template<typename genType>
+			GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
 			{
-				genType Tmp = Source + genType(1);
-				return Tmp - Tmp % Multiple - Multiple;
+				if (Source > genType(0))
+				{
+					genType Tmp = Source - genType(1);
+					return Tmp + (Multiple - (Tmp % Multiple));
+				}
+				else
+					return Source + (-Source % Multiple);
 			}
-		}
-	};
+		};
 
-	template<>
-	struct compute_floorMultiple<false, true>
-	{
-		template<typename genType>
-		GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
+		template<bool is_float, bool is_signed>
+		struct compute_floorMultiple {};
+
+		template<>
+		struct compute_floorMultiple<true, true>
 		{
-			if(Source >= genType(0))
-				return Source - Source % Multiple;
-			else
+			template<typename genType>
+			GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
 			{
-				genType Tmp = Source + genType(1);
-				return Tmp - Tmp % Multiple - Multiple;
+				if (Source >= genType(0))
+					return Source - std::fmod(Source, Multiple);
+				else
+					return Source - std::fmod(Source, Multiple) - Multiple;
 			}
-		}
-	};
+		};
 
-	template<bool is_float, bool is_signed>
-	struct compute_roundMultiple{};
-
-	template<>
-	struct compute_roundMultiple<true, true>
-	{
-		template<typename genType>
-		GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
+		template<>
+		struct compute_floorMultiple<false, false>
 		{
-			if(Source >= genType(0))
-				return Source - std::fmod(Source, Multiple);
-			else
+			template<typename genType>
+			GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
 			{
-				genType Tmp = Source + genType(1);
-				return Tmp - std::fmod(Tmp, Multiple) - Multiple;
+				if (Source >= genType(0))
+					return Source - Source % Multiple;
+				else
+				{
+					genType Tmp = Source + genType(1);
+					return Tmp - Tmp % Multiple - Multiple;
+				}
 			}
-		}
-	};
+		};
 
-	template<>
-	struct compute_roundMultiple<false, false>
-	{
-		template<typename genType>
-		GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
+		template<>
+		struct compute_floorMultiple<false, true>
 		{
-			if(Source >= genType(0))
-				return Source - Source % Multiple;
-			else
+			template<typename genType>
+			GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
 			{
-				genType Tmp = Source + genType(1);
-				return Tmp - Tmp % Multiple - Multiple;
+				if (Source >= genType(0))
+					return Source - Source % Multiple;
+				else
+				{
+					genType Tmp = Source + genType(1);
+					return Tmp - Tmp % Multiple - Multiple;
+				}
 			}
-		}
-	};
+		};
 
-	template<>
-	struct compute_roundMultiple<false, true>
-	{
-		template<typename genType>
-		GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
+		template<bool is_float, bool is_signed>
+		struct compute_roundMultiple {};
+
+		template<>
+		struct compute_roundMultiple<true, true>
 		{
-			if(Source >= genType(0))
-				return Source - Source % Multiple;
-			else
+			template<typename genType>
+			GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
 			{
-				genType Tmp = Source + genType(1);
-				return Tmp - Tmp % Multiple - Multiple;
+				if (Source >= genType(0))
+					return Source - std::fmod(Source, Multiple);
+				else
+				{
+					genType Tmp = Source + genType(1);
+					return Tmp - std::fmod(Tmp, Multiple) - Multiple;
+				}
 			}
-		}
-	};
-}//namespace detail
+		};
 
-	////////////////
-	// isPowerOfTwo
+		template<>
+		struct compute_roundMultiple<false, false>
+		{
+			template<typename genType>
+			GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
+			{
+				if (Source >= genType(0))
+					return Source - Source % Multiple;
+				else
+				{
+					genType Tmp = Source + genType(1);
+					return Tmp - Tmp % Multiple - Multiple;
+				}
+			}
+		};
+
+		template<>
+		struct compute_roundMultiple<false, true>
+		{
+			template<typename genType>
+			GLM_FUNC_QUALIFIER static genType call(genType Source, genType Multiple)
+			{
+				if (Source >= genType(0))
+					return Source - Source % Multiple;
+				else
+				{
+					genType Tmp = Source + genType(1);
+					return Tmp - Tmp % Multiple - Multiple;
+				}
+			}
+		};
+	}//namespace detail
+
+		////////////////
+		// isPowerOfTwo
 
 	template<typename genType>
 	GLM_FUNC_QUALIFIER bool isPowerOfTwo(genType Value)
@@ -261,7 +262,7 @@ namespace detail
 	template<typename genIUType>
 	GLM_FUNC_QUALIFIER genIUType roundPowerOfTwo(genIUType value)
 	{
-		if(isPowerOfTwo(value))
+		if (isPowerOfTwo(value))
 			return value;
 
 		genIUType const prev = static_cast<genIUType>(1) << findMSB(value);

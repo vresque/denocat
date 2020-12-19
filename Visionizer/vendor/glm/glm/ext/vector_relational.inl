@@ -29,7 +29,6 @@ namespace glm
 		return greaterThan(abs(x - y), Epsilon);
 	}
 
-
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<L, bool, Q> equal(vec<L, T, Q> const& x, vec<L, T, Q> const& y, int MaxULPs)
 	{
@@ -40,13 +39,13 @@ namespace glm
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<L, bool, Q> equal(vec<L, T, Q> const& x, vec<L, T, Q> const& y, vec<L, int, Q> const& MaxULPs)
 	{
 		vec<L, bool, Q> Result(false);
-		for(length_t i = 0; i < L; ++i)
+		for (length_t i = 0; i < L; ++i)
 		{
 			detail::float_t<T> const a(x[i]);
 			detail::float_t<T> const b(y[i]);
 
 			// Different signs means they do not match.
-			if(a.negative() != b.negative())
+			if (a.negative() != b.negative())
 			{
 				// Check for equality to make sure +0==-0
 				Result[i] = a.mantissa() == b.mantissa() && a.exponent() == b.exponent();

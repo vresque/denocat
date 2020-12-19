@@ -1,33 +1,34 @@
 /// @ref gtx_fast_trigonometry
 
-namespace glm{
-namespace detail
+namespace glm
 {
-	template<length_t L, typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER vec<L, T, Q> taylorCos(vec<L, T, Q> const& x)
+	namespace detail
 	{
-		return static_cast<T>(1)
-			- (x * x) * (1.f / 2.f)
-			+ ((x * x) * (x * x)) * (1.f / 24.f)
-			- (((x * x) * (x * x)) * (x * x)) * (1.f / 720.f)
-			+ (((x * x) * (x * x)) * ((x * x) * (x * x))) * (1.f / 40320.f);
-	}
+		template<length_t L, typename T, qualifier Q>
+		GLM_FUNC_QUALIFIER vec<L, T, Q> taylorCos(vec<L, T, Q> const& x)
+		{
+			return static_cast<T>(1)
+				- (x * x) * (1.f / 2.f)
+				+ ((x * x) * (x * x)) * (1.f / 24.f)
+				- (((x * x) * (x * x)) * (x * x)) * (1.f / 720.f)
+				+ (((x * x) * (x * x)) * ((x * x) * (x * x))) * (1.f / 40320.f);
+		}
 
-	template<typename T>
-	GLM_FUNC_QUALIFIER T cos_52s(T x)
-	{
-		T const xx(x * x);
-		return (T(0.9999932946) + xx * (T(-0.4999124376) + xx * (T(0.0414877472) + xx * T(-0.0012712095))));
-	}
+		template<typename T>
+		GLM_FUNC_QUALIFIER T cos_52s(T x)
+		{
+			T const xx(x * x);
+			return (T(0.9999932946) + xx * (T(-0.4999124376) + xx * (T(0.0414877472) + xx * T(-0.0012712095))));
+		}
 
-	template<length_t L, typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER vec<L, T, Q> cos_52s(vec<L, T, Q> const& x)
-	{
-		return detail::functor1<vec, L, T, T, Q>::call(cos_52s, x);
-	}
-}//namespace detail
+		template<length_t L, typename T, qualifier Q>
+		GLM_FUNC_QUALIFIER vec<L, T, Q> cos_52s(vec<L, T, Q> const& x)
+		{
+			return detail::functor1<vec, L, T, T, Q>::call(cos_52s, x);
+		}
+	}//namespace detail
 
-	// wrapAngle
+		// wrapAngle
 	template<typename T>
 	GLM_FUNC_QUALIFIER T wrapAngle(T angle)
 	{
@@ -46,11 +47,11 @@ namespace detail
 	{
 		T const angle(wrapAngle<T>(x));
 
-		if(angle < half_pi<T>())
+		if (angle < half_pi<T>())
 			return detail::cos_52s(angle);
-		if(angle < pi<T>())
+		if (angle < pi<T>())
 			return -detail::cos_52s(pi<T>() - angle);
-		if(angle < (T(3) * half_pi<T>()))
+		if (angle < (T(3) * half_pi<T>()))
 			return -detail::cos_52s(angle - pi<T>());
 
 		return detail::cos_52s(two_pi<T>() - angle);

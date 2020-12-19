@@ -33,7 +33,6 @@ namespace glm
 {
 	/// @addtogroup ext_matrix_transform
 	/// @{
-
 	/// Builds an identity matrix.
 	template<typename genType>
 	GLM_FUNC_DECL GLM_CONSTEXPR genType identity();

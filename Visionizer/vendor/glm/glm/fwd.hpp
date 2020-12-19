@@ -159,7 +159,6 @@ namespace glm
 	typedef float					highp_float32_t;
 	typedef float					float32_t;
 
-
 	typedef double					lowp_f64;
 	typedef double					mediump_f64;
 	typedef double					highp_f64;
@@ -676,7 +675,7 @@ namespace glm
 	typedef mat<4, 2, f32, lowp>		lowp_f32mat4x2;
 	typedef mat<4, 3, f32, lowp>		lowp_f32mat4x3;
 	typedef mat<4, 4, f32, lowp>		lowp_f32mat4x4;
-	
+
 	typedef mat<2, 2, f32, mediump>		mediump_f32mat2x2;
 	typedef mat<2, 3, f32, mediump>		mediump_f32mat2x3;
 	typedef mat<2, 4, f32, mediump>		mediump_f32mat2x4;
@@ -814,5 +813,3 @@ namespace glm
 	typedef qua<f64, highp>				highp_f64quat;
 	typedef qua<f64, defaultp>			f64quat;
 }//namespace glm
-
-

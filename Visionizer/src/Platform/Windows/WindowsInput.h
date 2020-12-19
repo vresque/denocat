@@ -2,8 +2,8 @@
 
 #include "Visionizer/Core/Input.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class WindowsInput : public Input
 	{
 	protected:
@@ -14,5 +14,4 @@ namespace Visionizer {
 		virtual float GetMouseXImpl() override;
 		virtual float GetMouseYImpl() override;
 	};
-
 }

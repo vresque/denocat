@@ -11,8 +11,8 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	ImGuiLayer::ImGuiLayer()
 		: Layer("ImGuiLayer")
 	{
@@ -57,7 +57,7 @@ namespace Visionizer {
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
 	}
-	
+
 	void ImGuiLayer::Begin()
 	{
 		ImGui_ImplOpenGL3_NewFrame();
@@ -89,5 +89,4 @@ namespace Visionizer {
 		static bool show = true;
 		ImGui::ShowDemoWindow(&show);
 	}
-
 }

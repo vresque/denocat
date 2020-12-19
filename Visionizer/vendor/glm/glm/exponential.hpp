@@ -24,7 +24,6 @@ namespace glm
 {
 	/// @addtogroup core_func_exponential
 	/// @{
-
 	/// Returns 'base' raised to the power 'exponent'.
 	///
 	/// @param base Floating point value. pow function is defined for input values of 'base' defined in the range (inf-, inf+) in the limit of the type qualifier.

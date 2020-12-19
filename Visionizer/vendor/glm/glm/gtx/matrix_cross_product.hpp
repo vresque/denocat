@@ -28,7 +28,6 @@ namespace glm
 {
 	/// @addtogroup gtx_matrix_cross_product
 	/// @{
-
 	//! Build a cross product matrix.
 	//! From GLM_GTX_matrix_cross_product extension.
 	template<typename T, qualifier Q>

@@ -62,124 +62,131 @@ typedef union
 		(d) = iw_u.value;					\
 	} while (0)
 
-namespace glm{
-namespace detail
+namespace glm
 {
-	GLM_FUNC_QUALIFIER float nextafterf(float x, float y)
+	namespace detail
 	{
-		volatile float t;
-		int hx, hy, ix, iy;
-
-		GLM_GET_FLOAT_WORD(hx, x);
-		GLM_GET_FLOAT_WORD(hy, y);
-		ix = hx & 0x7fffffff;		// |x|
-		iy = hy & 0x7fffffff;		// |y|
-
-		if((ix > 0x7f800000) ||	// x is nan
-			(iy > 0x7f800000))	// y is nan
-			return x + y;
-		if(abs(y - x) <= epsilon<float>())
-			return y;		// x=y, return y
-		if(ix == 0)
-		{				// x == 0
-			GLM_SET_FLOAT_WORD(x, (hy & 0x80000000) | 1);// return +-minsubnormal
-			t = x * x;
-			if(abs(t - x) <= epsilon<float>())
-				return t;
-			else
-				return x;	// raise underflow flag
-		}
-		if(hx >= 0)
-		{						// x > 0
-			if(hx > hy)			// x > y, x -= ulp
-				hx -= 1;
-			else				// x < y, x += ulp
-				hx += 1;
-		}
-		else
-		{						// x < 0
-			if(hy >= 0 || hx > hy)	// x < y, x -= ulp
-				hx -= 1;
-			else				// x > y, x += ulp
-				hx += 1;
-		}
-		hy = hx & 0x7f800000;
-		if(hy >= 0x7f800000)
-			return x + x;  		// overflow
-		if(hy < 0x00800000)		// underflow
+		GLM_FUNC_QUALIFIER float nextafterf(float x, float y)
 		{
-			t = x * x;
-			if(abs(t - x) > epsilon<float>())
-			{					// raise underflow flag
-				GLM_SET_FLOAT_WORD(y, hx);
-				return y;
+			volatile float t;
+			int hx, hy, ix, iy;
+
+			GLM_GET_FLOAT_WORD(hx, x);
+			GLM_GET_FLOAT_WORD(hy, y);
+			ix = hx & 0x7fffffff;		// |x|
+			iy = hy & 0x7fffffff;		// |y|
+
+			if ((ix > 0x7f800000) ||	// x is nan
+				(iy > 0x7f800000))	// y is nan
+				return x + y;
+			if (abs(y - x) <= epsilon<float>())
+				return y;		// x=y, return y
+			if (ix == 0)
+			{				// x == 0
+				GLM_SET_FLOAT_WORD(x, (hy & 0x80000000) | 1);// return +-minsubnormal
+				t = x * x;
+				if (abs(t - x) <= epsilon<float>())
+					return t;
+				else
+					return x;	// raise underflow flag
 			}
-		}
-		GLM_SET_FLOAT_WORD(x, hx);
-		return x;
-	}
-
-	GLM_FUNC_QUALIFIER double nextafter(double x, double y)
-	{
-		volatile double t;
-		int hx, hy, ix, iy;
-		unsigned int lx, ly;
-
-		GLM_EXTRACT_WORDS(hx, lx, x);
-		GLM_EXTRACT_WORDS(hy, ly, y);
-		ix = hx & 0x7fffffff;								// |x|
-		iy = hy & 0x7fffffff;								// |y|
-
-		if(((ix >= 0x7ff00000) && ((ix - 0x7ff00000) | lx) != 0) ||	// x is nan
-			((iy >= 0x7ff00000) && ((iy - 0x7ff00000) | ly) != 0))	// y is nan
-			return x + y;
-		if(abs(y - x) <= epsilon<double>())
-			return y;									// x=y, return y
-		if((ix | lx) == 0)
-		{													// x == 0
-			GLM_INSERT_WORDS(x, hy & 0x80000000, 1);		// return +-minsubnormal
-			t = x * x;
-			if(abs(t - x) <= epsilon<double>())
-				return t;
+			if (hx >= 0)
+			{						// x > 0
+				if (hx > hy)			// x > y, x -= ulp
+					hx -= 1;
+				else				// x < y, x += ulp
+					hx += 1;
+			}
 			else
-				return x;   // raise underflow flag
+			{						// x < 0
+				if (hy >= 0 || hx > hy)	// x < y, x -= ulp
+					hx -= 1;
+				else				// x > y, x += ulp
+					hx += 1;
+			}
+			hy = hx & 0x7f800000;
+			if (hy >= 0x7f800000)
+				return x + x;  		// overflow
+			if (hy < 0x00800000)		// underflow
+			{
+				t = x * x;
+				if (abs(t - x) > epsilon<float>())
+				{					// raise underflow flag
+					GLM_SET_FLOAT_WORD(y, hx);
+					return y;
+				}
+			}
+			GLM_SET_FLOAT_WORD(x, hx);
+			return x;
 		}
-		if(hx >= 0) {                             // x > 0
-			if(hx > hy || ((hx == hy) && (lx > ly))) {    // x > y, x -= ulp
-				if(lx == 0) hx -= 1;
-				lx -= 1;
+
+		GLM_FUNC_QUALIFIER double nextafter(double x, double y)
+		{
+			volatile double t;
+			int hx, hy, ix, iy;
+			unsigned int lx, ly;
+
+			GLM_EXTRACT_WORDS(hx, lx, x);
+			GLM_EXTRACT_WORDS(hy, ly, y);
+			ix = hx & 0x7fffffff;								// |x|
+			iy = hy & 0x7fffffff;								// |y|
+
+			if (((ix >= 0x7ff00000) && ((ix - 0x7ff00000) | lx) != 0) ||	// x is nan
+				((iy >= 0x7ff00000) && ((iy - 0x7ff00000) | ly) != 0))	// y is nan
+				return x + y;
+			if (abs(y - x) <= epsilon<double>())
+				return y;									// x=y, return y
+			if ((ix | lx) == 0)
+			{													// x == 0
+				GLM_INSERT_WORDS(x, hy & 0x80000000, 1);		// return +-minsubnormal
+				t = x * x;
+				if (abs(t - x) <= epsilon<double>())
+					return t;
+				else
+					return x;   // raise underflow flag
 			}
-			else {                            // x < y, x += ulp
-				lx += 1;
-				if(lx == 0) hx += 1;
+			if (hx >= 0)
+			{                             // x > 0
+				if (hx > hy || ((hx == hy) && (lx > ly)))
+				{    // x > y, x -= ulp
+					if (lx == 0) hx -= 1;
+					lx -= 1;
+				}
+				else
+				{                            // x < y, x += ulp
+					lx += 1;
+					if (lx == 0) hx += 1;
+				}
 			}
+			else
+			{                                // x < 0
+				if (hy >= 0 || hx > hy || ((hx == hy) && (lx > ly)))
+				{// x < y, x -= ulp
+					if (lx == 0) hx -= 1;
+					lx -= 1;
+				}
+				else
+				{                            // x > y, x += ulp
+					lx += 1;
+					if (lx == 0) hx += 1;
+				}
+			}
+			hy = hx & 0x7ff00000;
+			if (hy >= 0x7ff00000)
+				return x + x;			// overflow
+			if (hy < 0x00100000)
+			{						// underflow
+				t = x * x;
+				if (abs(t - x) > epsilon<double>())
+				{					// raise underflow flag
+					GLM_INSERT_WORDS(y, hx, lx);
+					return y;
+				}
+			}
+			GLM_INSERT_WORDS(x, hx, lx);
+			return x;
 		}
-		else {                                // x < 0
-			if(hy >= 0 || hx > hy || ((hx == hy) && (lx > ly))){// x < y, x -= ulp
-				if(lx == 0) hx -= 1;
-				lx -= 1;
-			}
-			else {                            // x > y, x += ulp
-				lx += 1;
-				if(lx == 0) hx += 1;
-			}
-		}
-		hy = hx & 0x7ff00000;
-		if(hy >= 0x7ff00000)
-			return x + x;			// overflow
-		if(hy < 0x00100000)
-		{						// underflow
-			t = x * x;
-			if(abs(t - x) > epsilon<double>())
-			{					// raise underflow flag
-				GLM_INSERT_WORDS(y, hx, lx);
-				return y;
-			}
-		}
-		GLM_INSERT_WORDS(x, hx, lx);
-		return x;
-	}
-}//namespace detail
+	}//namespace detail
 }//namespace glm
 
 #if(GLM_COMPILER & GLM_COMPILER_VC)
@@ -192,13 +199,13 @@ namespace glm
 	GLM_FUNC_QUALIFIER float next_float(float x)
 	{
 #		if GLM_HAS_CXX11_STL
-			return std::nextafter(x, std::numeric_limits<float>::max());
+		return std::nextafter(x, std::numeric_limits<float>::max());
 #		elif((GLM_COMPILER & GLM_COMPILER_VC) || ((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_PLATFORM & GLM_PLATFORM_WINDOWS)))
-			return detail::nextafterf(x, FLT_MAX);
+		return detail::nextafterf(x, FLT_MAX);
 #		elif(GLM_PLATFORM & GLM_PLATFORM_ANDROID)
-			return __builtin_nextafterf(x, FLT_MAX);
+		return __builtin_nextafterf(x, FLT_MAX);
 #		else
-			return nextafterf(x, FLT_MAX);
+		return nextafterf(x, FLT_MAX);
 #		endif
 	}
 
@@ -206,13 +213,13 @@ namespace glm
 	GLM_FUNC_QUALIFIER double next_float(double x)
 	{
 #		if GLM_HAS_CXX11_STL
-			return std::nextafter(x, std::numeric_limits<double>::max());
+		return std::nextafter(x, std::numeric_limits<double>::max());
 #		elif((GLM_COMPILER & GLM_COMPILER_VC) || ((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_PLATFORM & GLM_PLATFORM_WINDOWS)))
-			return detail::nextafter(x, std::numeric_limits<double>::max());
+		return detail::nextafter(x, std::numeric_limits<double>::max());
 #		elif(GLM_PLATFORM & GLM_PLATFORM_ANDROID)
-			return __builtin_nextafter(x, DBL_MAX);
+		return __builtin_nextafter(x, DBL_MAX);
 #		else
-			return nextafter(x, DBL_MAX);
+		return nextafter(x, DBL_MAX);
 #		endif
 	}
 
@@ -223,7 +230,7 @@ namespace glm
 		assert(ULPs >= 0);
 
 		T temp = x;
-		for(int i = 0; i < ULPs; ++i)
+		for (int i = 0; i < ULPs; ++i)
 			temp = next_float(temp);
 		return temp;
 	}
@@ -231,26 +238,26 @@ namespace glm
 	GLM_FUNC_QUALIFIER float prev_float(float x)
 	{
 #		if GLM_HAS_CXX11_STL
-			return std::nextafter(x, std::numeric_limits<float>::min());
+		return std::nextafter(x, std::numeric_limits<float>::min());
 #		elif((GLM_COMPILER & GLM_COMPILER_VC) || ((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_PLATFORM & GLM_PLATFORM_WINDOWS)))
-			return detail::nextafterf(x, FLT_MIN);
+		return detail::nextafterf(x, FLT_MIN);
 #		elif(GLM_PLATFORM & GLM_PLATFORM_ANDROID)
-			return __builtin_nextafterf(x, FLT_MIN);
+		return __builtin_nextafterf(x, FLT_MIN);
 #		else
-			return nextafterf(x, FLT_MIN);
+		return nextafterf(x, FLT_MIN);
 #		endif
 	}
 
 	GLM_FUNC_QUALIFIER double prev_float(double x)
 	{
 #		if GLM_HAS_CXX11_STL
-			return std::nextafter(x, std::numeric_limits<double>::min());
+		return std::nextafter(x, std::numeric_limits<double>::min());
 #		elif((GLM_COMPILER & GLM_COMPILER_VC) || ((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_PLATFORM & GLM_PLATFORM_WINDOWS)))
-			return _nextafter(x, DBL_MIN);
+		return _nextafter(x, DBL_MIN);
 #		elif(GLM_PLATFORM & GLM_PLATFORM_ANDROID)
-			return __builtin_nextafter(x, DBL_MIN);
+		return __builtin_nextafter(x, DBL_MIN);
 #		else
-			return nextafter(x, DBL_MIN);
+		return nextafter(x, DBL_MIN);
 #		endif
 	}
 
@@ -261,7 +268,7 @@ namespace glm
 		assert(ULPs >= 0);
 
 		T temp = x;
-		for(int i = 0; i < ULPs; ++i)
+		for (int i = 0; i < ULPs; ++i)
 			temp = prev_float(temp);
 		return temp;
 	}

@@ -13,7 +13,7 @@ namespace glm
 		assert(index >= 0 && index < m[0].length());
 
 		genType Result = m;
-		for(length_t i = 0; i < m.length(); ++i)
+		for (length_t i = 0; i < m.length(); ++i)
 			Result[i][index] = x[i];
 		return Result;
 	}
@@ -28,7 +28,7 @@ namespace glm
 		assert(index >= 0 && index < m[0].length());
 
 		typename genType::row_type Result(0);
-		for(length_t i = 0; i < m.length(); ++i)
+		for (length_t i = 0; i < m.length(); ++i)
 			Result[i] = m[i][index];
 		return Result;
 	}

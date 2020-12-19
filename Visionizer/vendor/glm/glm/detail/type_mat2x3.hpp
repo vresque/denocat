@@ -28,7 +28,7 @@ namespace glm
 		typedef length_t length_type;
 		GLM_FUNC_DECL static GLM_CONSTEXPR length_type length() { return 2; }
 
-		GLM_FUNC_DECL col_type & operator[](length_type i);
+		GLM_FUNC_DECL col_type& operator[](length_type i);
 		GLM_FUNC_DECL GLM_CONSTEXPR col_type const& operator[](length_type i) const;
 
 		// -- Constructors --
@@ -74,24 +74,24 @@ namespace glm
 		// -- Unary arithmetic operators --
 
 		template<typename U>
-		GLM_FUNC_DECL mat<2, 3, T, Q> & operator=(mat<2, 3, U, Q> const& m);
+		GLM_FUNC_DECL mat<2, 3, T, Q>& operator=(mat<2, 3, U, Q> const& m);
 		template<typename U>
-		GLM_FUNC_DECL mat<2, 3, T, Q> & operator+=(U s);
+		GLM_FUNC_DECL mat<2, 3, T, Q>& operator+=(U s);
 		template<typename U>
-		GLM_FUNC_DECL mat<2, 3, T, Q> & operator+=(mat<2, 3, U, Q> const& m);
+		GLM_FUNC_DECL mat<2, 3, T, Q>& operator+=(mat<2, 3, U, Q> const& m);
 		template<typename U>
-		GLM_FUNC_DECL mat<2, 3, T, Q> & operator-=(U s);
+		GLM_FUNC_DECL mat<2, 3, T, Q>& operator-=(U s);
 		template<typename U>
-		GLM_FUNC_DECL mat<2, 3, T, Q> & operator-=(mat<2, 3, U, Q> const& m);
+		GLM_FUNC_DECL mat<2, 3, T, Q>& operator-=(mat<2, 3, U, Q> const& m);
 		template<typename U>
-		GLM_FUNC_DECL mat<2, 3, T, Q> & operator*=(U s);
+		GLM_FUNC_DECL mat<2, 3, T, Q>& operator*=(U s);
 		template<typename U>
-		GLM_FUNC_DECL mat<2, 3, T, Q> & operator/=(U s);
+		GLM_FUNC_DECL mat<2, 3, T, Q>& operator/=(U s);
 
 		// -- Increment and decrement operators --
 
-		GLM_FUNC_DECL mat<2, 3, T, Q> & operator++ ();
-		GLM_FUNC_DECL mat<2, 3, T, Q> & operator-- ();
+		GLM_FUNC_DECL mat<2, 3, T, Q>& operator++ ();
+		GLM_FUNC_DECL mat<2, 3, T, Q>& operator-- ();
 		GLM_FUNC_DECL mat<2, 3, T, Q> operator++(int);
 		GLM_FUNC_DECL mat<2, 3, T, Q> operator--(int);
 	};

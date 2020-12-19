@@ -2,8 +2,8 @@
 
 #include "Visionizer/Core/Core.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class VAPI Input
 	{
 	protected:

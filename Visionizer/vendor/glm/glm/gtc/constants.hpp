@@ -23,7 +23,6 @@ namespace glm
 {
 	/// @addtogroup gtc_constants
 	/// @{
-
 	/// Return 0.
 	/// @see gtc_constants
 	template<typename genType>

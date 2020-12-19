@@ -30,7 +30,6 @@ namespace glm
 {
 	/// @addtogroup gtx_common
 	/// @{
-
 	/// Returns true if x is a denormalized number
 	/// Numbers whose absolute value is too small to be represented in the normal format are represented in an alternate, denormalized format.
 	/// This format is less precise but can represent values closer to zero.

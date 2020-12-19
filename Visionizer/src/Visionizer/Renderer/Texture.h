@@ -4,8 +4,8 @@
 
 #include "Visionizer/Core/Core.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class Texture
 	{
 	public:
@@ -22,5 +22,4 @@ namespace Visionizer {
 	public:
 		static Ref<Texture2D> Create(const std::string& path);
 	};
-
 }

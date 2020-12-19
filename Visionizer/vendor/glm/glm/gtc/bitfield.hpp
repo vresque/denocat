@@ -31,7 +31,6 @@ namespace glm
 {
 	/// @addtogroup gtc_bitfield
 	/// @{
-
 	/// Build a mask of 'count' bits
 	///
 	/// @see gtc_bitfield

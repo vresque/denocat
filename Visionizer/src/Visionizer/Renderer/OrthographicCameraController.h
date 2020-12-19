@@ -6,8 +6,8 @@
 #include "Visionizer/Events/ApplicationEvent.h"
 #include "Visionizer/Events/MouseEvent.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class OrthographicCameraController
 	{
 	public:
@@ -35,5 +35,4 @@ namespace Visionizer {
 		float m_CameraRotation = 0.0f; //In degrees, in the anti-clockwise direction
 		float m_CameraTranslationSpeed = 10.0f, m_CameraRotationSpeed = 180.0f;
 	};
-
 }

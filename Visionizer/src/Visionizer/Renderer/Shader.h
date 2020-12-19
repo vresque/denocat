@@ -3,8 +3,8 @@
 #include <string>
 #include <unordered_map>
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class Shader
 	{
 	public:
@@ -33,5 +33,4 @@ namespace Visionizer {
 	private:
 		std::unordered_map<std::string, Ref<Shader>> m_Shaders;
 	};
-
 }

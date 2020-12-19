@@ -6,6 +6,9 @@
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
+// TEMPORARY #ToFix REMOVE 
+#include <gl/GL.h>;
+
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f)
 {
@@ -26,7 +29,7 @@ void Sandbox2D::OnAttach()
 	squareVB.reset(Visionizer::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 	squareVB->SetLayout({
 		{ Visionizer::ShaderDataType::Float3, "a_Position" }
-	});
+		});
 	m_SquareVA->AddVertexBuffer(squareVB);
 
 	uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -49,7 +52,7 @@ void Sandbox2D::OnUpdate(Visionizer::Timestep ts)
 	m_CameraController.OnUpdate(ts);
 
 	// Render
-	Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+	Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.2f, 0.1f, 1 });
 	Visionizer::RenderCommand::Clear();
 
 	Visionizer::Renderer::BeginScene(m_CameraController.GetCamera());
@@ -66,6 +69,10 @@ void Sandbox2D::OnImGuiRender()
 {
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+	ImGui::End();
+
+	ImGui::Begin("File settings");
+	ImGui::Text("Hi");
 	ImGui::End();
 }
 

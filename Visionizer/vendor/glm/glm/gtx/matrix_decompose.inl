@@ -3,58 +3,59 @@
 #include "../gtc/constants.hpp"
 #include "../gtc/epsilon.hpp"
 
-namespace glm{
-namespace detail
+namespace glm
 {
-	/// Make a linear combination of two vectors and return the result.
-	// result = (a * ascl) + (b * bscl)
-	template<typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER vec<3, T, Q> combine(
-		vec<3, T, Q> const& a,
-		vec<3, T, Q> const& b,
-		T ascl, T bscl)
+	namespace detail
 	{
-		return (a * ascl) + (b * bscl);
-	}
+		/// Make a linear combination of two vectors and return the result.
+		// result = (a * ascl) + (b * bscl)
+		template<typename T, qualifier Q>
+		GLM_FUNC_QUALIFIER vec<3, T, Q> combine(
+			vec<3, T, Q> const& a,
+			vec<3, T, Q> const& b,
+			T ascl, T bscl)
+		{
+			return (a * ascl) + (b * bscl);
+		}
+
+		template<typename T, qualifier Q>
+		GLM_FUNC_QUALIFIER vec<3, T, Q> scale(vec<3, T, Q> const& v, T desiredLength)
+		{
+			return v * desiredLength / length(v);
+		}
+	}//namespace detail
+
+		// Matrix decompose
+		// http://www.opensource.apple.com/source/WebCore/WebCore-514/platform/graphics/transforms/TransformationMatrix.cpp
+		// Decomposes the mode matrix to translations,rotation scale components
 
 	template<typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER vec<3, T, Q> scale(vec<3, T, Q> const& v, T desiredLength)
-	{
-		return v * desiredLength / length(v);
-	}
-}//namespace detail
-
-	// Matrix decompose
-	// http://www.opensource.apple.com/source/WebCore/WebCore-514/platform/graphics/transforms/TransformationMatrix.cpp
-	// Decomposes the mode matrix to translations,rotation scale components
-
-	template<typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER bool decompose(mat<4, 4, T, Q> const& ModelMatrix, vec<3, T, Q> & Scale, qua<T, Q> & Orientation, vec<3, T, Q> & Translation, vec<3, T, Q> & Skew, vec<4, T, Q> & Perspective)
+	GLM_FUNC_QUALIFIER bool decompose(mat<4, 4, T, Q> const& ModelMatrix, vec<3, T, Q>& Scale, qua<T, Q>& Orientation, vec<3, T, Q>& Translation, vec<3, T, Q>& Skew, vec<4, T, Q>& Perspective)
 	{
 		mat<4, 4, T, Q> LocalMatrix(ModelMatrix);
 
 		// Normalize the matrix.
-		if(epsilonEqual(LocalMatrix[3][3], static_cast<T>(0), epsilon<T>()))
+		if (epsilonEqual(LocalMatrix[3][3], static_cast<T>(0), epsilon<T>()))
 			return false;
 
-		for(length_t i = 0; i < 4; ++i)
-		for(length_t j = 0; j < 4; ++j)
-			LocalMatrix[i][j] /= LocalMatrix[3][3];
+		for (length_t i = 0; i < 4; ++i)
+			for (length_t j = 0; j < 4; ++j)
+				LocalMatrix[i][j] /= LocalMatrix[3][3];
 
 		// perspectiveMatrix is used to solve for perspective, but it also provides
 		// an easy way to test for singularity of the upper 3x3 component.
 		mat<4, 4, T, Q> PerspectiveMatrix(LocalMatrix);
 
-		for(length_t i = 0; i < 3; i++)
+		for (length_t i = 0; i < 3; i++)
 			PerspectiveMatrix[i][3] = static_cast<T>(0);
 		PerspectiveMatrix[3][3] = static_cast<T>(1);
 
 		/// TODO: Fixme!
-		if(epsilonEqual(determinant(PerspectiveMatrix), static_cast<T>(0), epsilon<T>()))
+		if (epsilonEqual(determinant(PerspectiveMatrix), static_cast<T>(0), epsilon<T>()))
 			return false;
 
 		// First, isolate perspective.  This is the messiest.
-		if(
+		if (
 			epsilonNotEqual(LocalMatrix[0][3], static_cast<T>(0), epsilon<T>()) ||
 			epsilonNotEqual(LocalMatrix[1][3], static_cast<T>(0), epsilon<T>()) ||
 			epsilonNotEqual(LocalMatrix[2][3], static_cast<T>(0), epsilon<T>()))
@@ -92,9 +93,9 @@ namespace detail
 		vec<3, T, Q> Row[3], Pdum3;
 
 		// Now get scale and shear.
-		for(length_t i = 0; i < 3; ++i)
-		for(length_t j = 0; j < 3; ++j)
-			Row[i][j] = LocalMatrix[i][j];
+		for (length_t i = 0; i < 3; ++i)
+			for (length_t j = 0; j < 3; ++j)
+				Row[i][j] = LocalMatrix[i][j];
 
 		// Compute X scale factor and normalize first row.
 		Scale.x = length(Row[0]);// v3Length(Row[0]);
@@ -126,9 +127,9 @@ namespace detail
 		// Check for a coordinate system flip.  If the determinant
 		// is -1, then negate the matrix and the scaling factors.
 		Pdum3 = cross(Row[1], Row[2]); // v3Cross(row[1], row[2], Pdum3);
-		if(dot(Row[0], Pdum3) < 0)
+		if (dot(Row[0], Pdum3) < 0)
 		{
-			for(length_t i = 0; i < 3; i++)
+			for (length_t i = 0; i < 3; i++)
 			{
 				Scale[i] *= static_cast<T>(-1);
 				Row[i] *= static_cast<T>(-1);
@@ -154,7 +155,7 @@ namespace detail
 
 		int i, j, k = 0;
 		float root, trace = Row[0].x + Row[1].y + Row[2].z;
-		if(trace > static_cast<T>(0))
+		if (trace > static_cast<T>(0))
 		{
 			root = sqrt(trace + static_cast<T>(1.0));
 			Orientation.w = static_cast<T>(0.5) * root;
@@ -165,10 +166,10 @@ namespace detail
 		} // End if > 0
 		else
 		{
-			static int Next[3] = {1, 2, 0};
+			static int Next[3] = { 1, 2, 0 };
 			i = 0;
-			if(Row[1].y > Row[0].x) i = 1;
-			if(Row[2].z > Row[i][i]) i = 2;
+			if (Row[1].y > Row[0].x) i = 1;
+			if (Row[2].z > Row[i][i]) i = 2;
 			j = Next[i];
 			k = Next[j];
 

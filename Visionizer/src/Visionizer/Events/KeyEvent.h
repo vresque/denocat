@@ -2,8 +2,8 @@
 
 #include "Event.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class VAPI KeyEvent : public Event
 	{
 	public:
@@ -12,7 +12,9 @@ namespace Visionizer {
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
 		KeyEvent(int keycode)
-			: m_KeyCode(keycode) {}
+			: m_KeyCode(keycode)
+		{
+		}
 
 		int m_KeyCode;
 	};
@@ -21,7 +23,9 @@ namespace Visionizer {
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
-			: KeyEvent(keycode), m_RepeatCount(repeatCount) {}
+			: KeyEvent(keycode), m_RepeatCount(repeatCount)
+		{
+		}
 
 		inline int GetRepeatCount() const { return m_RepeatCount; }
 
@@ -41,7 +45,9 @@ namespace Visionizer {
 	{
 	public:
 		KeyReleasedEvent(int keycode)
-			: KeyEvent(keycode) {}
+			: KeyEvent(keycode)
+		{
+		}
 
 		std::string ToString() const override
 		{
@@ -57,7 +63,9 @@ namespace Visionizer {
 	{
 	public:
 		KeyTypedEvent(int keycode)
-			: KeyEvent(keycode) {}
+			: KeyEvent(keycode)
+		{
+		}
 
 		std::string ToString() const override
 		{

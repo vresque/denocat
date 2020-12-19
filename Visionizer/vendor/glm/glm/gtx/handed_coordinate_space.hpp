@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_handed_coordinate_space
 	/// @{
-
 	//! Return if a trihedron right handed or not.
 	//! From GLM_GTX_handed_coordinate_space extension.
 	template<typename T, qualifier Q>

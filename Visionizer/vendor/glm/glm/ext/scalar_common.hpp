@@ -24,7 +24,6 @@ namespace glm
 {
 	/// @addtogroup ext_scalar_common
 	/// @{
-
 	/// Returns the minimum component-wise values of 3 inputs
 	///
 	/// @tparam T A floating-point scalar type.

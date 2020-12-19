@@ -6,8 +6,8 @@
 #include "Visionizer/Events/KeyEvent.h"
 #include "Visionizer/Events/MouseEvent.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class VAPI ImGuiLayer : public Layer
 	{
 	public:
@@ -23,5 +23,4 @@ namespace Visionizer {
 	private:
 		float m_Time = 0.0f;
 	};
-
 }

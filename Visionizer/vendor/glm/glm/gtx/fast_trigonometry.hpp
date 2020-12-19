@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_fast_trigonometry
 	/// @{
-
 	/// Wrap an angle to [0 2pi[
 	/// From GLM_GTX_fast_trigonometry extension.
 	template<typename T>

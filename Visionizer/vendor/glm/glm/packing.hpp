@@ -23,7 +23,6 @@ namespace glm
 {
 	/// @addtogroup core_func_packing
 	/// @{
-
 	/// First, converts each component of the normalized floating-point value v into 8- or 16-bit integer values.
 	/// Then, the results are packed into the returned 32-bit unsigned integer.
 	///

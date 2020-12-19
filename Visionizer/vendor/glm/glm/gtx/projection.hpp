@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_projection
 	/// @{
-
 	/// Projects x on Normal.
 	///
 	/// @see gtx_projection

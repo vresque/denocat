@@ -21,7 +21,6 @@ namespace glm
 {
 	/// @addtogroup ext_quaternion_double_precision
 	/// @{
-
 	/// Quaternion of double-precision floating-point numbers using high precision arithmetic in term of ULPs.
 	///
 	/// @see ext_quaternion_double_precision
@@ -39,4 +38,3 @@ namespace glm
 
 	/// @}
 } //namespace glm
-

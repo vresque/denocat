@@ -4,8 +4,8 @@
 #include "Visionizer/Core/Timestep.h"
 #include "Visionizer/Events/Event.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class VAPI Layer
 	{
 	public:
@@ -22,5 +22,4 @@ namespace Visionizer {
 	protected:
 		std::string m_DebugName;
 	};
-
 }

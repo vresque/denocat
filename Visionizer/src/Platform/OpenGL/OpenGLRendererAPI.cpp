@@ -3,8 +3,8 @@
 
 #include <glad/glad.h>
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	void OpenGLRendererAPI::Init()
 	{
 		glEnable(GL_BLEND);
@@ -30,5 +30,4 @@ namespace Visionizer {
 	{
 		glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
-
 }

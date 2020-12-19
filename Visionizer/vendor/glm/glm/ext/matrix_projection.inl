@@ -35,7 +35,7 @@ namespace glm
 	template<typename T, typename U, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<3, T, Q> project(vec<3, T, Q> const& obj, mat<4, 4, T, Q> const& model, mat<4, 4, T, Q> const& proj, vec<4, U, Q> const& viewport)
 	{
-		if(GLM_CONFIG_CLIP_CONTROL & GLM_CLIP_CONTROL_ZO_BIT)
+		if (GLM_CONFIG_CLIP_CONTROL & GLM_CLIP_CONTROL_ZO_BIT)
 			return projectZO(obj, model, proj, viewport);
 		else
 			return projectNO(obj, model, proj, viewport);
@@ -77,7 +77,7 @@ namespace glm
 	template<typename T, typename U, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<3, T, Q> unProject(vec<3, T, Q> const& win, mat<4, 4, T, Q> const& model, mat<4, 4, T, Q> const& proj, vec<4, U, Q> const& viewport)
 	{
-		if(GLM_CONFIG_CLIP_CONTROL & GLM_CLIP_CONTROL_ZO_BIT)
+		if (GLM_CONFIG_CLIP_CONTROL & GLM_CLIP_CONTROL_ZO_BIT)
 			return unProjectZO(win, model, proj, viewport);
 		else
 			return unProjectNO(win, model, proj, viewport);
@@ -89,7 +89,7 @@ namespace glm
 		assert(delta.x > static_cast<T>(0) && delta.y > static_cast<T>(0));
 		mat<4, 4, T, Q> Result(static_cast<T>(1));
 
-		if(!(delta.x > static_cast<T>(0) && delta.y > static_cast<T>(0)))
+		if (!(delta.x > static_cast<T>(0) && delta.y > static_cast<T>(0)))
 			return Result; // Error
 
 		vec<3, T, Q> Temp(

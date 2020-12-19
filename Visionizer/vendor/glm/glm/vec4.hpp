@@ -12,4 +12,3 @@
 #include "./ext/vector_int4_precision.hpp"
 #include "./ext/vector_uint4.hpp"
 #include "./ext/vector_uint4_precision.hpp"
-

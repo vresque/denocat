@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_closest_point
 	/// @{
-
 	/// Find the point on a straight line which is the closet of a point.
 	/// @see gtx_closest_point
 	template<typename T, qualifier Q>

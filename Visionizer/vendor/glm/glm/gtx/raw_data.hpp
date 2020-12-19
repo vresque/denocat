@@ -28,7 +28,6 @@ namespace glm
 {
 	/// @addtogroup gtx_raw_data
 	/// @{
-
 	//! Type for byte numbers.
 	//! From GLM_GTX_raw_data extension.
 	typedef detail::uint8		byte;

@@ -8,7 +8,6 @@ namespace glm
 {
 	/// @addtogroup core_vector_precision
 	/// @{
-
 	/// 3 components vector of high double-qualifier floating-point numbers.
 	/// There is no guarantee on the actual qualifier.
 	///

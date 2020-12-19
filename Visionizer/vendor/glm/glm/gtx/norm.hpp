@@ -29,7 +29,6 @@ namespace glm
 {
 	/// @addtogroup gtx_norm
 	/// @{
-
 	/// Returns the squared length of x.
 	/// From GLM_GTX_norm extension.
 	template<length_t L, typename T, qualifier Q>

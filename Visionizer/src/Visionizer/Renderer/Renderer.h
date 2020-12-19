@@ -5,8 +5,8 @@
 #include "OrthographicCamera.h"
 #include "Shader.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class Renderer
 	{
 	public:

@@ -3,8 +3,8 @@
 #include <memory>
 #include "Visionizer/Renderer/Buffer.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class VertexArray
 	{
 	public:
@@ -21,5 +21,4 @@ namespace Visionizer {
 
 		static Ref<VertexArray> Create();
 	};
-
 }

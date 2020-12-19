@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_log_base
 	/// @{
-
 	/// Logarithm for any base.
 	/// From GLM_GTX_log_base.
 	template<typename genType>

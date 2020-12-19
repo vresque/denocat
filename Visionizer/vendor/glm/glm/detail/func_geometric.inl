@@ -1,129 +1,130 @@
 #include "../exponential.hpp"
 #include "../common.hpp"
 
-namespace glm{
-namespace detail
+namespace glm
 {
-	template<length_t L, typename T, qualifier Q, bool Aligned>
-	struct compute_length
+	namespace detail
 	{
-		GLM_FUNC_QUALIFIER static T call(vec<L, T, Q> const& v)
+		template<length_t L, typename T, qualifier Q, bool Aligned>
+		struct compute_length
 		{
-			return sqrt(dot(v, v));
-		}
-	};
+			GLM_FUNC_QUALIFIER static T call(vec<L, T, Q> const& v)
+			{
+				return sqrt(dot(v, v));
+			}
+		};
 
-	template<length_t L, typename T, qualifier Q, bool Aligned>
-	struct compute_distance
-	{
-		GLM_FUNC_QUALIFIER static T call(vec<L, T, Q> const& p0, vec<L, T, Q> const& p1)
+		template<length_t L, typename T, qualifier Q, bool Aligned>
+		struct compute_distance
 		{
-			return length(p1 - p0);
-		}
-	};
+			GLM_FUNC_QUALIFIER static T call(vec<L, T, Q> const& p0, vec<L, T, Q> const& p1)
+			{
+				return length(p1 - p0);
+			}
+		};
 
-	template<typename V, typename T, bool Aligned>
-	struct compute_dot{};
+		template<typename V, typename T, bool Aligned>
+		struct compute_dot {};
 
-	template<typename T, qualifier Q, bool Aligned>
-	struct compute_dot<vec<1, T, Q>, T, Aligned>
-	{
-		GLM_FUNC_QUALIFIER static T call(vec<1, T, Q> const& a, vec<1, T, Q> const& b)
+		template<typename T, qualifier Q, bool Aligned>
+		struct compute_dot<vec<1, T, Q>, T, Aligned>
 		{
-			return a.x * b.x;
-		}
-	};
+			GLM_FUNC_QUALIFIER static T call(vec<1, T, Q> const& a, vec<1, T, Q> const& b)
+			{
+				return a.x * b.x;
+			}
+		};
 
-	template<typename T, qualifier Q, bool Aligned>
-	struct compute_dot<vec<2, T, Q>, T, Aligned>
-	{
-		GLM_FUNC_QUALIFIER static T call(vec<2, T, Q> const& a, vec<2, T, Q> const& b)
+		template<typename T, qualifier Q, bool Aligned>
+		struct compute_dot<vec<2, T, Q>, T, Aligned>
 		{
-			vec<2, T, Q> tmp(a * b);
-			return tmp.x + tmp.y;
-		}
-	};
+			GLM_FUNC_QUALIFIER static T call(vec<2, T, Q> const& a, vec<2, T, Q> const& b)
+			{
+				vec<2, T, Q> tmp(a * b);
+				return tmp.x + tmp.y;
+			}
+		};
 
-	template<typename T, qualifier Q, bool Aligned>
-	struct compute_dot<vec<3, T, Q>, T, Aligned>
-	{
-		GLM_FUNC_QUALIFIER static T call(vec<3, T, Q> const& a, vec<3, T, Q> const& b)
+		template<typename T, qualifier Q, bool Aligned>
+		struct compute_dot<vec<3, T, Q>, T, Aligned>
 		{
-			vec<3, T, Q> tmp(a * b);
-			return tmp.x + tmp.y + tmp.z;
-		}
-	};
+			GLM_FUNC_QUALIFIER static T call(vec<3, T, Q> const& a, vec<3, T, Q> const& b)
+			{
+				vec<3, T, Q> tmp(a * b);
+				return tmp.x + tmp.y + tmp.z;
+			}
+		};
 
-	template<typename T, qualifier Q, bool Aligned>
-	struct compute_dot<vec<4, T, Q>, T, Aligned>
-	{
-		GLM_FUNC_QUALIFIER static T call(vec<4, T, Q> const& a, vec<4, T, Q> const& b)
+		template<typename T, qualifier Q, bool Aligned>
+		struct compute_dot<vec<4, T, Q>, T, Aligned>
 		{
-			vec<4, T, Q> tmp(a * b);
-			return (tmp.x + tmp.y) + (tmp.z + tmp.w);
-		}
-	};
+			GLM_FUNC_QUALIFIER static T call(vec<4, T, Q> const& a, vec<4, T, Q> const& b)
+			{
+				vec<4, T, Q> tmp(a * b);
+				return (tmp.x + tmp.y) + (tmp.z + tmp.w);
+			}
+		};
 
-	template<typename T, qualifier Q, bool Aligned>
-	struct compute_cross
-	{
-		GLM_FUNC_QUALIFIER static vec<3, T, Q> call(vec<3, T, Q> const& x, vec<3, T, Q> const& y)
+		template<typename T, qualifier Q, bool Aligned>
+		struct compute_cross
 		{
-			GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'cross' accepts only floating-point inputs");
+			GLM_FUNC_QUALIFIER static vec<3, T, Q> call(vec<3, T, Q> const& x, vec<3, T, Q> const& y)
+			{
+				GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'cross' accepts only floating-point inputs");
 
-			return vec<3, T, Q>(
-				x.y * y.z - y.y * x.z,
-				x.z * y.x - y.z * x.x,
-				x.x * y.y - y.x * x.y);
-		}
-	};
+				return vec<3, T, Q>(
+					x.y * y.z - y.y * x.z,
+					x.z * y.x - y.z * x.x,
+					x.x * y.y - y.x * x.y);
+			}
+		};
 
-	template<length_t L, typename T, qualifier Q, bool Aligned>
-	struct compute_normalize
-	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& v)
+		template<length_t L, typename T, qualifier Q, bool Aligned>
+		struct compute_normalize
 		{
-			GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'normalize' accepts only floating-point inputs");
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& v)
+			{
+				GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'normalize' accepts only floating-point inputs");
 
-			return v * inversesqrt(dot(v, v));
-		}
-	};
+				return v * inversesqrt(dot(v, v));
+			}
+		};
 
-	template<length_t L, typename T, qualifier Q, bool Aligned>
-	struct compute_faceforward
-	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& N, vec<L, T, Q> const& I, vec<L, T, Q> const& Nref)
+		template<length_t L, typename T, qualifier Q, bool Aligned>
+		struct compute_faceforward
 		{
-			GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'normalize' accepts only floating-point inputs");
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& N, vec<L, T, Q> const& I, vec<L, T, Q> const& Nref)
+			{
+				GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559, "'normalize' accepts only floating-point inputs");
 
-			return dot(Nref, I) < static_cast<T>(0) ? N : -N;
-		}
-	};
+				return dot(Nref, I) < static_cast<T>(0) ? N : -N;
+			}
+		};
 
-	template<length_t L, typename T, qualifier Q, bool Aligned>
-	struct compute_reflect
-	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& I, vec<L, T, Q> const& N)
+		template<length_t L, typename T, qualifier Q, bool Aligned>
+		struct compute_reflect
 		{
-			return I - N * dot(N, I) * static_cast<T>(2);
-		}
-	};
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& I, vec<L, T, Q> const& N)
+			{
+				return I - N * dot(N, I) * static_cast<T>(2);
+			}
+		};
 
-	template<length_t L, typename T, qualifier Q, bool Aligned>
-	struct compute_refract
-	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& I, vec<L, T, Q> const& N, T eta)
+		template<length_t L, typename T, qualifier Q, bool Aligned>
+		struct compute_refract
 		{
-			T const dotValue(dot(N, I));
-			T const k(static_cast<T>(1) - eta * eta * (static_cast<T>(1) - dotValue * dotValue));
-			vec<L, T, Q> const Result =
-                (k >= static_cast<T>(0)) ? (eta * I - (eta * dotValue + std::sqrt(k)) * N) : vec<L, T, Q>(0);
-			return Result;
-		}
-	};
-}//namespace detail
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& I, vec<L, T, Q> const& N, T eta)
+			{
+				T const dotValue(dot(N, I));
+				T const k(static_cast<T>(1) - eta * eta * (static_cast<T>(1) - dotValue * dotValue));
+				vec<L, T, Q> const Result =
+					(k >= static_cast<T>(0)) ? (eta * I - (eta * dotValue + std::sqrt(k)) * N) : vec<L, T, Q>(0);
+				return Result;
+			}
+		};
+	}//namespace detail
 
-	// length
+		// length
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType length(genType x)
 	{
@@ -176,16 +177,16 @@ namespace detail
 	{
 		return detail::compute_cross<T, Q, detail::is_aligned<Q>::value>::call(x, y);
 	}
-/*
-	// normalize
-	template<typename genType>
-	GLM_FUNC_QUALIFIER genType normalize(genType const& x)
-	{
-		GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'normalize' accepts only floating-point inputs");
+	/*
+		// normalize
+		template<typename genType>
+		GLM_FUNC_QUALIFIER genType normalize(genType const& x)
+		{
+			GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559, "'normalize' accepts only floating-point inputs");
 
-		return x < genType(0) ? genType(-1) : genType(1);
-	}
-*/
+			return x < genType(0) ? genType(-1) : genType(1);
+		}
+	*/
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<L, T, Q> normalize(vec<L, T, Q> const& x)
 	{
