@@ -49,7 +49,7 @@ void Sandbox2D::OnUpdate(Visionizer::Timestep ts)
 	m_CameraController.OnUpdate(ts);
 
 	// Render
-	Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+	Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.2f, 0.1f, 1 });
 	Visionizer::RenderCommand::Clear();
 
 	Visionizer::Renderer::BeginScene(m_CameraController.GetCamera());
