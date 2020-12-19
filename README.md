@@ -1,11 +1,13 @@
-# Visionizer
-An open-source engine developed by the Visionizer-team.
+# Visionizer Engine
 
-## Getting started
-Since there are no releases yet, you have to clone the project and build it using your Visual Studio.
-We recommend that you use Visual Studio 2019 and Windows since this engine has not been tested in any other environements.
+Visionizer is a game engine developed using C++. It is currently in a very immature state.
 
-Start by cloning the repository with `git clone --recursive https://github.com/visionizerengine/visionizer`.
-If you are reading this after cloning it non-recursively, use `git submodule add --init` to clone all of the submodules
+## Getting Started
 
-After successfully cloning the project, please run the "GenerateProjects.bat" file which will execute a premake script, that will generate a Solution.
+Visual Studio 2017 or 2019 is recommended, Visionizer is officially untested on other development environments whilst we focus on a Windows build.
+
+You can clone the repository to a local destination using git:
+
+`git clone --recursive https://github.com/visionizertechnologies/visionizer`
+
+Make sure that you do a `--recursive` clone to fetch all of the submodules!

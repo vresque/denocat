@@ -1,12 +1,11 @@
 #pragma once
 
-#include "Visionizer/Window.h"
+#include "Visionizer/Core/Window.h"
 #include "Visionizer/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
-namespace Visionizer
-{
+namespace Visionizer {
 
 	class WindowsWindow : public Window
 	{
@@ -30,7 +29,7 @@ namespace Visionizer
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
-		GraphicsContext* m_Context;
+		Scope<GraphicsContext> m_Context;
 
 		struct WindowData
 		{

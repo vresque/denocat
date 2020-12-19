@@ -1,14 +1,13 @@
 #include "vspch.h"
 #include "Application.h"
 
-#include "Visionizer/Log.h"
+#include "Visionizer/Core/Log.h"
 
 #include "Visionizer/Renderer/Renderer.h"
 
 #include "Input.h"
-#include "KeyCodes.h"
-#include "Core/Timestep.h"
-#include "GLFW/glfw3.h"
+
+#include <glfw/glfw3.h>
 
 namespace Visionizer {
 
@@ -18,7 +17,7 @@ namespace Visionizer {
 
 	Application::Application()
 	{
-		VS_CORE_ASSERT(!s_Instance, "Application already exists!");
+		 VS_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
@@ -44,6 +43,7 @@ namespace Visionizer {
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 		{
@@ -51,21 +51,21 @@ namespace Visionizer {
 			if (e.Handled)
 				break;
 		}
-
 	}
 
 	void Application::Run()
 	{
 		while (m_Running)
 		{
-			// TEMPORARY: Remove glfwGetTime();
-			float time = (float)glfwGetTime();	// [TODO] Do Platform::GetTime();
-			Timestep timestep = time - m_LastFrameTime;  // [TODO] Add Platform::GetDeltaTime();
+			float time = (float)glfwGetTime();
+			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			// Start of doing layers
-			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate(timestep);
+			if (!m_Minimized)
+			{
+				for (Layer* layer : m_LayerStack)
+					layer->OnUpdate(timestep);
+			}
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
@@ -80,6 +80,20 @@ namespace Visionizer {
 	{
 		m_Running = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+		return false;
 	}
 
 }

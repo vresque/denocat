@@ -4,18 +4,17 @@
 #include "Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
-namespace Visionizer
-{
+namespace Visionizer {
 
 	Ref<Shader> Shader::Create(const std::string& filepath)
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::None:    VS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(filepath);
+			case RendererAPI::API::None:     VS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(filepath);
 		}
 
-		VS_CORE_ASSERT(false, "Unknown RendererAPI!");
+		 VS_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
 	}
 
@@ -23,28 +22,25 @@ namespace Visionizer
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:    VS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::None:     VS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
 			case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
 		}
 
-		VS_CORE_ASSERT(false, "Unknown RendererAPI!");
+		 VS_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
 	}
 
-	/////////////////////////////// SHADER LIBRARY ////////////////////////////////
-
 	void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
 	{
-		VS_CORE_ASSERT(!Exists(name), "Shader already exists!");
+		 VS_CORE_ASSERT(!Exists(name), "Shader already exists!");
 		m_Shaders[name] = shader;
 	}
 
 	void ShaderLibrary::Add(const Ref<Shader>& shader)
 	{
-		auto name = shader->GetName();
+		auto& name = shader->GetName();
 		Add(name, shader);
 	}
-
 
 	Ref<Shader> ShaderLibrary::Load(const std::string& filepath)
 	{
@@ -62,7 +58,7 @@ namespace Visionizer
 
 	Ref<Shader> ShaderLibrary::Get(const std::string& name)
 	{
-		VS_CORE_ASSERT(Exists(name), "Shader not found!");
+		 VS_CORE_ASSERT(Exists(name), "Shader not found!");
 		return m_Shaders[name];
 	}
 

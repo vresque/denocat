@@ -4,7 +4,7 @@
 
 namespace Visionizer {
 
-	class VISION_API KeyEvent : public Event
+	class VAPI KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -17,7 +17,7 @@ namespace Visionizer {
 		int m_KeyCode;
 	};
 
-	class VISION_API KeyPressedEvent : public KeyEvent
+	class VAPI KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
@@ -37,7 +37,7 @@ namespace Visionizer {
 		int m_RepeatCount;
 	};
 
-	class VISION_API KeyReleasedEvent : public KeyEvent
+	class VAPI KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)
@@ -53,7 +53,7 @@ namespace Visionizer {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class VISION_API KeyTypedEvent : public KeyEvent
+	class VAPI KeyTypedEvent : public KeyEvent
 	{
 	public:
 		KeyTypedEvent(int keycode)

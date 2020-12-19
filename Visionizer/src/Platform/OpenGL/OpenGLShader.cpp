@@ -5,10 +5,8 @@
 #include <glad/glad.h>
 
 #include <glm/gtc/type_ptr.hpp>
-#include <filesystem>
 
-namespace Visionizer
-{
+namespace Visionizer {
 
 	static GLenum ShaderTypeFromString(const std::string& type)
 	{
@@ -17,7 +15,7 @@ namespace Visionizer
 		if (type == "fragment" || type == "pixel")
 			return GL_FRAGMENT_SHADER;
 
-		VS_CORE_ASSERT(false, "Unknown shader type!");
+		 VS_CORE_ASSERT(false, "Unknown shader type!");
 		return 0;
 	}
 
@@ -28,8 +26,11 @@ namespace Visionizer
 		Compile(shaderSources);
 
 		// Extract name from filepath
-		std::filesystem::path path = filepath;
-		m_Name = path.stem().string(); // Returns the files stripped name
+		auto lastSlash = filepath.find_last_of("/\\");
+		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+		auto lastDot = filepath.rfind('.');
+		auto count = lastDot == std::string::npos ? filepath.size() - lastSlash : lastDot - lastSlash;
+		m_Name = filepath.substr(lastSlash, count);
 	}
 
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
@@ -57,11 +58,10 @@ namespace Visionizer
 			in.seekg(0, std::ios::beg);
 			in.read(&result[0], result.size());
 			in.close();
-			;
-		}
+;		}
 		else
 		{
-			VS_CORE_ERROR("Could not open file '{0}'", filepath);
+			 VS_CORE_ERROR("Could not open file '{0}'", filepath);
 		}
 
 		return result;
@@ -73,18 +73,20 @@ namespace Visionizer
 
 		const char* typeToken = "#type";
 		size_t typeTokenLength = strlen(typeToken);
-		size_t pos = source.find(typeToken, 0);
+		size_t pos = source.find(typeToken, 0); //Start of shader type declaration line
 		while (pos != std::string::npos)
 		{
-			size_t eol = source.find_first_of("\r\n", pos);
-			VS_CORE_ASSERT(eol != std::string::npos, "Syntax error");
-			size_t begin = pos + typeTokenLength + 1;
+			size_t eol = source.find_first_of("\r\n", pos); //End of shader type declaration line
+			 VS_CORE_ASSERT(eol != std::string::npos, "Syntax error");
+			size_t begin = pos + typeTokenLength + 1; //Start of shader type name (after "#type " keyword)
 			std::string type = source.substr(begin, eol - begin);
-			VS_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
+			 VS_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
 
-			size_t nextLinePos = source.find_first_not_of("\r\n", eol);
-			pos = source.find(typeToken, nextLinePos);
-			shaderSources[ShaderTypeFromString(type)] = source.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
+			size_t nextLinePos = source.find_first_not_of("\r\n", eol); //Start of shader code after shader type declaration line
+			 VS_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
+			pos = source.find(typeToken, nextLinePos); //Start of next shader type declaration line
+
+			shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
 		}
 
 		return shaderSources;
@@ -93,11 +95,9 @@ namespace Visionizer
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
 		GLuint program = glCreateProgram();
-		// [TODO] Enable having a higher shader size than 2
-		VS_CORE_ASSERT(shaderSources.size() <= 2, "Visionizer only supports 2 shaders at the moment");
+		 VS_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
 		std::array<GLenum, 2> glShaderIDs;
 		int glShaderIDIndex = 0;
-
 		for (auto& kv : shaderSources)
 		{
 			GLenum type = kv.first;
@@ -122,15 +122,15 @@ namespace Visionizer
 
 				glDeleteShader(shader);
 
-				VS_CORE_ERROR("{0}", infoLog.data());
-				VS_CORE_ASSERT(false, "Shader compilation failure!");
+				 VS_CORE_ERROR("{0}", infoLog.data());
+				 VS_CORE_ASSERT(false, "Shader compilation failure!");
 				break;
 			}
 
 			glAttachShader(program, shader);
 			glShaderIDs[glShaderIDIndex++] = shader;
 		}
-
+		
 		m_RendererID = program;
 
 		// Link our program
@@ -150,17 +150,20 @@ namespace Visionizer
 
 			// We don't need the program anymore.
 			glDeleteProgram(program);
-
+			
 			for (auto id : glShaderIDs)
 				glDeleteShader(id);
 
-			VS_CORE_ERROR("{0}", infoLog.data());
-			VS_CORE_ASSERT(false, "Shader link failure!");
+			 VS_CORE_ERROR("{0}", infoLog.data());
+			 VS_CORE_ASSERT(false, "Shader link failure!");
 			return;
 		}
 
 		for (auto id : glShaderIDs)
+		{
 			glDetachShader(program, id);
+			glDeleteShader(id);
+		}
 	}
 
 	void OpenGLShader::Bind() const

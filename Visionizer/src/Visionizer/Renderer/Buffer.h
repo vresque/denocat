@@ -24,7 +24,7 @@ namespace Visionizer {
 			case ShaderDataType::Bool:     return 1;
 		}
 
-		VS_CORE_ASSERT(false, "Unknown ShaderDataType!");
+		 VS_CORE_ASSERT(false, "Unknown ShaderDataType!");
 		return 0;
 	}
 
@@ -60,7 +60,7 @@ namespace Visionizer {
 				case ShaderDataType::Bool:    return 1;
 			}
 
-			VS_CORE_ASSERT(false, "Unknown ShaderDataType!");
+			 VS_CORE_ASSERT(false, "Unknown ShaderDataType!");
 			return 0;
 		}
 	};

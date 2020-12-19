@@ -1,7 +1,11 @@
 #pragma once
 
-namespace Visionizer
-{
+#include <string>
+
+#include "Visionizer/Core/Core.h"
+
+namespace Visionizer {
+
 	class Texture
 	{
 	public:
@@ -15,8 +19,8 @@ namespace Visionizer
 
 	class Texture2D : public Texture
 	{
-		// any functions that a cube-text does not need here
 	public:
 		static Ref<Texture2D> Create(const std::string& path);
 	};
+
 }

@@ -6,8 +6,7 @@
 // TODO: REMOVE!
 typedef unsigned int GLenum;
 
-namespace Visionizer
-{
+namespace Visionizer {
 
 	class OpenGLShader : public Shader
 	{

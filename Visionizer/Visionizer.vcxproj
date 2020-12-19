@@ -76,11 +76,13 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>vspch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;VS_PLATFORM_WINDOWS;VS_BUILD_DLL;GLFW_INCLUDE_NONE;VS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;VS_BUILD_DLL;GLFW_INCLUDE_NONE;VS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -96,7 +98,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>vspch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;VS_PLATFORM_WINDOWS;VS_BUILD_DLL;GLFW_INCLUDE_NONE;VS_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;VS_BUILD_DLL;GLFW_INCLUDE_NONE;VS_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -104,6 +106,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -120,7 +123,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>vspch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;VS_PLATFORM_WINDOWS;VS_BUILD_DLL;GLFW_INCLUDE_NONE;VS_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;VS_BUILD_DLL;GLFW_INCLUDE_NONE;VS_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -128,6 +131,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -149,32 +153,32 @@
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Visionizer.h" />
-    <ClInclude Include="src\Visionizer\Application.h" />
-    <ClInclude Include="src\Visionizer\Core.h" />
+    <ClInclude Include="src\Visionizer\Core\Application.h" />
+    <ClInclude Include="src\Visionizer\Core\Core.h" />
+    <ClInclude Include="src\Visionizer\Core\EntryPoint.h" />
+    <ClInclude Include="src\Visionizer\Core\Input.h" />
+    <ClInclude Include="src\Visionizer\Core\KeyCodes.h" />
+    <ClInclude Include="src\Visionizer\Core\Layer.h" />
+    <ClInclude Include="src\Visionizer\Core\LayerStack.h" />
+    <ClInclude Include="src\Visionizer\Core\Log.h" />
+    <ClInclude Include="src\Visionizer\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Visionizer\Core\Timestep.h" />
-    <ClInclude Include="src\Visionizer\EntryPoint.h" />
+    <ClInclude Include="src\Visionizer\Core\Window.h" />
     <ClInclude Include="src\Visionizer\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Visionizer\Events\Event.h" />
     <ClInclude Include="src\Visionizer\Events\KeyEvent.h" />
     <ClInclude Include="src\Visionizer\Events\MouseEvent.h" />
     <ClInclude Include="src\Visionizer\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Visionizer\Input.h" />
-    <ClInclude Include="src\Visionizer\KeyCodes.h" />
-    <ClInclude Include="src\Visionizer\Layer.h" />
-    <ClInclude Include="src\Visionizer\LayerStack.h" />
-    <ClInclude Include="src\Visionizer\Log.h" />
-    <ClInclude Include="src\Visionizer\MouseButtonCodes.h" />
-    <ClInclude Include="src\Visionizer\OrthographicCameraController.h" />
     <ClInclude Include="src\Visionizer\Renderer\Buffer.h" />
     <ClInclude Include="src\Visionizer\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Visionizer\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Visionizer\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Visionizer\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Visionizer\Renderer\Renderer.h" />
     <ClInclude Include="src\Visionizer\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Visionizer\Renderer\Shader.h" />
     <ClInclude Include="src\Visionizer\Renderer\Texture.h" />
     <ClInclude Include="src\Visionizer\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Visionizer\Window.h" />
     <ClInclude Include="src\vspch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
@@ -549,15 +553,15 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
-    <ClCompile Include="src\Visionizer\Application.cpp" />
+    <ClCompile Include="src\Visionizer\Core\Application.cpp" />
+    <ClCompile Include="src\Visionizer\Core\Layer.cpp" />
+    <ClCompile Include="src\Visionizer\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Visionizer\Core\Log.cpp" />
     <ClCompile Include="src\Visionizer\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Visionizer\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Visionizer\Layer.cpp" />
-    <ClCompile Include="src\Visionizer\LayerStack.cpp" />
-    <ClCompile Include="src\Visionizer\Log.cpp" />
-    <ClCompile Include="src\Visionizer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Visionizer\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Visionizer\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Visionizer\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Visionizer\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Visionizer\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Visionizer\Renderer\RendererAPI.cpp" />
