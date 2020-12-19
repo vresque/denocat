@@ -21,7 +21,6 @@ namespace glm
 {
 	/// @addtogroup ext_scalar_constants
 	/// @{
-
 	/// Return the epsilon constant for floating point types.
 	template<typename genType>
 	GLM_FUNC_DECL GLM_CONSTEXPR genType epsilon();

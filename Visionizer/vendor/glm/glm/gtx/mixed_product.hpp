@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_mixed_product
 	/// @{
-
 	/// @brief Mixed product of 3 vectors (from GLM_GTX_mixed_product extension)
 	template<typename T, qualifier Q>
 	GLM_FUNC_DECL T mixedProduct(

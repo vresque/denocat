@@ -26,7 +26,7 @@ void Sandbox2D::OnAttach()
 	squareVB.reset(Visionizer::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 	squareVB->SetLayout({
 		{ Visionizer::ShaderDataType::Float3, "a_Position" }
-	});
+		});
 	m_SquareVA->AddVertexBuffer(squareVB);
 
 	uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };

@@ -81,8 +81,8 @@ namespace glm
 	{
 		mat<3, 3, T, Q> r(static_cast<T>(1));
 		r[0][0] = static_cast<T>(1) - normal.x * normal.x;
-		r[0][1] = - normal.x * normal.y;
-		r[1][0] = - normal.x * normal.y;
+		r[0][1] = -normal.x * normal.y;
+		r[1][0] = -normal.x * normal.y;
 		r[1][1] = static_cast<T>(1) - normal.y * normal.y;
 		return m * r;
 	}
@@ -94,13 +94,13 @@ namespace glm
 	{
 		mat<4, 4, T, Q> r(static_cast<T>(1));
 		r[0][0] = static_cast<T>(1) - normal.x * normal.x;
-		r[0][1] = - normal.x * normal.y;
-		r[0][2] = - normal.x * normal.z;
-		r[1][0] = - normal.x * normal.y;
+		r[0][1] = -normal.x * normal.y;
+		r[0][2] = -normal.x * normal.z;
+		r[1][0] = -normal.x * normal.y;
 		r[1][1] = static_cast<T>(1) - normal.y * normal.y;
-		r[1][2] = - normal.y * normal.z;
-		r[2][0] = - normal.x * normal.z;
-		r[2][1] = - normal.y * normal.z;
+		r[1][2] = -normal.y * normal.z;
+		r[2][0] = -normal.x * normal.z;
+		r[2][1] = -normal.y * normal.z;
 		r[2][2] = static_cast<T>(1) - normal.z * normal.z;
 		return m * r;
 	}
@@ -122,4 +122,3 @@ namespace glm
 		return m * scaleBias(scale, bias);
 	}
 }//namespace glm
-

@@ -1,7 +1,7 @@
 #pragma once
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class Timestep
 	{
 	public:
@@ -17,5 +17,4 @@ namespace Visionizer {
 	private:
 		float m_Time;
 	};
-
 }

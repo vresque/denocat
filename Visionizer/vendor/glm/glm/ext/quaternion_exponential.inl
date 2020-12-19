@@ -20,9 +20,9 @@ namespace glm
 
 		if (Vec3Len < epsilon<T>())
 		{
-			if(q.w > static_cast<T>(0))
+			if (q.w > static_cast<T>(0))
 				return qua<T, Q>(log(q.w), static_cast<T>(0), static_cast<T>(0), static_cast<T>(0));
-			else if(q.w < static_cast<T>(0))
+			else if (q.w < static_cast<T>(0))
 				return qua<T, Q>(log(-q.w), pi<T>(), static_cast<T>(0), static_cast<T>(0));
 			else
 				return qua<T, Q>(std::numeric_limits<T>::infinity(), std::numeric_limits<T>::infinity(), std::numeric_limits<T>::infinity(), std::numeric_limits<T>::infinity());
@@ -40,15 +40,15 @@ namespace glm
 	{
 		//Raising to the power of 0 should yield 1
 		//Needed to prevent a division by 0 error later on
-		if(y > -epsilon<T>() && y < epsilon<T>())
-			return qua<T, Q>(1,0,0,0);
+		if (y > -epsilon<T>() && y < epsilon<T>())
+			return qua<T, Q>(1, 0, 0, 0);
 
 		//To deal with non-unit quaternions
-		T magnitude = sqrt(x.x * x.x + x.y * x.y + x.z * x.z + x.w *x.w);
+		T magnitude = sqrt(x.x * x.x + x.y * x.y + x.z * x.z + x.w * x.w);
 
 		//Equivalent to raising a real number to a power
 		//Needed to prevent a division by 0 error later on
-		if(abs(x.w / magnitude) > static_cast<T>(1) - epsilon<T>() && abs(x.w / magnitude) < static_cast<T>(1) + epsilon<T>())
+		if (abs(x.w / magnitude) > static_cast<T>(1) - epsilon<T>() && abs(x.w / magnitude) < static_cast<T>(1) + epsilon<T>())
 			return qua<T, Q>(pow(x.w, y), 0, 0, 0);
 
 		T Angle = acos(x.w / magnitude);
@@ -65,5 +65,3 @@ namespace glm
 		return pow(x, static_cast<T>(0.5));
 	}
 }//namespace glm
-
-

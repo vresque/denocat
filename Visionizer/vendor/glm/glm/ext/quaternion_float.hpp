@@ -30,10 +30,8 @@ namespace glm
 {
 	/// @addtogroup ext_quaternion_float
 	/// @{
-
 	/// Quaternion of single-precision floating-point numbers.
 	typedef qua<float, defaultp>		quat;
 
 	/// @}
 } //namespace glm
-

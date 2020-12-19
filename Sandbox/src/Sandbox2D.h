@@ -16,7 +16,7 @@ public:
 	void OnEvent(Visionizer::Event& e) override;
 private:
 	Visionizer::OrthographicCameraController m_CameraController;
-	
+
 	// Temp
 	Visionizer::Ref<Visionizer::VertexArray> m_SquareVA;
 	Visionizer::Ref<Visionizer::Shader> m_FlatColorShader;

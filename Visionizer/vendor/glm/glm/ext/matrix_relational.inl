@@ -23,7 +23,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<C, bool, Q> equal(mat<C, R, T, Q> const& a, mat<C, R, T, Q> const& b, vec<C, T, Q> const& Epsilon)
 	{
 		vec<C, bool, Q> Result(true);
-		for(length_t i = 0; i < C; ++i)
+		for (length_t i = 0; i < C; ++i)
 			Result[i] = all(equal(a[i], b[i], Epsilon[i]));
 		return Result;
 	}
@@ -44,7 +44,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<C, bool, Q> notEqual(mat<C, R, T, Q> const& a, mat<C, R, T, Q> const& b, vec<C, T, Q> const& Epsilon)
 	{
 		vec<C, bool, Q> Result(true);
-		for(length_t i = 0; i < C; ++i)
+		for (length_t i = 0; i < C; ++i)
 			Result[i] = any(notEqual(a[i], b[i], Epsilon[i]));
 		return Result;
 	}
@@ -59,7 +59,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<C, bool, Q> equal(mat<C, R, T, Q> const& a, mat<C, R, T, Q> const& b, vec<C, int, Q> const& MaxULPs)
 	{
 		vec<C, bool, Q> Result(true);
-		for(length_t i = 0; i < C; ++i)
+		for (length_t i = 0; i < C; ++i)
 			Result[i] = all(equal(a[i], b[i], MaxULPs[i]));
 		return Result;
 	}
@@ -74,9 +74,8 @@ namespace glm
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<C, bool, Q> notEqual(mat<C, R, T, Q> const& a, mat<C, R, T, Q> const& b, vec<C, int, Q> const& MaxULPs)
 	{
 		vec<C, bool, Q> Result(true);
-		for(length_t i = 0; i < C; ++i)
+		for (length_t i = 0; i < C; ++i)
 			Result[i] = any(notEqual(a[i], b[i], MaxULPs[i]));
 		return Result;
 	}
-
 }//namespace glm

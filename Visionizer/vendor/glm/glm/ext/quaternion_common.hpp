@@ -36,7 +36,6 @@ namespace glm
 {
 	/// @addtogroup ext_quaternion_common
 	/// @{
-
 	/// Spherical linear interpolation of two quaternions.
 	/// The interpolation is oriented and the rotation is performed at constant speed.
 	/// For short path spherical linear interpolation, use the slerp function.

@@ -22,7 +22,6 @@ namespace glm
 {
 	/// @addtogroup ext_vector_double1_precision
 	/// @{
-
 	/// 1 component vector of double-precision floating-point numbers using high precision arithmetic in term of ULPs.
 	typedef vec<1, double, highp>		highp_dvec1;
 

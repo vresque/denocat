@@ -1,6 +1,6 @@
-namespace glm{
-namespace detail
+namespace glm
 {
-
-}//namespace detail
+	namespace detail
+	{
+	}//namespace detail
 }//namespace glm

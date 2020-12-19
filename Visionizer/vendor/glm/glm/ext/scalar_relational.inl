@@ -24,7 +24,7 @@ namespace glm
 		detail::float_t<genType> const b(y);
 
 		// Different signs means they do not match.
-		if(a.negative() != b.negative())
+		if (a.negative() != b.negative())
 		{
 			// Check for equality to make sure +0==-0
 			return a.mantissa() == b.mantissa() && a.exponent() == b.exponent();

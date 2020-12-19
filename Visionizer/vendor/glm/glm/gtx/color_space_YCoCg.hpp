@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_color_space_YCoCg
 	/// @{
-
 	/// Convert a color from RGB color space to YCoCg color space.
 	/// @see gtx_color_space_YCoCg
 	template<typename T, qualifier Q>

@@ -6,8 +6,8 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	static GLenum ShaderTypeFromString(const std::string& type)
 	{
 		if (type == "vertex")
@@ -15,7 +15,7 @@ namespace Visionizer {
 		if (type == "fragment" || type == "pixel")
 			return GL_FRAGMENT_SHADER;
 
-		 VS_CORE_ASSERT(false, "Unknown shader type!");
+		VS_CORE_ASSERT(false, "Unknown shader type!");
 		return 0;
 	}
 
@@ -58,10 +58,11 @@ namespace Visionizer {
 			in.seekg(0, std::ios::beg);
 			in.read(&result[0], result.size());
 			in.close();
-;		}
+			;
+		}
 		else
 		{
-			 VS_CORE_ERROR("Could not open file '{0}'", filepath);
+			VS_CORE_ERROR("Could not open file '{0}'", filepath);
 		}
 
 		return result;
@@ -77,13 +78,13 @@ namespace Visionizer {
 		while (pos != std::string::npos)
 		{
 			size_t eol = source.find_first_of("\r\n", pos); //End of shader type declaration line
-			 VS_CORE_ASSERT(eol != std::string::npos, "Syntax error");
+			VS_CORE_ASSERT(eol != std::string::npos, "Syntax error");
 			size_t begin = pos + typeTokenLength + 1; //Start of shader type name (after "#type " keyword)
 			std::string type = source.substr(begin, eol - begin);
-			 VS_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
+			VS_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
 
 			size_t nextLinePos = source.find_first_not_of("\r\n", eol); //Start of shader code after shader type declaration line
-			 VS_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
+			VS_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
 			pos = source.find(typeToken, nextLinePos); //Start of next shader type declaration line
 
 			shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
@@ -95,7 +96,7 @@ namespace Visionizer {
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
 		GLuint program = glCreateProgram();
-		 VS_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
+		VS_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
 		std::array<GLenum, 2> glShaderIDs;
 		int glShaderIDIndex = 0;
 		for (auto& kv : shaderSources)
@@ -122,15 +123,15 @@ namespace Visionizer {
 
 				glDeleteShader(shader);
 
-				 VS_CORE_ERROR("{0}", infoLog.data());
-				 VS_CORE_ASSERT(false, "Shader compilation failure!");
+				VS_CORE_ERROR("{0}", infoLog.data());
+				VS_CORE_ASSERT(false, "Shader compilation failure!");
 				break;
 			}
 
 			glAttachShader(program, shader);
 			glShaderIDs[glShaderIDIndex++] = shader;
 		}
-		
+
 		m_RendererID = program;
 
 		// Link our program
@@ -150,12 +151,12 @@ namespace Visionizer {
 
 			// We don't need the program anymore.
 			glDeleteProgram(program);
-			
+
 			for (auto id : glShaderIDs)
 				glDeleteShader(id);
 
-			 VS_CORE_ERROR("{0}", infoLog.data());
-			 VS_CORE_ASSERT(false, "Shader link failure!");
+			VS_CORE_ERROR("{0}", infoLog.data());
+			VS_CORE_ASSERT(false, "Shader link failure!");
 			return;
 		}
 
@@ -217,5 +218,4 @@ namespace Visionizer {
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
-
 }

@@ -1,18 +1,19 @@
 /// @ref gtc_integer
 
-namespace glm{
-namespace detail
+namespace glm
 {
-	template<length_t L, typename T, qualifier Q, bool Aligned>
-	struct compute_log2<L, T, Q, false, Aligned>
+	namespace detail
 	{
-		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& v)
+		template<length_t L, typename T, qualifier Q, bool Aligned>
+		struct compute_log2<L, T, Q, false, Aligned>
 		{
-			//Equivalent to return findMSB(vec); but save one function call in ASM with VC
-			//return findMSB(vec);
-			return vec<L, T, Q>(detail::compute_findMSB_vec<L, T, Q, sizeof(T) * 8>::call(v));
-		}
-	};
+			GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, T, Q> const& v)
+			{
+				//Equivalent to return findMSB(vec); but save one function call in ASM with VC
+				//return findMSB(vec);
+				return vec<L, T, Q>(detail::compute_findMSB_vec<L, T, Q, sizeof(T) * 8>::call(v));
+			}
+		};
 
 #	if GLM_HAS_BITSCAN_WINDOWS
 		template<qualifier Q, bool Aligned>
@@ -29,7 +30,7 @@ namespace detail
 			}
 		};
 #	endif//GLM_HAS_BITSCAN_WINDOWS
-}//namespace detail
+	}//namespace detail
 	template<typename genType>
 	GLM_FUNC_QUALIFIER int iround(genType x)
 	{

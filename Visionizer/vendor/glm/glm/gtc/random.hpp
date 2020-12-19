@@ -26,7 +26,6 @@ namespace glm
 {
 	/// @addtogroup gtc_random
 	/// @{
-
 	/// Generate random numbers in the interval [Min, Max], according a linear distribution
 	///
 	/// @param Min Minimum value included in the sampling

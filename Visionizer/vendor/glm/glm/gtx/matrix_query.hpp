@@ -30,7 +30,6 @@ namespace glm
 {
 	/// @addtogroup gtx_matrix_query
 	/// @{
-
 	/// Return whether a matrix a null matrix.
 	/// From GLM_GTX_matrix_query extension.
 	template<typename T, qualifier Q>

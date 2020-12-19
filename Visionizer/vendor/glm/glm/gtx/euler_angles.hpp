@@ -30,7 +30,6 @@ namespace glm
 {
 	/// @addtogroup gtx_euler_angles
 	/// @{
-
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from an euler angle X.
 	/// @see gtx_euler_angles
 	template<typename T>
@@ -53,19 +52,19 @@ namespace glm
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> derivedEulerAngleX(
-		T const & angleX, T const & angularVelocityX);
+		T const& angleX, T const& angularVelocityX);
 
 	/// Creates a 3D 4 * 4 homogeneous derived matrix from the rotation matrix about Y-axis.
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> derivedEulerAngleY(
-		T const & angleY, T const & angularVelocityY);
+		T const& angleY, T const& angularVelocityY);
 
 	/// Creates a 3D 4 * 4 homogeneous derived matrix from the rotation matrix about Z-axis.
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> derivedEulerAngleZ(
-		T const & angleZ, T const & angularVelocityZ);
+		T const& angleZ, T const& angularVelocityZ);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (X * Y).
 	/// @see gtx_euler_angles
@@ -109,13 +108,13 @@ namespace glm
 		T const& angleZ,
 		T const& angleY);
 
-    /// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (X * Y * Z).
-    /// @see gtx_euler_angles
-    template<typename T>
-    GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleXYZ(
-        T const& t1,
-        T const& t2,
-        T const& t3);
+	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (X * Y * Z).
+	/// @see gtx_euler_angles
+	template<typename T>
+	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleXYZ(
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Y * X * Z).
 	/// @see gtx_euler_angles
@@ -129,81 +128,81 @@ namespace glm
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleXZX(
-		T const & t1,
-		T const & t2,
-		T const & t3);
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (X * Y * X).
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleXYX(
-		T const & t1,
-		T const & t2,
-		T const & t3);
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Y * X * Y).
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleYXY(
-		T const & t1,
-		T const & t2,
-		T const & t3);
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Y * Z * Y).
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleYZY(
-		T const & t1,
-		T const & t2,
-		T const & t3);
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Z * Y * Z).
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleZYZ(
-		T const & t1,
-		T const & t2,
-		T const & t3);
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Z * X * Z).
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleZXZ(
-		T const & t1,
-		T const & t2,
-		T const & t3);
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (X * Z * Y).
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleXZY(
-		T const & t1,
-		T const & t2,
-		T const & t3);
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Y * Z * X).
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleYZX(
-		T const & t1,
-		T const & t2,
-		T const & t3);
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Z * Y * X).
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleZYX(
-		T const & t1,
-		T const & t2,
-		T const & t3);
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Z * X * Y).
 	/// @see gtx_euler_angles
 	template <typename T>
 	GLM_FUNC_DECL mat<4, 4, T, defaultp> eulerAngleZXY(
-		T const & t1,
-		T const & t2,
-		T const & t3);
+		T const& t1,
+		T const& t2,
+		T const& t3);
 
 	/// Creates a 3D 4 * 4 homogeneous rotation matrix from euler angles (Y * X * Z).
 	/// @see gtx_euler_angles
@@ -233,101 +232,101 @@ namespace glm
 	template<typename T, qualifier Q>
 	GLM_FUNC_DECL mat<4, 4, T, Q> orientate4(vec<3, T, Q> const& angles);
 
-    /// Extracts the (X * Y * Z) Euler angles from the rotation matrix M
-    /// @see gtx_euler_angles
-    template<typename T>
-    GLM_FUNC_DECL void extractEulerAngleXYZ(mat<4, 4, T, defaultp> const& M,
-                                            T & t1,
-                                            T & t2,
-                                            T & t3);
+	/// Extracts the (X * Y * Z) Euler angles from the rotation matrix M
+	/// @see gtx_euler_angles
+	template<typename T>
+	GLM_FUNC_DECL void extractEulerAngleXYZ(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (Y * X * Z) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleYXZ(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleYXZ(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (X * Z * X) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleXZX(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleXZX(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (X * Y * X) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleXYX(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleXYX(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (Y * X * Y) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleYXY(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleYXY(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (Y * Z * Y) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleYZY(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleYZY(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (Z * Y * Z) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleZYZ(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleZYZ(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (Z * X * Z) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleZXZ(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleZXZ(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (X * Z * Y) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleXZY(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleXZY(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (Y * Z * X) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleYZX(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleYZX(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (Z * Y * X) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleZYX(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleZYX(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// Extracts the (Z * X * Y) Euler angles from the rotation matrix M
 	/// @see gtx_euler_angles
 	template <typename T>
-	GLM_FUNC_DECL void extractEulerAngleZXY(mat<4, 4, T, defaultp> const & M,
-											T & t1,
-											T & t2,
-											T & t3);
+	GLM_FUNC_DECL void extractEulerAngleZXY(mat<4, 4, T, defaultp> const& M,
+		T& t1,
+		T& t2,
+		T& t3);
 
 	/// @}
 }//namespace glm

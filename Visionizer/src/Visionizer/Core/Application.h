@@ -11,8 +11,8 @@
 
 #include "Visionizer/ImGui/ImGuiLayer.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class Application
 	{
 	public:
@@ -45,5 +45,4 @@ namespace Visionizer {
 
 	// To be defined in CLIENT
 	Application* CreateApplication();
-
 }

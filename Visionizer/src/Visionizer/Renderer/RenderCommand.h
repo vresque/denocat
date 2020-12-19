@@ -2,8 +2,8 @@
 
 #include "RendererAPI.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class RenderCommand
 	{
 	public:
@@ -34,5 +34,4 @@ namespace Visionizer {
 	private:
 		static Scope<RendererAPI> s_RendererAPI;
 	};
-
 }

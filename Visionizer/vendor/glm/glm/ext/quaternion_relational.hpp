@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup ext_quaternion_relational
 	/// @{
-
 	/// Returns the component-wise comparison of result x == y.
 	///
 	/// @tparam T Floating-point scalar types

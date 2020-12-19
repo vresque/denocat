@@ -3,41 +3,41 @@ namespace glm
 	// -- Constructors --
 
 #	if GLM_CONFIG_DEFAULTED_FUNCTIONS == GLM_DISABLE
-		template<typename T, qualifier Q>
-		GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat()
+	template<typename T, qualifier Q>
+	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat()
 #			if GLM_CONFIG_CTOR_INIT == GLM_CTOR_INITIALIZER_LIST
-				: value{col_type(1, 0, 0), col_type(0, 1, 0)}
+		: value{ col_type(1, 0, 0), col_type(0, 1, 0) }
 #			endif
-		{
+	{
 #			if GLM_CONFIG_CTOR_INIT == GLM_CTOR_INITIALISATION
-				this->value[0] = col_type(1, 0, 0);
-				this->value[1] = col_type(0, 1, 0);
+		this->value[0] = col_type(1, 0, 0);
+		this->value[1] = col_type(0, 1, 0);
 #			endif
-		}
+	}
 #	endif
 
 	template<typename T, qualifier Q>
 	template<qualifier P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(mat<2, 3, T, P> const& m)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{m.value[0], m.value[1]}
+		: value{ m.value[0], m.value[1] }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = m.value[0];
-			this->value[1] = m.value[1];
+		this->value[0] = m.value[0];
+		this->value[1] = m.value[1];
 #		endif
 	}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(T scalar)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(scalar, 0, 0), col_type(0, scalar, 0)}
+		: value{ col_type(scalar, 0, 0), col_type(0, scalar, 0) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(scalar, 0, 0);
-			this->value[1] = col_type(0, scalar, 0);
+		this->value[0] = col_type(scalar, 0, 0);
+		this->value[1] = col_type(0, scalar, 0);
 #		endif
 	}
 
@@ -48,24 +48,24 @@ namespace glm
 		T x1, T y1, T z1
 	)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(x0, y0, z0), col_type(x1, y1, z1)}
+		: value{ col_type(x0, y0, z0), col_type(x1, y1, z1) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(x0, y0, z0);
-			this->value[1] = col_type(x1, y1, z1);
+		this->value[0] = col_type(x0, y0, z0);
+		this->value[1] = col_type(x1, y1, z1);
 #		endif
 	}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(col_type const& v0, col_type const& v1)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(v0), col_type(v1)}
+		: value{ col_type(v0), col_type(v1) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(v0);
-			this->value[1] = col_type(v1);
+		this->value[0] = col_type(v0);
+		this->value[1] = col_type(v1);
 #		endif
 	}
 
@@ -75,18 +75,18 @@ namespace glm
 	template<
 		typename X1, typename Y1, typename Z1,
 		typename X2, typename Y2, typename Z2>
-	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat
-	(
-		X1 x1, Y1 y1, Z1 z1,
-		X2 x2, Y2 y2, Z2 z2
-	)
+		GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat
+		(
+			X1 x1, Y1 y1, Z1 z1,
+			X2 x2, Y2 y2, Z2 z2
+		)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(x1, y1, z1), col_type(x2, y2, z2)}
+		: value{ col_type(x1, y1, z1), col_type(x2, y2, z2) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(x1, y1, z1);
-			this->value[1] = col_type(x2, y2, z2);
+		this->value[0] = col_type(x1, y1, z1);
+		this->value[1] = col_type(x2, y2, z2);
 #		endif
 	}
 
@@ -94,12 +94,12 @@ namespace glm
 	template<typename V1, typename V2>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(vec<3, V1, Q> const& v1, vec<3, V2, Q> const& v2)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(v1), col_type(v2)}
+		: value{ col_type(v1), col_type(v2) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(v1);
-			this->value[1] = col_type(v2);
+		this->value[0] = col_type(v1);
+		this->value[1] = col_type(v2);
 #		endif
 	}
 
@@ -109,115 +109,115 @@ namespace glm
 	template<typename U, qualifier P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(mat<2, 3, U, P> const& m)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(m[0]), col_type(m[1])}
+		: value{ col_type(m[0]), col_type(m[1]) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(m[0]);
-			this->value[1] = col_type(m[1]);
+		this->value[0] = col_type(m[0]);
+		this->value[1] = col_type(m[1]);
 #		endif
 	}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(mat<2, 2, T, Q> const& m)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(m[0], 0), col_type(m[1], 0)}
+		: value{ col_type(m[0], 0), col_type(m[1], 0) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(m[0], 0);
-			this->value[1] = col_type(m[1], 0);
+		this->value[0] = col_type(m[0], 0);
+		this->value[1] = col_type(m[1], 0);
 #		endif
 	}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR  mat<2, 3, T, Q>::mat(mat<3, 3, T, Q> const& m)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(m[0]), col_type(m[1])}
+		: value{ col_type(m[0]), col_type(m[1]) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(m[0]);
-			this->value[1] = col_type(m[1]);
+		this->value[0] = col_type(m[0]);
+		this->value[1] = col_type(m[1]);
 #		endif
 	}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(mat<4, 4, T, Q> const& m)
 #		if GLM_HAS_INITIALIZER_LISTS
-		: value{col_type(m[0]), col_type(m[1])}
+		: value{ col_type(m[0]), col_type(m[1]) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(m[0]);
-			this->value[1] = col_type(m[1]);
+		this->value[0] = col_type(m[0]);
+		this->value[1] = col_type(m[1]);
 #		endif
 	}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(mat<2, 4, T, Q> const& m)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(m[0]), col_type(m[1])}
+		: value{ col_type(m[0]), col_type(m[1]) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(m[0]);
-			this->value[1] = col_type(m[1]);
+		this->value[0] = col_type(m[0]);
+		this->value[1] = col_type(m[1]);
 #		endif
 	}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(mat<3, 2, T, Q> const& m)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(m[0], 0), col_type(m[1], 0)}
+		: value{ col_type(m[0], 0), col_type(m[1], 0) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(m[0], 0);
-			this->value[1] = col_type(m[1], 0);
+		this->value[0] = col_type(m[0], 0);
+		this->value[1] = col_type(m[1], 0);
 #		endif
 	}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(mat<3, 4, T, Q> const& m)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(m[0]), col_type(m[1])}
+		: value{ col_type(m[0]), col_type(m[1]) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(m[0]);
-			this->value[1] = col_type(m[1]);
+		this->value[0] = col_type(m[0]);
+		this->value[1] = col_type(m[1]);
 #		endif
 	}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(mat<4, 2, T, Q> const& m)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(m[0], 0), col_type(m[1], 0)}
+		: value{ col_type(m[0], 0), col_type(m[1], 0) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(m[0], 0);
-			this->value[1] = col_type(m[1], 0);
+		this->value[0] = col_type(m[0], 0);
+		this->value[1] = col_type(m[1], 0);
 #		endif
 	}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<2, 3, T, Q>::mat(mat<4, 3, T, Q> const& m)
 #		if GLM_HAS_INITIALIZER_LISTS
-			: value{col_type(m[0]), col_type(m[1])}
+		: value{ col_type(m[0]), col_type(m[1]) }
 #		endif
 	{
 #		if !GLM_HAS_INITIALIZER_LISTS
-			this->value[0] = col_type(m[0]);
-			this->value[1] = col_type(m[1]);
+		this->value[0] = col_type(m[0]);
+		this->value[1] = col_type(m[1]);
 #		endif
 	}
 
 	// -- Accesses --
 
 	template<typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER typename mat<2, 3, T, Q>::col_type & mat<2, 3, T, Q>::operator[](typename mat<2, 3, T, Q>::length_type i)
+	GLM_FUNC_QUALIFIER typename mat<2, 3, T, Q>::col_type& mat<2, 3, T, Q>::operator[](typename mat<2, 3, T, Q>::length_type i)
 	{
 		assert(i < this->length());
 		return this->value[i];
@@ -243,7 +243,7 @@ namespace glm
 
 	template<typename T, qualifier Q>
 	template<typename U>
-	GLM_FUNC_QUALIFIER mat<2, 3, T, Q> & mat<2, 3, T, Q>::operator+=(U s)
+	GLM_FUNC_QUALIFIER mat<2, 3, T, Q>& mat<2, 3, T, Q>::operator+=(U s)
 	{
 		this->value[0] += s;
 		this->value[1] += s;
@@ -288,7 +288,7 @@ namespace glm
 
 	template<typename T, qualifier Q>
 	template<typename U>
-	GLM_FUNC_QUALIFIER mat<2, 3, T, Q> & mat<2, 3, T, Q>::operator/=(U s)
+	GLM_FUNC_QUALIFIER mat<2, 3, T, Q>& mat<2, 3, T, Q>::operator/=(U s)
 	{
 		this->value[0] /= s;
 		this->value[1] /= s;
@@ -298,7 +298,7 @@ namespace glm
 	// -- Increment and decrement operators --
 
 	template<typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER mat<2, 3, T, Q> & mat<2, 3, T, Q>::operator++()
+	GLM_FUNC_QUALIFIER mat<2, 3, T, Q>& mat<2, 3, T, Q>::operator++()
 	{
 		++this->value[0];
 		++this->value[1];
@@ -306,7 +306,7 @@ namespace glm
 	}
 
 	template<typename T, qualifier Q>
-	GLM_FUNC_QUALIFIER mat<2, 3, T, Q> & mat<2, 3, T, Q>::operator--()
+	GLM_FUNC_QUALIFIER mat<2, 3, T, Q>& mat<2, 3, T, Q>::operator--()
 	{
 		--this->value[0];
 		--this->value[1];
@@ -317,7 +317,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER mat<2, 3, T, Q> mat<2, 3, T, Q>::operator++(int)
 	{
 		mat<2, 3, T, Q> Result(*this);
-		++*this;
+		++* this;
 		return Result;
 	}
 
@@ -325,7 +325,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER mat<2, 3, T, Q> mat<2, 3, T, Q>::operator--(int)
 	{
 		mat<2, 3, T, Q> Result(*this);
-		--*this;
+		--* this;
 		return Result;
 	}
 
@@ -397,9 +397,9 @@ namespace glm
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER typename mat<2, 3, T, Q>::col_type operator*
-	(
-		mat<2, 3, T, Q> const& m,
-		typename mat<2, 3, T, Q>::row_type const& v)
+		(
+			mat<2, 3, T, Q> const& m,
+			typename mat<2, 3, T, Q>::row_type const& v)
 	{
 		return typename mat<2, 3, T, Q>::col_type(
 			m[0][0] * v.x + m[1][0] * v.y,
@@ -409,9 +409,9 @@ namespace glm
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER typename mat<2, 3, T, Q>::row_type operator*
-	(
-		typename mat<2, 3, T, Q>::col_type const& v,
-		mat<2, 3, T, Q> const& m)
+		(
+			typename mat<2, 3, T, Q>::col_type const& v,
+			mat<2, 3, T, Q> const& m)
 	{
 		return typename mat<2, 3, T, Q>::row_type(
 			v.x * m[0][0] + v.y * m[0][1] + v.z * m[0][2],

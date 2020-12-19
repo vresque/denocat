@@ -29,7 +29,6 @@ namespace glm
 {
 	/// @addtogroup gtx_type_trait
 	/// @{
-
 	template<typename T>
 	struct type
 	{

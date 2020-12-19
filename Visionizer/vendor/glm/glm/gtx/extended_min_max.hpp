@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_extended_min_max
 	/// @{
-
 	/// Return the minimum component-wise values of 3 inputs
 	/// @see gtx_extented_min_max
 	template<typename T>
@@ -174,7 +173,6 @@ namespace glm
 	/// @see gtx_extented_min_max
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_DECL vec<L, T, Q> fclamp(vec<L, T, Q> const& x, vec<L, T, Q> const& minVal, vec<L, T, Q> const& maxVal);
-
 
 	/// @}
 }//namespace glm

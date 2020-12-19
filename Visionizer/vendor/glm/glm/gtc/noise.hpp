@@ -35,7 +35,6 @@ namespace glm
 {
 	/// @addtogroup gtc_noise
 	/// @{
-
 	/// Classic perlin noise.
 	/// @see gtc_noise
 	template<length_t L, typename T, qualifier Q>

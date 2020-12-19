@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtx_color_space
 	/// @{
-
 	/// Converts a color from HSV color space to its color in RGB color space.
 	/// @see gtx_color_space
 	template<typename T, qualifier Q>

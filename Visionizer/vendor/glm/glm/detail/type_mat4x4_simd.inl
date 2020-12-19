@@ -2,5 +2,4 @@
 
 namespace glm
 {
-
 }//namespace glm

@@ -10,7 +10,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER vec<3, T, Q> axis(qua<T, Q> const& x)
 	{
 		T const tmp1 = static_cast<T>(1) - x.w * x.w;
-		if(tmp1 <= static_cast<T>(0))
+		if (tmp1 <= static_cast<T>(0))
 			return vec<3, T, Q>(0, 0, 1);
 		T const tmp2 = static_cast<T>(1) / sqrt(tmp1);
 		return vec<3, T, Q>(x.x * tmp2, x.y * tmp2, x.z * tmp2);

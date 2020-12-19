@@ -23,7 +23,6 @@ namespace glm
 {
 	/// @addtogroup gtc_reciprocal
 	/// @{
-
 	/// Secant function.
 	/// hypotenuse / adjacent or 1 / cos(x)
 	///

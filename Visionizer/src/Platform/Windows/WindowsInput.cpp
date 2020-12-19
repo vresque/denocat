@@ -4,8 +4,8 @@
 #include "Visionizer/Core/Application.h"
 #include <GLFW/glfw3.h>
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	Scope<Input> Input::s_Instance = CreateScope<WindowsInput>();
 
 	bool WindowsInput::IsKeyPressedImpl(int keycode)
@@ -33,14 +33,13 @@ namespace Visionizer {
 
 	float WindowsInput::GetMouseXImpl()
 	{
-		auto[x, y] = GetMousePositionImpl();
+		auto [x, y] = GetMousePositionImpl();
 		return x;
 	}
 
 	float WindowsInput::GetMouseYImpl()
 	{
-		auto[x, y] = GetMousePositionImpl();
+		auto [x, y] = GetMousePositionImpl();
 		return y;
 	}
-
 }

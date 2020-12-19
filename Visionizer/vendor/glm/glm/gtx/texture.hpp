@@ -29,7 +29,6 @@ namespace glm
 {
 	/// @addtogroup gtx_texture
 	/// @{
-
 	/// Compute the number of mipmaps levels necessary to create a mipmap complete texture
 	///
 	/// @param Extent Extent of the texture base level mipmap
@@ -43,4 +42,3 @@ namespace glm
 }// namespace glm
 
 #include "texture.inl"
-

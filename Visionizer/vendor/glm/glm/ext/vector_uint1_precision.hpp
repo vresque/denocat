@@ -20,7 +20,6 @@ namespace glm
 {
 	/// @addtogroup ext_vector_uint1_precision
 	/// @{
-
 	/// 1 component vector of unsigned integer values.
 	///
 	/// @see ext_vector_uint1_precision

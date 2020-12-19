@@ -32,5 +32,4 @@ namespace glm
 			sin(latitude),
 			cos(latitude) * cos(longitude));
 	}
-
 }//namespace glm

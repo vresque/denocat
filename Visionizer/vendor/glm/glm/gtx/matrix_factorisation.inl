@@ -43,7 +43,7 @@ namespace glm
 			// Also: Fill the zero elements of R
 			for (length_t j = 0; j < i; j++)
 			{
-				q[i] -= dot(q[i], q[j])*q[j];
+				q[i] -= dot(q[i], q[j]) * q[j];
 				r[j][i] = 0;
 			}
 

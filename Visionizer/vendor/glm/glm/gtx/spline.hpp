@@ -28,7 +28,6 @@ namespace glm
 {
 	/// @addtogroup gtx_spline
 	/// @{
-
 	/// Return a point from a catmull rom curve.
 	/// @see gtx_spline extension.
 	template<typename genType>

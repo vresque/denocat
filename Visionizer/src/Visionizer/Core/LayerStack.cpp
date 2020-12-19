@@ -1,8 +1,8 @@
 #include "vspch.h"
 #include "LayerStack.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	LayerStack::LayerStack()
 	{
 	}
@@ -49,5 +49,4 @@ namespace Visionizer {
 			m_Layers.erase(it);
 		}
 	}
-
 }

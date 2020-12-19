@@ -25,7 +25,6 @@ namespace glm
 {
 	/// @addtogroup core_func_trigonometric
 	/// @{
-
 	/// Converts degrees to radians and returns the result.
 	///
 	/// @tparam L Integer between 1 and 4 included that qualify the dimension of the vector

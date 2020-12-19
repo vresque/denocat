@@ -8,7 +8,7 @@ namespace glm
 		T const cosTheta = dot(x, y);
 
 		// Perform a linear interpolation when cosTheta is close to 1 to avoid side effect of sin(angle) becoming a zero denominator
-		if(cosTheta > static_cast<T>(1) - epsilon<T>())
+		if (cosTheta > static_cast<T>(1) - epsilon<T>())
 		{
 			// Linear interpolation
 			return qua<T, Q>(
@@ -48,14 +48,14 @@ namespace glm
 
 		// If cosTheta < 0, the interpolation will take the long way around the sphere.
 		// To fix this, one quat must be negated.
-		if(cosTheta < static_cast<T>(0))
+		if (cosTheta < static_cast<T>(0))
 		{
 			z = -y;
 			cosTheta = -cosTheta;
 		}
 
 		// Perform a linear interpolation when cosTheta is close to 1 to avoid side effect of sin(angle) becoming a zero denominator
-		if(cosTheta > static_cast<T>(1) - epsilon<T>())
+		if (cosTheta > static_cast<T>(1) - epsilon<T>())
 		{
 			// Linear interpolation
 			return qua<T, Q>(
@@ -104,4 +104,3 @@ namespace glm
 #if GLM_CONFIG_SIMD == GLM_ENABLE
 #	include "quaternion_common_simd.inl"
 #endif
-

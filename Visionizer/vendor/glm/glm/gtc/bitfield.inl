@@ -2,224 +2,225 @@
 
 #include "../simd/integer.h"
 
-namespace glm{
-namespace detail
+namespace glm
 {
-	template<typename PARAM, typename RET>
-	GLM_FUNC_DECL RET bitfieldInterleave(PARAM x, PARAM y);
-
-	template<typename PARAM, typename RET>
-	GLM_FUNC_DECL RET bitfieldInterleave(PARAM x, PARAM y, PARAM z);
-
-	template<typename PARAM, typename RET>
-	GLM_FUNC_DECL RET bitfieldInterleave(PARAM x, PARAM y, PARAM z, PARAM w);
-
-	template<>
-	GLM_FUNC_QUALIFIER glm::uint16 bitfieldInterleave(glm::uint8 x, glm::uint8 y)
+	namespace detail
 	{
-		glm::uint16 REG1(x);
-		glm::uint16 REG2(y);
+		template<typename PARAM, typename RET>
+		GLM_FUNC_DECL RET bitfieldInterleave(PARAM x, PARAM y);
 
-		REG1 = ((REG1 <<  4) | REG1) & static_cast<glm::uint16>(0x0F0F);
-		REG2 = ((REG2 <<  4) | REG2) & static_cast<glm::uint16>(0x0F0F);
+		template<typename PARAM, typename RET>
+		GLM_FUNC_DECL RET bitfieldInterleave(PARAM x, PARAM y, PARAM z);
 
-		REG1 = ((REG1 <<  2) | REG1) & static_cast<glm::uint16>(0x3333);
-		REG2 = ((REG2 <<  2) | REG2) & static_cast<glm::uint16>(0x3333);
+		template<typename PARAM, typename RET>
+		GLM_FUNC_DECL RET bitfieldInterleave(PARAM x, PARAM y, PARAM z, PARAM w);
 
-		REG1 = ((REG1 <<  1) | REG1) & static_cast<glm::uint16>(0x5555);
-		REG2 = ((REG2 <<  1) | REG2) & static_cast<glm::uint16>(0x5555);
+		template<>
+		GLM_FUNC_QUALIFIER glm::uint16 bitfieldInterleave(glm::uint8 x, glm::uint8 y)
+		{
+			glm::uint16 REG1(x);
+			glm::uint16 REG2(y);
 
-		return REG1 | static_cast<glm::uint16>(REG2 << 1);
-	}
+			REG1 = ((REG1 << 4) | REG1) & static_cast<glm::uint16>(0x0F0F);
+			REG2 = ((REG2 << 4) | REG2) & static_cast<glm::uint16>(0x0F0F);
 
-	template<>
-	GLM_FUNC_QUALIFIER glm::uint32 bitfieldInterleave(glm::uint16 x, glm::uint16 y)
-	{
-		glm::uint32 REG1(x);
-		glm::uint32 REG2(y);
+			REG1 = ((REG1 << 2) | REG1) & static_cast<glm::uint16>(0x3333);
+			REG2 = ((REG2 << 2) | REG2) & static_cast<glm::uint16>(0x3333);
 
-		REG1 = ((REG1 <<  8) | REG1) & static_cast<glm::uint32>(0x00FF00FF);
-		REG2 = ((REG2 <<  8) | REG2) & static_cast<glm::uint32>(0x00FF00FF);
+			REG1 = ((REG1 << 1) | REG1) & static_cast<glm::uint16>(0x5555);
+			REG2 = ((REG2 << 1) | REG2) & static_cast<glm::uint16>(0x5555);
 
-		REG1 = ((REG1 <<  4) | REG1) & static_cast<glm::uint32>(0x0F0F0F0F);
-		REG2 = ((REG2 <<  4) | REG2) & static_cast<glm::uint32>(0x0F0F0F0F);
+			return REG1 | static_cast<glm::uint16>(REG2 << 1);
+		}
 
-		REG1 = ((REG1 <<  2) | REG1) & static_cast<glm::uint32>(0x33333333);
-		REG2 = ((REG2 <<  2) | REG2) & static_cast<glm::uint32>(0x33333333);
+		template<>
+		GLM_FUNC_QUALIFIER glm::uint32 bitfieldInterleave(glm::uint16 x, glm::uint16 y)
+		{
+			glm::uint32 REG1(x);
+			glm::uint32 REG2(y);
 
-		REG1 = ((REG1 <<  1) | REG1) & static_cast<glm::uint32>(0x55555555);
-		REG2 = ((REG2 <<  1) | REG2) & static_cast<glm::uint32>(0x55555555);
+			REG1 = ((REG1 << 8) | REG1) & static_cast<glm::uint32>(0x00FF00FF);
+			REG2 = ((REG2 << 8) | REG2) & static_cast<glm::uint32>(0x00FF00FF);
 
-		return REG1 | (REG2 << 1);
-	}
+			REG1 = ((REG1 << 4) | REG1) & static_cast<glm::uint32>(0x0F0F0F0F);
+			REG2 = ((REG2 << 4) | REG2) & static_cast<glm::uint32>(0x0F0F0F0F);
 
-	template<>
-	GLM_FUNC_QUALIFIER glm::uint64 bitfieldInterleave(glm::uint32 x, glm::uint32 y)
-	{
-		glm::uint64 REG1(x);
-		glm::uint64 REG2(y);
+			REG1 = ((REG1 << 2) | REG1) & static_cast<glm::uint32>(0x33333333);
+			REG2 = ((REG2 << 2) | REG2) & static_cast<glm::uint32>(0x33333333);
 
-		REG1 = ((REG1 << 16) | REG1) & static_cast<glm::uint64>(0x0000FFFF0000FFFFull);
-		REG2 = ((REG2 << 16) | REG2) & static_cast<glm::uint64>(0x0000FFFF0000FFFFull);
+			REG1 = ((REG1 << 1) | REG1) & static_cast<glm::uint32>(0x55555555);
+			REG2 = ((REG2 << 1) | REG2) & static_cast<glm::uint32>(0x55555555);
 
-		REG1 = ((REG1 <<  8) | REG1) & static_cast<glm::uint64>(0x00FF00FF00FF00FFull);
-		REG2 = ((REG2 <<  8) | REG2) & static_cast<glm::uint64>(0x00FF00FF00FF00FFull);
+			return REG1 | (REG2 << 1);
+		}
 
-		REG1 = ((REG1 <<  4) | REG1) & static_cast<glm::uint64>(0x0F0F0F0F0F0F0F0Full);
-		REG2 = ((REG2 <<  4) | REG2) & static_cast<glm::uint64>(0x0F0F0F0F0F0F0F0Full);
+		template<>
+		GLM_FUNC_QUALIFIER glm::uint64 bitfieldInterleave(glm::uint32 x, glm::uint32 y)
+		{
+			glm::uint64 REG1(x);
+			glm::uint64 REG2(y);
 
-		REG1 = ((REG1 <<  2) | REG1) & static_cast<glm::uint64>(0x3333333333333333ull);
-		REG2 = ((REG2 <<  2) | REG2) & static_cast<glm::uint64>(0x3333333333333333ull);
+			REG1 = ((REG1 << 16) | REG1) & static_cast<glm::uint64>(0x0000FFFF0000FFFFull);
+			REG2 = ((REG2 << 16) | REG2) & static_cast<glm::uint64>(0x0000FFFF0000FFFFull);
 
-		REG1 = ((REG1 <<  1) | REG1) & static_cast<glm::uint64>(0x5555555555555555ull);
-		REG2 = ((REG2 <<  1) | REG2) & static_cast<glm::uint64>(0x5555555555555555ull);
+			REG1 = ((REG1 << 8) | REG1) & static_cast<glm::uint64>(0x00FF00FF00FF00FFull);
+			REG2 = ((REG2 << 8) | REG2) & static_cast<glm::uint64>(0x00FF00FF00FF00FFull);
 
-		return REG1 | (REG2 << 1);
-	}
+			REG1 = ((REG1 << 4) | REG1) & static_cast<glm::uint64>(0x0F0F0F0F0F0F0F0Full);
+			REG2 = ((REG2 << 4) | REG2) & static_cast<glm::uint64>(0x0F0F0F0F0F0F0F0Full);
 
-	template<>
-	GLM_FUNC_QUALIFIER glm::uint32 bitfieldInterleave(glm::uint8 x, glm::uint8 y, glm::uint8 z)
-	{
-		glm::uint32 REG1(x);
-		glm::uint32 REG2(y);
-		glm::uint32 REG3(z);
+			REG1 = ((REG1 << 2) | REG1) & static_cast<glm::uint64>(0x3333333333333333ull);
+			REG2 = ((REG2 << 2) | REG2) & static_cast<glm::uint64>(0x3333333333333333ull);
 
-		REG1 = ((REG1 << 16) | REG1) & static_cast<glm::uint32>(0xFF0000FFu);
-		REG2 = ((REG2 << 16) | REG2) & static_cast<glm::uint32>(0xFF0000FFu);
-		REG3 = ((REG3 << 16) | REG3) & static_cast<glm::uint32>(0xFF0000FFu);
+			REG1 = ((REG1 << 1) | REG1) & static_cast<glm::uint64>(0x5555555555555555ull);
+			REG2 = ((REG2 << 1) | REG2) & static_cast<glm::uint64>(0x5555555555555555ull);
 
-		REG1 = ((REG1 <<  8) | REG1) & static_cast<glm::uint32>(0x0F00F00Fu);
-		REG2 = ((REG2 <<  8) | REG2) & static_cast<glm::uint32>(0x0F00F00Fu);
-		REG3 = ((REG3 <<  8) | REG3) & static_cast<glm::uint32>(0x0F00F00Fu);
+			return REG1 | (REG2 << 1);
+		}
 
-		REG1 = ((REG1 <<  4) | REG1) & static_cast<glm::uint32>(0xC30C30C3u);
-		REG2 = ((REG2 <<  4) | REG2) & static_cast<glm::uint32>(0xC30C30C3u);
-		REG3 = ((REG3 <<  4) | REG3) & static_cast<glm::uint32>(0xC30C30C3u);
+		template<>
+		GLM_FUNC_QUALIFIER glm::uint32 bitfieldInterleave(glm::uint8 x, glm::uint8 y, glm::uint8 z)
+		{
+			glm::uint32 REG1(x);
+			glm::uint32 REG2(y);
+			glm::uint32 REG3(z);
 
-		REG1 = ((REG1 <<  2) | REG1) & static_cast<glm::uint32>(0x49249249u);
-		REG2 = ((REG2 <<  2) | REG2) & static_cast<glm::uint32>(0x49249249u);
-		REG3 = ((REG3 <<  2) | REG3) & static_cast<glm::uint32>(0x49249249u);
+			REG1 = ((REG1 << 16) | REG1) & static_cast<glm::uint32>(0xFF0000FFu);
+			REG2 = ((REG2 << 16) | REG2) & static_cast<glm::uint32>(0xFF0000FFu);
+			REG3 = ((REG3 << 16) | REG3) & static_cast<glm::uint32>(0xFF0000FFu);
 
-		return REG1 | (REG2 << 1) | (REG3 << 2);
-	}
+			REG1 = ((REG1 << 8) | REG1) & static_cast<glm::uint32>(0x0F00F00Fu);
+			REG2 = ((REG2 << 8) | REG2) & static_cast<glm::uint32>(0x0F00F00Fu);
+			REG3 = ((REG3 << 8) | REG3) & static_cast<glm::uint32>(0x0F00F00Fu);
 
-	template<>
-	GLM_FUNC_QUALIFIER glm::uint64 bitfieldInterleave(glm::uint16 x, glm::uint16 y, glm::uint16 z)
-	{
-		glm::uint64 REG1(x);
-		glm::uint64 REG2(y);
-		glm::uint64 REG3(z);
+			REG1 = ((REG1 << 4) | REG1) & static_cast<glm::uint32>(0xC30C30C3u);
+			REG2 = ((REG2 << 4) | REG2) & static_cast<glm::uint32>(0xC30C30C3u);
+			REG3 = ((REG3 << 4) | REG3) & static_cast<glm::uint32>(0xC30C30C3u);
 
-		REG1 = ((REG1 << 32) | REG1) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
-		REG2 = ((REG2 << 32) | REG2) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
-		REG3 = ((REG3 << 32) | REG3) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
+			REG1 = ((REG1 << 2) | REG1) & static_cast<glm::uint32>(0x49249249u);
+			REG2 = ((REG2 << 2) | REG2) & static_cast<glm::uint32>(0x49249249u);
+			REG3 = ((REG3 << 2) | REG3) & static_cast<glm::uint32>(0x49249249u);
 
-		REG1 = ((REG1 << 16) | REG1) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
-		REG2 = ((REG2 << 16) | REG2) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
-		REG3 = ((REG3 << 16) | REG3) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
+			return REG1 | (REG2 << 1) | (REG3 << 2);
+		}
 
-		REG1 = ((REG1 <<  8) | REG1) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
-		REG2 = ((REG2 <<  8) | REG2) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
-		REG3 = ((REG3 <<  8) | REG3) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
+		template<>
+		GLM_FUNC_QUALIFIER glm::uint64 bitfieldInterleave(glm::uint16 x, glm::uint16 y, glm::uint16 z)
+		{
+			glm::uint64 REG1(x);
+			glm::uint64 REG2(y);
+			glm::uint64 REG3(z);
 
-		REG1 = ((REG1 <<  4) | REG1) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
-		REG2 = ((REG2 <<  4) | REG2) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
-		REG3 = ((REG3 <<  4) | REG3) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
+			REG1 = ((REG1 << 32) | REG1) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
+			REG2 = ((REG2 << 32) | REG2) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
+			REG3 = ((REG3 << 32) | REG3) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
 
-		REG1 = ((REG1 <<  2) | REG1) & static_cast<glm::uint64>(0x9249249249249249ull);
-		REG2 = ((REG2 <<  2) | REG2) & static_cast<glm::uint64>(0x9249249249249249ull);
-		REG3 = ((REG3 <<  2) | REG3) & static_cast<glm::uint64>(0x9249249249249249ull);
+			REG1 = ((REG1 << 16) | REG1) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
+			REG2 = ((REG2 << 16) | REG2) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
+			REG3 = ((REG3 << 16) | REG3) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
 
-		return REG1 | (REG2 << 1) | (REG3 << 2);
-	}
+			REG1 = ((REG1 << 8) | REG1) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
+			REG2 = ((REG2 << 8) | REG2) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
+			REG3 = ((REG3 << 8) | REG3) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
 
-	template<>
-	GLM_FUNC_QUALIFIER glm::uint64 bitfieldInterleave(glm::uint32 x, glm::uint32 y, glm::uint32 z)
-	{
-		glm::uint64 REG1(x);
-		glm::uint64 REG2(y);
-		glm::uint64 REG3(z);
+			REG1 = ((REG1 << 4) | REG1) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
+			REG2 = ((REG2 << 4) | REG2) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
+			REG3 = ((REG3 << 4) | REG3) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
 
-		REG1 = ((REG1 << 32) | REG1) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
-		REG2 = ((REG2 << 32) | REG2) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
-		REG3 = ((REG3 << 32) | REG3) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
+			REG1 = ((REG1 << 2) | REG1) & static_cast<glm::uint64>(0x9249249249249249ull);
+			REG2 = ((REG2 << 2) | REG2) & static_cast<glm::uint64>(0x9249249249249249ull);
+			REG3 = ((REG3 << 2) | REG3) & static_cast<glm::uint64>(0x9249249249249249ull);
 
-		REG1 = ((REG1 << 16) | REG1) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
-		REG2 = ((REG2 << 16) | REG2) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
-		REG3 = ((REG3 << 16) | REG3) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
+			return REG1 | (REG2 << 1) | (REG3 << 2);
+		}
 
-		REG1 = ((REG1 <<  8) | REG1) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
-		REG2 = ((REG2 <<  8) | REG2) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
-		REG3 = ((REG3 <<  8) | REG3) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
+		template<>
+		GLM_FUNC_QUALIFIER glm::uint64 bitfieldInterleave(glm::uint32 x, glm::uint32 y, glm::uint32 z)
+		{
+			glm::uint64 REG1(x);
+			glm::uint64 REG2(y);
+			glm::uint64 REG3(z);
 
-		REG1 = ((REG1 <<  4) | REG1) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
-		REG2 = ((REG2 <<  4) | REG2) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
-		REG3 = ((REG3 <<  4) | REG3) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
+			REG1 = ((REG1 << 32) | REG1) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
+			REG2 = ((REG2 << 32) | REG2) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
+			REG3 = ((REG3 << 32) | REG3) & static_cast<glm::uint64>(0xFFFF00000000FFFFull);
 
-		REG1 = ((REG1 <<  2) | REG1) & static_cast<glm::uint64>(0x9249249249249249ull);
-		REG2 = ((REG2 <<  2) | REG2) & static_cast<glm::uint64>(0x9249249249249249ull);
-		REG3 = ((REG3 <<  2) | REG3) & static_cast<glm::uint64>(0x9249249249249249ull);
+			REG1 = ((REG1 << 16) | REG1) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
+			REG2 = ((REG2 << 16) | REG2) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
+			REG3 = ((REG3 << 16) | REG3) & static_cast<glm::uint64>(0x00FF0000FF0000FFull);
 
-		return REG1 | (REG2 << 1) | (REG3 << 2);
-	}
+			REG1 = ((REG1 << 8) | REG1) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
+			REG2 = ((REG2 << 8) | REG2) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
+			REG3 = ((REG3 << 8) | REG3) & static_cast<glm::uint64>(0xF00F00F00F00F00Full);
 
-	template<>
-	GLM_FUNC_QUALIFIER glm::uint32 bitfieldInterleave(glm::uint8 x, glm::uint8 y, glm::uint8 z, glm::uint8 w)
-	{
-		glm::uint32 REG1(x);
-		glm::uint32 REG2(y);
-		glm::uint32 REG3(z);
-		glm::uint32 REG4(w);
+			REG1 = ((REG1 << 4) | REG1) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
+			REG2 = ((REG2 << 4) | REG2) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
+			REG3 = ((REG3 << 4) | REG3) & static_cast<glm::uint64>(0x30C30C30C30C30C3ull);
 
-		REG1 = ((REG1 << 12) | REG1) & static_cast<glm::uint32>(0x000F000Fu);
-		REG2 = ((REG2 << 12) | REG2) & static_cast<glm::uint32>(0x000F000Fu);
-		REG3 = ((REG3 << 12) | REG3) & static_cast<glm::uint32>(0x000F000Fu);
-		REG4 = ((REG4 << 12) | REG4) & static_cast<glm::uint32>(0x000F000Fu);
+			REG1 = ((REG1 << 2) | REG1) & static_cast<glm::uint64>(0x9249249249249249ull);
+			REG2 = ((REG2 << 2) | REG2) & static_cast<glm::uint64>(0x9249249249249249ull);
+			REG3 = ((REG3 << 2) | REG3) & static_cast<glm::uint64>(0x9249249249249249ull);
 
-		REG1 = ((REG1 <<  6) | REG1) & static_cast<glm::uint32>(0x03030303u);
-		REG2 = ((REG2 <<  6) | REG2) & static_cast<glm::uint32>(0x03030303u);
-		REG3 = ((REG3 <<  6) | REG3) & static_cast<glm::uint32>(0x03030303u);
-		REG4 = ((REG4 <<  6) | REG4) & static_cast<glm::uint32>(0x03030303u);
+			return REG1 | (REG2 << 1) | (REG3 << 2);
+		}
 
-		REG1 = ((REG1 <<  3) | REG1) & static_cast<glm::uint32>(0x11111111u);
-		REG2 = ((REG2 <<  3) | REG2) & static_cast<glm::uint32>(0x11111111u);
-		REG3 = ((REG3 <<  3) | REG3) & static_cast<glm::uint32>(0x11111111u);
-		REG4 = ((REG4 <<  3) | REG4) & static_cast<glm::uint32>(0x11111111u);
+		template<>
+		GLM_FUNC_QUALIFIER glm::uint32 bitfieldInterleave(glm::uint8 x, glm::uint8 y, glm::uint8 z, glm::uint8 w)
+		{
+			glm::uint32 REG1(x);
+			glm::uint32 REG2(y);
+			glm::uint32 REG3(z);
+			glm::uint32 REG4(w);
 
-		return REG1 | (REG2 << 1) | (REG3 << 2) | (REG4 << 3);
-	}
+			REG1 = ((REG1 << 12) | REG1) & static_cast<glm::uint32>(0x000F000Fu);
+			REG2 = ((REG2 << 12) | REG2) & static_cast<glm::uint32>(0x000F000Fu);
+			REG3 = ((REG3 << 12) | REG3) & static_cast<glm::uint32>(0x000F000Fu);
+			REG4 = ((REG4 << 12) | REG4) & static_cast<glm::uint32>(0x000F000Fu);
 
-	template<>
-	GLM_FUNC_QUALIFIER glm::uint64 bitfieldInterleave(glm::uint16 x, glm::uint16 y, glm::uint16 z, glm::uint16 w)
-	{
-		glm::uint64 REG1(x);
-		glm::uint64 REG2(y);
-		glm::uint64 REG3(z);
-		glm::uint64 REG4(w);
+			REG1 = ((REG1 << 6) | REG1) & static_cast<glm::uint32>(0x03030303u);
+			REG2 = ((REG2 << 6) | REG2) & static_cast<glm::uint32>(0x03030303u);
+			REG3 = ((REG3 << 6) | REG3) & static_cast<glm::uint32>(0x03030303u);
+			REG4 = ((REG4 << 6) | REG4) & static_cast<glm::uint32>(0x03030303u);
 
-		REG1 = ((REG1 << 24) | REG1) & static_cast<glm::uint64>(0x000000FF000000FFull);
-		REG2 = ((REG2 << 24) | REG2) & static_cast<glm::uint64>(0x000000FF000000FFull);
-		REG3 = ((REG3 << 24) | REG3) & static_cast<glm::uint64>(0x000000FF000000FFull);
-		REG4 = ((REG4 << 24) | REG4) & static_cast<glm::uint64>(0x000000FF000000FFull);
+			REG1 = ((REG1 << 3) | REG1) & static_cast<glm::uint32>(0x11111111u);
+			REG2 = ((REG2 << 3) | REG2) & static_cast<glm::uint32>(0x11111111u);
+			REG3 = ((REG3 << 3) | REG3) & static_cast<glm::uint32>(0x11111111u);
+			REG4 = ((REG4 << 3) | REG4) & static_cast<glm::uint32>(0x11111111u);
 
-		REG1 = ((REG1 << 12) | REG1) & static_cast<glm::uint64>(0x000F000F000F000Full);
-		REG2 = ((REG2 << 12) | REG2) & static_cast<glm::uint64>(0x000F000F000F000Full);
-		REG3 = ((REG3 << 12) | REG3) & static_cast<glm::uint64>(0x000F000F000F000Full);
-		REG4 = ((REG4 << 12) | REG4) & static_cast<glm::uint64>(0x000F000F000F000Full);
+			return REG1 | (REG2 << 1) | (REG3 << 2) | (REG4 << 3);
+		}
 
-		REG1 = ((REG1 <<  6) | REG1) & static_cast<glm::uint64>(0x0303030303030303ull);
-		REG2 = ((REG2 <<  6) | REG2) & static_cast<glm::uint64>(0x0303030303030303ull);
-		REG3 = ((REG3 <<  6) | REG3) & static_cast<glm::uint64>(0x0303030303030303ull);
-		REG4 = ((REG4 <<  6) | REG4) & static_cast<glm::uint64>(0x0303030303030303ull);
+		template<>
+		GLM_FUNC_QUALIFIER glm::uint64 bitfieldInterleave(glm::uint16 x, glm::uint16 y, glm::uint16 z, glm::uint16 w)
+		{
+			glm::uint64 REG1(x);
+			glm::uint64 REG2(y);
+			glm::uint64 REG3(z);
+			glm::uint64 REG4(w);
 
-		REG1 = ((REG1 <<  3) | REG1) & static_cast<glm::uint64>(0x1111111111111111ull);
-		REG2 = ((REG2 <<  3) | REG2) & static_cast<glm::uint64>(0x1111111111111111ull);
-		REG3 = ((REG3 <<  3) | REG3) & static_cast<glm::uint64>(0x1111111111111111ull);
-		REG4 = ((REG4 <<  3) | REG4) & static_cast<glm::uint64>(0x1111111111111111ull);
+			REG1 = ((REG1 << 24) | REG1) & static_cast<glm::uint64>(0x000000FF000000FFull);
+			REG2 = ((REG2 << 24) | REG2) & static_cast<glm::uint64>(0x000000FF000000FFull);
+			REG3 = ((REG3 << 24) | REG3) & static_cast<glm::uint64>(0x000000FF000000FFull);
+			REG4 = ((REG4 << 24) | REG4) & static_cast<glm::uint64>(0x000000FF000000FFull);
 
-		return REG1 | (REG2 << 1) | (REG3 << 2) | (REG4 << 3);
-	}
-}//namespace detail
+			REG1 = ((REG1 << 12) | REG1) & static_cast<glm::uint64>(0x000F000F000F000Full);
+			REG2 = ((REG2 << 12) | REG2) & static_cast<glm::uint64>(0x000F000F000F000Full);
+			REG3 = ((REG3 << 12) | REG3) & static_cast<glm::uint64>(0x000F000F000F000Full);
+			REG4 = ((REG4 << 12) | REG4) & static_cast<glm::uint64>(0x000F000F000F000Full);
+
+			REG1 = ((REG1 << 6) | REG1) & static_cast<glm::uint64>(0x0303030303030303ull);
+			REG2 = ((REG2 << 6) | REG2) & static_cast<glm::uint64>(0x0303030303030303ull);
+			REG3 = ((REG3 << 6) | REG3) & static_cast<glm::uint64>(0x0303030303030303ull);
+			REG4 = ((REG4 << 6) | REG4) & static_cast<glm::uint64>(0x0303030303030303ull);
+
+			REG1 = ((REG1 << 3) | REG1) & static_cast<glm::uint64>(0x1111111111111111ull);
+			REG2 = ((REG2 << 3) | REG2) & static_cast<glm::uint64>(0x1111111111111111ull);
+			REG3 = ((REG3 << 3) | REG3) & static_cast<glm::uint64>(0x1111111111111111ull);
+			REG4 = ((REG4 << 3) | REG4) & static_cast<glm::uint64>(0x1111111111111111ull);
+
+			return REG1 | (REG2 << 1) | (REG3 << 2) | (REG4 << 3);
+		}
+	}//namespace detail
 
 	template<typename genIUType>
 	GLM_FUNC_QUALIFIER genIUType mask(genIUType Bits)

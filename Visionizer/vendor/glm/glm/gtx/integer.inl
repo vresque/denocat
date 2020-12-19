@@ -5,11 +5,11 @@ namespace glm
 	// pow
 	GLM_FUNC_QUALIFIER int pow(int x, uint y)
 	{
-		if(y == 0)
+		if (y == 0)
 			return x >= 0 ? 1 : -1;
 
 		int result = x;
-		for(uint i = 1; i < y; ++i)
+		for (uint i = 1; i < y; ++i)
 			result *= x;
 		return result;
 	}
@@ -17,7 +17,7 @@ namespace glm
 	// sqrt: From Christopher J. Musial, An integer square root, Graphics Gems, 1990, page 387
 	GLM_FUNC_QUALIFIER int sqrt(int x)
 	{
-		if(x <= 1) return x;
+		if (x <= 1) return x;
 
 		int NextTrial = x >> 1;
 		int CurrentAnswer;
@@ -26,42 +26,42 @@ namespace glm
 		{
 			CurrentAnswer = NextTrial;
 			NextTrial = (NextTrial + x / NextTrial) >> 1;
-		} while(NextTrial < CurrentAnswer);
+		} while (NextTrial < CurrentAnswer);
 
 		return CurrentAnswer;
 	}
 
-// Henry Gordon Dietz: http://aggregate.org/MAGIC/
-namespace detail
-{
-	GLM_FUNC_QUALIFIER unsigned int ones32(unsigned int x)
-	{
-		/* 32-bit recursive reduction using SWAR...
-		but first step is mapping 2-bit values
-		into sum of 2 1-bit values in sneaky way
-		*/
-		x -= ((x >> 1) & 0x55555555);
-		x = (((x >> 2) & 0x33333333) + (x & 0x33333333));
-		x = (((x >> 4) + x) & 0x0f0f0f0f);
-		x += (x >> 8);
-		x += (x >> 16);
-		return(x & 0x0000003f);
-	}
-}//namespace detail
-
 	// Henry Gordon Dietz: http://aggregate.org/MAGIC/
-/*
-	GLM_FUNC_QUALIFIER unsigned int floor_log2(unsigned int x)
+	namespace detail
 	{
-		x |= (x >> 1);
-		x |= (x >> 2);
-		x |= (x >> 4);
-		x |= (x >> 8);
-		x |= (x >> 16);
+		GLM_FUNC_QUALIFIER unsigned int ones32(unsigned int x)
+		{
+			/* 32-bit recursive reduction using SWAR...
+			but first step is mapping 2-bit values
+			into sum of 2 1-bit values in sneaky way
+			*/
+			x -= ((x >> 1) & 0x55555555);
+			x = (((x >> 2) & 0x33333333) + (x & 0x33333333));
+			x = (((x >> 4) + x) & 0x0f0f0f0f);
+			x += (x >> 8);
+			x += (x >> 16);
+			return(x & 0x0000003f);
+		}
+	}//namespace detail
 
-		return _detail::ones32(x) >> 1;
-	}
-*/
+		// Henry Gordon Dietz: http://aggregate.org/MAGIC/
+	/*
+		GLM_FUNC_QUALIFIER unsigned int floor_log2(unsigned int x)
+		{
+			x |= (x >> 1);
+			x |= (x >> 2);
+			x |= (x >> 4);
+			x |= (x >> 8);
+			x |= (x >> 16);
+
+			return _detail::ones32(x) >> 1;
+		}
+	*/
 	// mod
 	GLM_FUNC_QUALIFIER int mod(int x, int y)
 	{
@@ -74,7 +74,7 @@ namespace detail
 	{
 		genType Temp = x;
 		genType Result;
-		for(Result = 1; Temp > 1; --Temp)
+		for (Result = 1; Temp > 1; --Temp)
 			Result *= Temp;
 		return Result;
 	}
@@ -115,14 +115,14 @@ namespace detail
 			return 1u;
 
 		uint result = x;
-		for(uint i = 1; i < y; ++i)
+		for (uint i = 1; i < y; ++i)
 			result *= x;
 		return result;
 	}
 
 	GLM_FUNC_QUALIFIER uint sqrt(uint x)
 	{
-		if(x <= 1) return x;
+		if (x <= 1) return x;
 
 		uint NextTrial = x >> 1;
 		uint CurrentAnswer;
@@ -131,7 +131,7 @@ namespace detail
 		{
 			CurrentAnswer = NextTrial;
 			NextTrial = (NextTrial + x / NextTrial) >> 1;
-		} while(NextTrial < CurrentAnswer);
+		} while (NextTrial < CurrentAnswer);
 
 		return CurrentAnswer;
 	}
@@ -181,5 +181,4 @@ namespace detail
 	}
 
 #endif//(GLM_COMPILER)
-
 }//namespace glm

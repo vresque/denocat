@@ -29,7 +29,6 @@ namespace glm
 {
 	/// @addtogroup gtx_std_based_type
 	/// @{
-
 	/// Vector type based of one std::size_t component.
 	/// @see GLM_GTX_std_based_type
 	typedef vec<1, std::size_t, defaultp>		size1;

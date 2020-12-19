@@ -29,7 +29,6 @@ namespace glm
 {
 	/// @addtogroup gtx_vector_query
 	/// @{
-
 	//! Check whether two vectors are collinears.
 	/// @see gtx_vector_query extensions.
 	template<length_t L, typename T, qualifier Q>

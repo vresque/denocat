@@ -32,7 +32,6 @@ namespace glm
 {
 	/// @addtogroup ext_quaternion_trigonometric
 	/// @{
-
 	/// Returns the quaternion rotation angle.
 	///
 	/// @tparam T A floating-point scalar type

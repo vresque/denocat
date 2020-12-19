@@ -17,7 +17,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER qua<T, Q> normalize(qua<T, Q> const& q)
 	{
 		T len = length(q);
-		if(len <= static_cast<T>(0)) // Problem
+		if (len <= static_cast<T>(0)) // Problem
 			return qua<T, Q>(static_cast<T>(1), static_cast<T>(0), static_cast<T>(0), static_cast<T>(0));
 		T oneOverLen = static_cast<T>(1) / len;
 		return qua<T, Q>(q.w * oneOverLen, q.x * oneOverLen, q.y * oneOverLen, q.z * oneOverLen);
@@ -33,4 +33,3 @@ namespace glm
 			q1.w * q2.z + q1.z * q2.w + q1.x * q2.y - q1.y * q2.x);
 	}
 }//namespace glm
-

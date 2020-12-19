@@ -33,5 +33,4 @@ namespace glm
 		Result[2][1] = -x.x;
 		return Result;
 	}
-
 }//namespace glm

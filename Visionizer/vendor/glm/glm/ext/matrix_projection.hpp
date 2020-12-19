@@ -33,7 +33,6 @@ namespace glm
 {
 	/// @addtogroup ext_matrix_projection
 	/// @{
-
 	/// Map the specified object coordinates (obj.x, obj.y, obj.z) into window coordinates.
 	/// The near and far clip planes correspond to z normalized device coordinates of 0 and +1 respectively. (Direct3D clip volume definition)
 	///

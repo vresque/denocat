@@ -4,17 +4,17 @@
 #include "Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	Ref<Shader> Shader::Create(const std::string& filepath)
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:     VS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(filepath);
+		case RendererAPI::API::None:     VS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(filepath);
 		}
 
-		 VS_CORE_ASSERT(false, "Unknown RendererAPI!");
+		VS_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
 	}
 
@@ -22,17 +22,17 @@ namespace Visionizer {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:     VS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+		case RendererAPI::API::None:     VS_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
 		}
 
-		 VS_CORE_ASSERT(false, "Unknown RendererAPI!");
+		VS_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
 	}
 
 	void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
 	{
-		 VS_CORE_ASSERT(!Exists(name), "Shader already exists!");
+		VS_CORE_ASSERT(!Exists(name), "Shader already exists!");
 		m_Shaders[name] = shader;
 	}
 
@@ -58,7 +58,7 @@ namespace Visionizer {
 
 	Ref<Shader> ShaderLibrary::Get(const std::string& name)
 	{
-		 VS_CORE_ASSERT(Exists(name), "Shader not found!");
+		VS_CORE_ASSERT(Exists(name), "Shader not found!");
 		return m_Shaders[name];
 	}
 
@@ -66,5 +66,4 @@ namespace Visionizer {
 	{
 		return m_Shaders.find(name) != m_Shaders.end();
 	}
-
 }

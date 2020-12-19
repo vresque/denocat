@@ -4,8 +4,8 @@
 
 struct GLFWwindow;
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class OpenGLContext : public GraphicsContext
 	{
 	public:
@@ -16,5 +16,4 @@ namespace Visionizer {
 	private:
 		GLFWwindow* m_WindowHandle;
 	};
-
 }

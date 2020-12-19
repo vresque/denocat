@@ -29,7 +29,6 @@ namespace glm
 {
 	/// @addtogroup gtx_matrix_transform_2d
 	/// @{
-
 	/// Builds a translation 3 * 3 matrix created from a vector of 2 components.
 	///
 	/// @param m Input matrix multiplied by this translation matrix.

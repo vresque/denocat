@@ -20,7 +20,6 @@ namespace glm
 {
 	/// @addtogroup ext_vector_int1_precision
 	/// @{
-
 	/// 1 component vector of signed integer values.
 	typedef vec<1, int, highp>			highp_ivec1;
 

@@ -29,7 +29,6 @@ namespace glm
 {
 	/// @addtogroup gtx_gradient_paint
 	/// @{
-
 	/// Return a color from a radial gradient.
 	/// @see - gtx_gradient_paint
 	template<typename T, qualifier Q>

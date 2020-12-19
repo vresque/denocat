@@ -27,7 +27,6 @@ namespace glm
 {
 	/// @addtogroup gtc_matrix_inverse
 	/// @{
-
 	/// Fast matrix inverse for affine matrix.
 	///
 	/// @param m Input matrix to invert.

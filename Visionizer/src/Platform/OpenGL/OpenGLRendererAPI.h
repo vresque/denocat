@@ -2,8 +2,8 @@
 
 #include "Visionizer/Renderer/RendererAPI.h"
 
-namespace Visionizer {
-
+namespace Visionizer
+{
 	class OpenGLRendererAPI : public RendererAPI
 	{
 	public:
@@ -15,6 +15,4 @@ namespace Visionizer {
 
 		virtual void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray) override;
 	};
-
-
 }

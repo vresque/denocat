@@ -4,7 +4,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER vec<4, bool, Q> equal(qua<T, Q> const& x, qua<T, Q> const& y)
 	{
 		vec<4, bool, Q> Result;
-		for(length_t i = 0; i < x.length(); ++i)
+		for (length_t i = 0; i < x.length(); ++i)
 			Result[i] = x[i] == y[i];
 		return Result;
 	}
@@ -20,7 +20,7 @@ namespace glm
 	GLM_FUNC_QUALIFIER vec<4, bool, Q> notEqual(qua<T, Q> const& x, qua<T, Q> const& y)
 	{
 		vec<4, bool, Q> Result;
-		for(length_t i = 0; i < x.length(); ++i)
+		for (length_t i = 0; i < x.length(); ++i)
 			Result[i] = x[i] != y[i];
 		return Result;
 	}
@@ -32,4 +32,3 @@ namespace glm
 		return greaterThanEqual(abs(v), vec<4, T, Q>(epsilon));
 	}
 }//namespace glm
-
