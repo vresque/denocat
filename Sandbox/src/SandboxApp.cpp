@@ -1,5 +1,5 @@
-#include <Visionizer.h>
-#include <Visionizer/Core/EntryPoint.h>
+#include <Denocat.h>
+#include <Denocat/Core/EntryPoint.h>
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
@@ -10,13 +10,13 @@
 
 #include "Sandbox2D.h"
 
-class ExampleLayer : public Visionizer::Layer
+class ExampleLayer : public Denocat::Layer
 {
 public:
 	ExampleLayer()
 		: Layer("Example"), m_CameraController(1280.0f / 720.0f)
 	{
-		m_VertexArray = Visionizer::VertexArray::Create();
+		m_VertexArray = Denocat::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -24,21 +24,21 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		Visionizer::Ref<Visionizer::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Visionizer::VertexBuffer::Create(vertices, sizeof(vertices)));
-		Visionizer::BufferLayout layout = {
-			{ Visionizer::ShaderDataType::Float3, "a_Position" },
-			{ Visionizer::ShaderDataType::Float4, "a_Color" }
+		Denocat::Ref<Denocat::VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(Denocat::VertexBuffer::Create(vertices, sizeof(vertices)));
+		Denocat::BufferLayout layout = {
+			{ Denocat::ShaderDataType::Float3, "a_Position" },
+			{ Denocat::ShaderDataType::Float4, "a_Color" }
 		};
 		vertexBuffer->SetLayout(layout);
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		Visionizer::Ref<Visionizer::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Visionizer::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		Denocat::Ref<Denocat::IndexBuffer> indexBuffer;
+		indexBuffer.reset(Denocat::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		m_SquareVA = Visionizer::VertexArray::Create();
+		m_SquareVA = Denocat::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -47,17 +47,17 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		Visionizer::Ref<Visionizer::VertexBuffer> squareVB;
-		squareVB.reset(Visionizer::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		Denocat::Ref<Denocat::VertexBuffer> squareVB;
+		squareVB.reset(Denocat::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{ Visionizer::ShaderDataType::Float3, "a_Position" },
-			{ Visionizer::ShaderDataType::Float2, "a_TexCoord" }
+			{ Denocat::ShaderDataType::Float3, "a_Position" },
+			{ Denocat::ShaderDataType::Float2, "a_TexCoord" }
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		Visionizer::Ref<Visionizer::IndexBuffer> squareIB;
-		squareIB.reset(Visionizer::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		Denocat::Ref<Denocat::IndexBuffer> squareIB;
+		squareIB.reset(Denocat::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vertexSrc = R"(
@@ -95,7 +95,7 @@ public:
 			}
 		)";
 
-		m_Shader = Visionizer::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
+		m_Shader = Denocat::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -129,32 +129,32 @@ public:
 			}
 		)";
 
-		m_FlatColorShader = Visionizer::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
+		m_FlatColorShader = Denocat::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
 		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
-		m_Texture = Visionizer::Texture2D::Create("assets/textures/Checkerboard.png");
-		m_ChernoLogoTexture = Visionizer::Texture2D::Create("assets/textures/ChernoLogo.png");
+		m_Texture = Denocat::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_ChernoLogoTexture = Denocat::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Denocat::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Denocat::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
-	void OnUpdate(Visionizer::Timestep ts) override
+	void OnUpdate(Denocat::Timestep ts) override
 	{
 		// Update
 		m_CameraController.OnUpdate(ts);
 
 		// Render
-		Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-		Visionizer::RenderCommand::Clear();
+		Denocat::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+		Denocat::RenderCommand::Clear();
 
-		Visionizer::Renderer::BeginScene(m_CameraController.GetCamera());
+		Denocat::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_FlatColorShader)->Bind();
-		std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		std::dynamic_pointer_cast<Denocat::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Denocat::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; y++)
 		{
@@ -162,21 +162,21 @@ public:
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				Visionizer::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
+				Denocat::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
 
 		auto textureShader = m_ShaderLibrary.Get("Texture");
 
 		m_Texture->Bind();
-		Visionizer::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Denocat::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		m_ChernoLogoTexture->Bind();
-		Visionizer::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Denocat::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
-		// Visionizer::Renderer::Submit(m_Shader, m_VertexArray);
+		// Denocat::Renderer::Submit(m_Shader, m_VertexArray);
 
-		Visionizer::Renderer::EndScene();
+		Denocat::Renderer::EndScene();
 	}
 
 	virtual void OnImGuiRender() override
@@ -186,25 +186,25 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Visionizer::Event& e) override
+	void OnEvent(Denocat::Event& e) override
 	{
 		m_CameraController.OnEvent(e);
 	}
 private:
-	Visionizer::ShaderLibrary m_ShaderLibrary;
-	Visionizer::Ref<Visionizer::Shader> m_Shader;
-	Visionizer::Ref<Visionizer::VertexArray> m_VertexArray;
+	Denocat::ShaderLibrary m_ShaderLibrary;
+	Denocat::Ref<Denocat::Shader> m_Shader;
+	Denocat::Ref<Denocat::VertexArray> m_VertexArray;
 
-	Visionizer::Ref<Visionizer::Shader> m_FlatColorShader;
-	Visionizer::Ref<Visionizer::VertexArray> m_SquareVA;
+	Denocat::Ref<Denocat::Shader> m_FlatColorShader;
+	Denocat::Ref<Denocat::VertexArray> m_SquareVA;
 
-	Visionizer::Ref<Visionizer::Texture2D> m_Texture, m_ChernoLogoTexture;
+	Denocat::Ref<Denocat::Texture2D> m_Texture, m_ChernoLogoTexture;
 
-	Visionizer::OrthographicCameraController m_CameraController;
+	Denocat::OrthographicCameraController m_CameraController;
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
-class Sandbox : public Visionizer::Application
+class Sandbox : public Denocat::Application
 {
 public:
 	Sandbox()
@@ -218,7 +218,7 @@ public:
 	}
 };
 
-Visionizer::Application* Visionizer::CreateApplication()
+Denocat::Application* Denocat::CreateApplication()
 {
 	return new Sandbox();
 }

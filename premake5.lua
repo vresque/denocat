@@ -1,4 +1,4 @@
-workspace "Visionizer"
+workspace "Denocat"
 	architecture "x64"
 	startproject "Sandbox"
 
@@ -18,21 +18,21 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["GLFW"] = "Visionizer/vendor/GLFW/include"
-IncludeDir["Glad"] = "Visionizer/vendor/Glad/include"
-IncludeDir["ImGui"] = "Visionizer/vendor/imgui"
-IncludeDir["glm"] = "Visionizer/vendor/glm"
-IncludeDir["stb_image"] = "Visionizer/vendor/stb_image"
+IncludeDir["GLFW"] = "Denocat/vendor/GLFW/include"
+IncludeDir["Glad"] = "Denocat/vendor/Glad/include"
+IncludeDir["ImGui"] = "Denocat/vendor/imgui"
+IncludeDir["glm"] = "Denocat/vendor/glm"
+IncludeDir["stb_image"] = "Denocat/vendor/stb_image"
 
 group "Dependencies"
-	include "Visionizer/vendor/GLFW"
-	include "Visionizer/vendor/Glad"
-	include "Visionizer/vendor/imgui"
+	include "Denocat/vendor/GLFW"
+	include "Denocat/vendor/Glad"
+	include "Denocat/vendor/imgui"
 
 group ""
 
-project "Visionizer"
-	location "Visionizer"
+project "Denocat"
+	location "Denocat"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
@@ -42,7 +42,7 @@ project "Visionizer"
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	pchheader "vspch.h"
-	pchsource "Visionizer/src/vspch.cpp"
+	pchsource "Denocat/src/vspch.cpp"
 
 	files
 	{
@@ -120,15 +120,15 @@ project "Sandbox"
 
 	includedirs
 	{
-		"Visionizer/vendor/spdlog/include",
-		"Visionizer/src",
-		"Visionizer/vendor",
+		"Denocat/vendor/spdlog/include",
+		"Denocat/src",
+		"Denocat/vendor",
 		"%{IncludeDir.glm}"
 	}
 
 	links
 	{
-		"Visionizer"
+		"Denocat"
 	}
 
 	filter "system:windows"

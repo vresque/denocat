@@ -16,7 +16,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	m_SquareVA = Visionizer::VertexArray::Create();
+	m_SquareVA = Denocat::VertexArray::Create();
 
 	float squareVertices[5 * 4] = {
 		-0.5f, -0.5f, 0.0f,
@@ -25,26 +25,26 @@ void Sandbox2D::OnAttach()
 		-0.5f,  0.5f, 0.0f
 	};
 
-	Visionizer::Ref<Visionizer::VertexBuffer> squareVB;
-	squareVB.reset(Visionizer::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+	Denocat::Ref<Denocat::VertexBuffer> squareVB;
+	squareVB.reset(Denocat::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 	squareVB->SetLayout({
-		{ Visionizer::ShaderDataType::Float3, "a_Position" }
+		{ Denocat::ShaderDataType::Float3, "a_Position" }
 		});
 	m_SquareVA->AddVertexBuffer(squareVB);
 
 	uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-	Visionizer::Ref<Visionizer::IndexBuffer> squareIB;
-	squareIB.reset(Visionizer::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+	Denocat::Ref<Denocat::IndexBuffer> squareIB;
+	squareIB.reset(Denocat::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 	m_SquareVA->SetIndexBuffer(squareIB);
 
-	m_FlatColorShader = Visionizer::Shader::Create("assets/shaders/FlatColor.glsl");
+	m_FlatColorShader = Denocat::Shader::Create("assets/shaders/FlatColor.glsl");
 }
 
 void Sandbox2D::OnDetach()
 {
 }
 
-void Sandbox2D::OnUpdate(Visionizer::Timestep ts)
+void Sandbox2D::OnUpdate(Denocat::Timestep ts)
 {
 	float FPS = 1.0f / ts;
 	VS_TRACE(FPS);
@@ -52,17 +52,18 @@ void Sandbox2D::OnUpdate(Visionizer::Timestep ts)
 	m_CameraController.OnUpdate(ts);
 
 	// Render
-	Visionizer::RenderCommand::SetClearColor({ 0.1f, 0.2f, 0.1f, 1 });
-	Visionizer::RenderCommand::Clear();
+	Denocat::RenderCommand::SetClearColor({ 0.1f, 0.2f, 0.1f, 1 });
+	Denocat::RenderCommand::Clear();
 
-	Visionizer::Renderer::BeginScene(m_CameraController.GetCamera());
+	Denocat::Renderer::BeginScene(m_CameraController.GetCamera());
 
-	std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_FlatColorShader)->Bind();
-	std::dynamic_pointer_cast<Visionizer::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
+	// TODO: Add Shader::SetMat4 and Shader::SetFloat4
+	std::dynamic_pointer_cast<Denocat::OpenGLShader>(m_FlatColorShader)->Bind();
+	std::dynamic_pointer_cast<Denocat::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
 
-	Visionizer::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+	Denocat::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
-	Visionizer::Renderer::EndScene();
+	Denocat::Renderer::EndScene();
 }
 
 void Sandbox2D::OnImGuiRender()
@@ -76,7 +77,7 @@ void Sandbox2D::OnImGuiRender()
 	ImGui::End();
 }
 
-void Sandbox2D::OnEvent(Visionizer::Event& e)
+void Sandbox2D::OnEvent(Denocat::Event& e)
 {
 	m_CameraController.OnEvent(e);
 }

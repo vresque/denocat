@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Visionizer.h"
+#include "Denocat.h"
 
-class Sandbox2D : public Visionizer::Layer
+class Sandbox2D : public Denocat::Layer
 {
 public:
 	Sandbox2D();
@@ -11,15 +11,15 @@ public:
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
 
-	void OnUpdate(Visionizer::Timestep ts) override;
+	void OnUpdate(Denocat::Timestep ts) override;
 	virtual void OnImGuiRender() override;
-	void OnEvent(Visionizer::Event& e) override;
+	void OnEvent(Denocat::Event& e) override;
 private:
-	Visionizer::OrthographicCameraController m_CameraController;
+	Denocat::OrthographicCameraController m_CameraController;
 
 	// Temp
-	Visionizer::Ref<Visionizer::VertexArray> m_SquareVA;
-	Visionizer::Ref<Visionizer::Shader> m_FlatColorShader;
+	Denocat::Ref<Denocat::VertexArray> m_SquareVA;
+	Denocat::Ref<Denocat::Shader> m_FlatColorShader;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 };
